@@ -1,0 +1,44 @@
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const track = document.querySelector(".carousel-track");
+    const slides = Array.from(track.children);
+    const prevButton = document.querySelector(".prev");
+    const nextButton = document.querySelector(".next");
+    
+    let currentIndex = 0;
+
+    function updateCarousel() {
+        const slideWidth = document.querySelector(".carousel-container").clientWidth;
+        track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+    }
+
+    nextButton.addEventListener("click", () => {
+        if (currentIndex < slides.length - 1) {
+            currentIndex++;
+        } else {
+            currentIndex = 0; // Loop back to the first slide
+        }
+        updateCarousel();
+    });
+
+    prevButton.addEventListener("click", () => {
+        if (currentIndex > 0) {
+            currentIndex--;
+        } else {
+            currentIndex = slides.length - 1; // Loop back to the last slide
+        }
+        updateCarousel();
+    });
+
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowRight") nextButton.click();
+        if (e.key === "ArrowLeft") prevButton.click();
+    });
+
+    window.addEventListener("resize", updateCarousel);
+    updateCarousel();
+});
+</script>
+
+</body>
+</html>
