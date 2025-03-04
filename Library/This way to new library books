@@ -1,3 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>This Way to New Library Books</title>
+    <style>
+        /* Carousel Container */
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            height: 650px;
+            overflow: hidden;
+            margin: auto;
+            border-radius: 10px;
+        }
+
+        /* Track that holds all slides */
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        /* Each slide has equal width as container */
+        .carousel-slide {
+            min-width: 100%;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Ensures images scale properly */
+        .carousel-slide img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            border-radius: 10px;
+        }
+
+        /* Navigation Buttons */
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 24px;
+            border-radius: 50%;
+            z-index: 10; /* Ensures button appears above slides */
+        }
+
+        .carousel-btn:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .prev { left: 10px; }
+        .next { right: 10px; }
+
+        /* Responsive adjustments */
+        @media (max-width: 500px) {
+            .carousel-container {
+                max-width: 100%;
+                height: auto;
+            }
+
+            .carousel-slide img {
+                height: auto;
+                max-height: 500px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="carousel-container" role="region" aria-label="Library Books Carousel">
+    <button class="carousel-btn prev" aria-label="Previous slide">&#10094;</button>
+    <div class="carousel">
+<div class="carousel-track">
+            <div class="carousel-slide">
+                <a href="https://alliance-clark.alma.exlibrisgroup.com/discovery/collectionDiscovery?vid=01ALLIANCE_CC:CC&collectionId=81183281750001861" target="_blank">
+                    <img src="https://d2jv02qf7xgjwx.cloudfront.net/accounts/348611/images/IMG_7021.jpeg" alt="An image from a children’s book of a young girl riding a bear with the text above, 'this way to new library books'">
+                </a>
+            </div>
+            <div class="carousel-slide">
+                <a href="https://alliance-clark.alma.exlibrisgroup.com/discovery/collectionDiscovery?vid=01ALLIANCE_CC:CC&collectionId=81183281750001861" target="_blank">
+                    <img src="https://d2jv02qf7xgjwx.cloudfront.net/accounts/348611/images/IMG_7022.jpeg" alt="A black and white photo of a tandem bicycle with three men riding it with the text above, 'this way to new library books'">
+                </a>
+            </div>
+            <div class="carousel-slide">
+                <a href="https://alliance-clark.alma.exlibrisgroup.com/discovery/collectionDiscovery?vid=01ALLIANCE_CC:CC&collectionId=81183281750001861" target="_blank">
+                    <img src="https://d2jv02qf7xgjwx.cloudfront.net/accounts/348611/images/IMG_7023.jpeg" alt="A vintage photo from a skiing poster of a man skiing with the text above, 'this way to new library books'">
+                </a>
+            </div>
+            <div class="carousel-slide">
+                <a href="https://alliance-clark.alma.exlibrisgroup.com/discovery/collectionDiscovery?vid=01ALLIANCE_CC:CC&collectionId=81183281750001861" target="_blank">
+                    <img src="https://d2jv02qf7xgjwx.cloudfront.net/accounts/348611/images/IMG_7024.jpeg" alt="An image of a drawing of a man using an early flying machine with a hot air balloon and bird-shaped wings on his arm with the text above, 'this way to new library books'">
+                </a>
+            </div>
+            <div class="carousel-slide">
+                <a href="https://alliance-clark.alma.exlibrisgroup.com/discovery/collectionDiscovery?vid=01ALLIANCE_CC:CC&collectionId=81183281750001861" target="_blank">
+                    <img src="https://d2jv02qf7xgjwx.cloudfront.net/accounts/348611/images/IMG_7025.jpeg" alt="An image of two white cats peering at goldfish in a fishbowl with the text above, 'this way to new library books'">
+                </a>
+            </div>
+            <div class="carousel-slide">
+                <a href="https://alliance-clark.alma.exlibrisgroup.com/discovery/collectionDiscovery?vid=01ALLIANCE_CC:CC&collectionId=81183281750001861" target="_blank">
+                    <img src="https://d2jv02qf7xgjwx.cloudfront.net/accounts/348611/images/IMG_7026.jpeg" alt="An image of a mid-century roadside rodeo cowboy on a bucking horse above a sign for an open diner with the text above, 'this way to new library books'">
+                </a>
+            </div>
+            <div class="carousel-slide">
+                <a href="https://alliance-clark.alma.exlibrisgroup.com/discovery/collectionDiscovery?vid=01ALLIANCE_CC:CC&collectionId=81183281750001861" target="_blank">
+                    <img src="https://d2jv02qf7xgjwx.cloudfront.net/accounts/348611/images/IMG_7027.jpeg" alt="An image of a book illustration of a Victorian woman riding a bicycle with the text above, 'this way to new library books'">
+                </a>
+            </div>
+            <div class="carousel-slide">
+                <a href="https://alliance-clark.alma.exlibrisgroup.com/discovery/collectionDiscovery?vid=01ALLIANCE_CC:CC&collectionId=81183281750001861" target="_blank">
+                    <img src="https://d2jv02qf7xgjwx.cloudfront.net/accounts/348611/images/IMG_7028.jpeg" alt="A photograph of a person pointing at a wall map of North America with the text above, 'this way to new library books'">
+                </a>
+            </div>
+            <div class="carousel-slide">
+                <a href="https://alliance-clark.alma.exlibrisgroup.com/discovery/collectionDiscovery?vid=01ALLIANCE_CC:CC&collectionId=81183281750001861" target="_blank">
+                    <img src="https://d2jv02qf7xgjwx.cloudfront.net/accounts/348611/images/IMG_7029.jpeg" alt="A color photograph of two elderly people sitting on either end of a blue bench with the text above, 'this way to new library books'">
+                </a>
+            </div>
+            <div class="carousel-slide">
+                <a href="https://alliance-clark.alma.exlibrisgroup.com/discovery/collectionDiscovery?vid=01ALLIANCE_CC:CC&collectionId=81183281750001861" target="_blank">
+                    <img src="https://d2jv02qf7xgjwx.cloudfront.net/accounts/348611/images/IMG_7030.jpeg" alt="A photograph of a parachutist coming in to land above treetops with the text above, 'this way to new library books'">
+                </a>
+            </div>
+            <div class="carousel-slide">
+                <a href="https://alliance-clark.alma.exlibrisgroup.com/discovery/collectionDiscovery?vid=01ALLIANCE_CC:CC&collectionId=81183281750001861" target="_blank">
+                    <img src="https://d2jv02qf7xgjwx.cloudfront.net/accounts/348611/images/IMG_7031.jpeg" alt="A vintage photograph of a sailboat about to leave the beach with the text above, 'this way to new library books'">
+                </a>
+            </div>
+            <div class="carousel-slide">
+                <a href="https://alliance-clark.alma.exlibrisgroup.com/discovery/collectionDiscovery?vid=01ALLIANCE_CC:CC&collectionId=81183281750001861" target="_blank">
+                    <img src="https://d2jv02qf7xgjwx.cloudfront.net/accounts/348611/images/IMG_7032.jpeg" alt="An illustration of a train zig-zagging with colorful freight cars like a colorful quilt patchwork with the text above, 'this way to new library books'">
+                </a>
+            </div>
+        </div>
+    </div>
+    <button class="carousel-btn next" aria-label="Next slide">&#10095;</button>
+</div>
+
 <script>
 document.addEventListener("DOMContentLoaded", function () {
     const track = document.querySelector(".carousel-track");
