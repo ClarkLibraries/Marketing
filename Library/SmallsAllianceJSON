@@ -1,5 +1,5 @@
-        const bookData = [
-		  {
+[
+{
     title: "The blue line letters : a novel",
     author: "Christiansen, Steven",
     publisher: "Ooligan Press",
