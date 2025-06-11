@@ -426,8 +426,7 @@
             }
         }
     </style>
-
-    <div class="book-cards-widget">
+<div class="book-cards-widget">
         <h1>Current Reserves Collection - Spring 2025</h1>
         
         <div class="collection-info">
@@ -491,6 +490,16 @@
         </div>
     </div>
 <script>
+// ===== DISPLAY CONFIGURATION =====
+// Set these to true/false to control what displays on the back of cards
+const DISPLAY_CONFIG = {
+    showDate: false,           // Set to false to hide publication dates
+    showDescription: false,    // Set to false to hide descriptions
+    showPublisher: true,       // Set to false to hide publisher info
+    showCourse: true,          // Set to false to hide course info
+    showAuthor: true           // Set to false to hide author info
+};
+
 // Configuration - Updated data sources with better CORS handling
 const JSON_DATA_URL = 'https://raw.githubusercontent.com/ClarkLibraries/Marketing/refs/heads/main/Library/CurrentReservesSpring2025.json';
 
@@ -667,7 +676,7 @@ function updateCollectionInfo() {
     }
 }
 
-// Optimized card creation with better accessibility and keyboard navigation
+// Updated card creation with configurable elements
 function createCard(book, index) {
     const cardId = `card-${index}`;
     const title = sanitizeText(book.title || 'Untitled');
@@ -684,6 +693,29 @@ function createCard(book, index) {
     const backFlipButtonId = `back-flip-btn-${index}`;
     const catalogLinkId = `catalog-link-${index}`;
     const coverAlt = `Book cover for ${title}${author ? ' by ' + author : ''}`;
+    
+    // Build the book info section based on configuration
+    let bookInfoHTML = `<h3 class="book-title" id="${titleId}">${title}</h3>`;
+    
+    if (DISPLAY_CONFIG.showAuthor && author) {
+        bookInfoHTML += `<div class="book-author">by ${author}</div>`;
+    }
+    
+    if (DISPLAY_CONFIG.showCourse && course) {
+        bookInfoHTML += `<div class="book-course">${course}</div>`;
+    }
+    
+    if (DISPLAY_CONFIG.showPublisher && publisher) {
+        bookInfoHTML += `<div class="book-publisher">Publisher: ${publisher}</div>`;
+    }
+    
+    if (DISPLAY_CONFIG.showDate) {
+        bookInfoHTML += `<div class="book-date">Published: ${date}</div>`;
+    }
+    
+    if (DISPLAY_CONFIG.showDescription && description) {
+        bookInfoHTML += `<div class="book-description">${description}</div>`;
+    }
     
     return `
         <article class="flip-card" 
@@ -722,12 +754,7 @@ function createCard(book, index) {
                 </div>
                 <div class="flip-card-back" onclick="flipCard('${cardId}')">
                     <div class="book-info">
-                        <h3 class="book-title" id="${titleId}">${title}</h3>
-                        ${author ? `<div class="book-author">by ${author}</div>` : ''}
-                        ${course ? `<div class="book-course">${course}</div>` : ''}
-                        ${publisher ? `<div class="book-publisher">Publisher: ${publisher}</div>` : ''}
-                        <div class="book-date">Published: ${date}</div>
-                        ${description ? `<div class="book-description">${description}</div>` : ''}
+                        ${bookInfoHTML}
                     </div>
                     <div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: flex-start;">
                         ${permalink !== '#' ? 
@@ -1099,6 +1126,9 @@ function initializeApp() {
     document.body.appendChild(instructions);
     
     console.log('Reserves Collection initialized successfully with search and enhanced keyboard navigation');
+    
+    // Log current display configuration
+    console.log('Display configuration:', DISPLAY_CONFIG);
 }
 
 // Initialize when DOM is ready
