@@ -1,442 +1,952 @@
 [
   {
-    "title": "National geographic.",
-    "author": "",
-    "publisher": "National Geographic Society",
-    "daterange": "Clark Libraries keeps physical copies from JUL 1965 - 1989*, 1990 - *; Latest issue in POPULAR PERIODICALS AREA",
-    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99100001861",
+    "title": "AEA papers and proceedings.",
+    "author": "American Economic Association, author, issuing body.",
+    "publisher": "American Economic Association",
+    "daterange": "May 2018 - CURRENT",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99900179163601861",
     "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
-    "description": "Geography--Periodicals.",
-    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22National%20geographic%22"
-  },
-  {
-    "title": "Inc.",
-    "author": "",
-    "publisher": "Mansueto Ventures LLC; United Marine Pub",
-    "daterange": "Clark Libraries keeps physical copies for CURRENT 1 YEAR; Latest issue in POPULAR PERIODICALS AREA",
-    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma991078701861",
-    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
-    "description": "Small business--United States--Periodicals.",
-    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Inc%22"
-  },
-  {
-    "title": "Discover.",
-    "author": "",
-    "publisher": "Kalmbach Publishing Co; Time",
-    "daterange": "Clark Libraries keeps physical copies for CURRENT 5 YEARS; Latest issue in POPULAR PERIODICALS AREA",
-    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma992578401861",
-    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
-    "description": "Science--Periodicals.",
-    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Discover%22"
-  },
-  {
-    "title": "Harper's.",
-    "author": "",
-    "publisher": "Harper's Magazine Foundation",
-    "daterange": "Clark Libraries keeps physical copies for CURRENT 5 YEARS; Latest issue in POPULAR PERIODICALS AREA",
-    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma993744401861",
-    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
-    "description": "Sciences sociales--Périodiques.",
-    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Harper's%22"
-  },
-  {
-    "title": "Psychology today.",
-    "author": "",
-    "publisher": "Sussex pulishers LLC; Ziff-Davis Publishing Company; Sussex Publishers",
-    "daterange": "Clark Libraries keeps physical copies for CURRENT 5 YEARS; Latest issue in POPULAR PERIODICALS AREA",
-    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma993810901861",
-    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
-    "description": "Psychology--Popular works--Periodicals.",
-    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Psychology%20today%22"
-  },
-  {
-    "title": "American scientist.",
-    "author": "",
-    "publisher": "Sigma Xi etc",
-    "daterange": "Clark Libraries keeps physical copies for CURRENT 1 YEAR",
-    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma993811901861",
-    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
-    "description": "Science--Periodicals.",
-    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22American%20scientist%22"
-  },
-  {
-    "title": "The Nation.",
-    "author": "",
-    "publisher": "The Nation Company LP; JH Richards",
-    "daterange": "Clark Libraries keeps physical copies for CURRENT 5 YEARS; Latest issue in POPULAR PERIODICALS AREA",
-    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma993813301861",
-    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
-    "description": "History, Modern--1989---Periodicals.",
-    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22The%20Nation%22"
-  },
-  {
-    "title": "Time.",
-    "author": "",
-    "publisher": "Time USA LLC; Meredith Corporation; Time Inc; Time Warner",
-    "daterange": "Clark Libraries keeps physical copies for 1948-1964, JUL 2000 -; Latest issue in POPULAR PERIODICALS AREA",
-    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma993814701861",
-    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
-    "description": "World politics--20th century--Periodicals.",
-    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Time%22"
-  },
-  {
-    "title": "The Atlantic monthly.",
-    "author": "",
-    "publisher": "Atlantic Monthly Group; Atlantic Monthly Co",
-    "daterange": "Clark Libraries keeps physical copies for CURRENT 5 YEARS; Latest issue in POPULAR PERIODICALS AREA",
-    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99600901861",
-    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
-    "description": "American literature--Periodicals.",
-    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22The%20Atlantic%20monthly%22"
-  },
-  {
-    "title": "The New Yorker.",
-    "author": "",
-    "publisher": "Condé Nast Publications; D Carey; F-R Pub Corp",
-    "daterange": "Clark Libraries keeps physical copies for 1952-1694, CURRENT 5 YEARS; Latest issue in POPULAR PERIODICALS AREA",
-    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99620501861",
-    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
-    "description": "Literature--Collections--Periodicals.",
-    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22The%20New%20Yorker%22"
-  },
-  {
-    "title": "The new republic.",
-    "author": "",
-    "publisher": "The New Republic LLC; The Republic Pub Co",
-    "daterange": "Clark Libraries keeps physical copies for CURRENT 5 YEARS; Latest issue in POPULAR PERIODICALS AREA",
-    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99620701861",
-    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
-    "description": "Political science--Periodicals.",
-    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22The%20new%20republic%22"
-  },
-  {
-    "title": "Science news.",
-    "author": "",
-    "publisher": "Society for Science & The Public; Science Service",
-    "daterange": "Clark Libraries keeps physical copies for CURRENT YEAR ONLY; Latest issue in POPULAR PERIODICALS AREA",
-    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99621201861",
-    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
-    "description": "Science--Periodicals.",
-    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Science%20news%22"
-  },
-  {
-    "title": "Commonweal.",
-    "author": "",
-    "publisher": "Calvert Pub Corp",
-    "daterange": "Clark Libraries keeps physical copies for CURRENT 1 YEAR",
-    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99743501861",
-    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
-    "description": "Literature--Periodicals.",
-    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Commonweal%22"
-  },
-  {
-    "title": "Astronomy.",
-    "author": "",
-    "publisher": "Firecrown Media Inc; Kalmbach Publishing Co; AstroMedia Corp",
-    "daterange": "Clark Libraries keeps physical copies for CURRENT 5 YEARS; Latest issue in POPULAR PERIODICALS AREA",
-    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99747601861",
-    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
-    "description": "Astronomy--Periodicals.",
-    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Astronomy%22"
-  },
-  {
-    "title": "Mother Jones.",
-    "author": "",
-    "publisher": "Foundation for National Progress",
-    "daterange": "Clark Libraries keeps physical copies for CURRENT 5 YEARS; Latest issue in POPULAR PERIODICALS AREA",
-    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99774201861",
-    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
-    "description": "News and Opinion-Periodicals.",
-    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Mother%20Jones%22"
-  },
-  {
-    "title": "The week.",
-    "author": "",
-    "publisher": "Week Publications",
-    "daterange": "Clark Libraries keeps physical copies for CURRENT 6 MONTHS; Latest issue in POPULAR PERIODICALS AREA",
-    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99900010863501861",
-    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
-    "description": "World politics--Periodicals.",
-    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22The%20week%22"
-  },
-  {
-    "title": "National review.",
-    "author": "",
-    "publisher": "National Review etc",
-    "daterange": "Clark Libraries keeps physical copies for CURRENT 5 YEARS; Latest issue in POPULAR PERIODICALS AREA",
-    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99900011261401861",
-    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
-    "description": "Current events--Periodicals.",
-    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22National%20review%22"
-  },
-  {
-    "title": "Audubon.",
-    "author": "",
-    "publisher": "National Audubon Society",
-    "daterange": "Clark Libraries keeps physical copies for 1954-1965, 1967- NOV 1981*, MAR 1982 -; Latest issue in POPULAR PERIODICALS AREA",
-    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99900011262301861",
-    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
-    "description": "Birds--Conservation--Periodicals.",
-    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Audubon%22"
-  },
-  {
-    "title": "Sky and telescope.",
-    "author": "",
-    "publisher": "AAS Sky Publishing LLC; Sky & Telescope Media; Sky Publishing Corporation",
-    "daterange": "Clark Libraries keeps physical copies for CURRENT YEAR ONLY; JUL 2022 - OCT 2023",
-    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99900011262601861",
-    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
-    "description": "Astronomy--Periodicals.",
-    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Sky%20and%20telescope%22"
-  },
-  {
-    "title": "Library journal.",
-    "author": "",
-    "publisher": "Library Journals; Reed Business Information; Library Journal",
-    "daterange": "Clark Libraries keeps physical copies for CURRENT 5 YEARS",
-    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99900011262901861",
-    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
-    "description": "Library science--Periodicals.",
-    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Library%20journal%22"
-  },
-  {
-    "title": "Ms.",
-    "author": "",
-    "publisher": "Liberty Media for Women; Ms Magazine Corp",
-    "daterange": "Clark Libraries keeps physical copies for 1973-1989* 1991-; Latest issue in POPULAR PERIODICALS AREA; PUBLICATION SUSPENED FROM AUG 1998 TO APR 1999",
-    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99900011263101861",
-    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
-    "description": "Women--Periodicals.",
-    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Ms%22"
-  },
-  {
-    "title": "Columbia.",
-    "author": "",
-    "publisher": "Washington State Historical Society",
-    "daterange": "Clark Libraries keeps physical copies for 1987-; Latest issue in POPULAR PERIODICALS AREA",
-    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99900011263201861",
-    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
-    "description": "Washington (State)--History--Periodicals.",
-    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Columbia%22"
-  },
-  {
-    "title": "Washington Examiner.",
-    "author": "",
-    "publisher": "MediaDC a subsidiary of Clarity Media Group",
-    "daterange": "Clark Libraries keeps physical copies for CURRENT 5 YEARS; Latest issue in POPULAR PERIODICALS AREA",
-    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99900457563801861",
-    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
-    "description": "Politics and government.",
-    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Washington%20Examiner%22"
-  },
-  {
-    "title": "Fortune.",
-    "author": "",
-    "publisher": "Fortune Media (USA) Corporation; Time etc",
-    "daterange": "Clark Libraries keeps physical copies for CURRENT 5 YEARS; Latest issue in POPULAR PERIODICALS AREA",
-    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99445001861",
-    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
-    "description": "Commerce--Periodicals.",
-    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Fortune%22"
-  },
-  {
-    "title": "Wired.",
-    "author": "",
-    "publisher": "Condé Nast Publications; Wired USA",
-    "daterange": "Clark Libraries keeps physical copies for CURRENT YEAR ONLY; Latest issue in POPULAR PERIODICALS AREA",
-    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma994562801861",
-    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
-    "description": "Computer networks--Periodicals.",
-    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Wired%22"
-  },
-  {
-    "title": "Northwest Catholic.",
-    "author": "",
-    "publisher": "Archbishop of Seattle",
-    "daterange": "Clark Libraries keeps physical copies for CURRENT YEAR ONLY; CONTINUES CATHOLIC NORTHWEST PROGRESS NEWSPAPER",
-    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma996321601861",
-    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
-    "description": "Catholics--Washington (State)--Seattle--Periodicals.",
-    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Northwest%20Catholic%22"
-  },
-  {
-    "title": "Commentary.",
-    "author": "",
-    "publisher": "Commentary Inc; American Jewish Committee",
-    "daterange": "Clark Libraries keeps physical copies for CURRENT 5 YEARS; Latest issue in POPULAR PERIODICALS AREA",
-    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99743401861",
-    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
-    "description": "Juifs--Périodiques.",
-    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Commentary%22"
-  },
-  {
-    "title": "New scientist.",
-    "author": "",
-    "publisher": "Reed Business Information Ltd; New Science Publications",
-    "daterange": "Clark Libraries keeps physical copies for CURRENT 5 YEARS; Latest issue in POPULAR PERIODICALS AREA",
-    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99790501861",
-    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
-    "description": "Science--Periodicals.",
-    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22New%20scientist%22"
-  },
-  {
-    "title": "Aperture.",
-    "author": "",
-    "publisher": "Aperture Foundation; Aperture; Minor White",
-    "daterange": "Clark Libraries keeps physical copies for CURRENT 5 YEARS; Latest issue in POPULAR PERIODICALS AREA",
-    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99823001861",
-    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
-    "description": "Photographie--Périodiques.",
-    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Aperture%22"
-  },
-  {
-    "title": "Forbes.",
-    "author": "",
-    "publisher": "Forbes Media LLC; Forbes Inc",
-    "daterange": "Clark Libraries keeps physical copies for CURRENT 5 YEARS; Latest issue in POPULAR PERIODICALS AREA",
-    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99900011261101861",
-    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
-    "description": "Business--Periodicals.",
-    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Forbes%22"
-  },
-  {
-    "title": "Down beat.",
-    "author": "",
-    "publisher": "Maher Publications; Down Beat Publishing Co Inc",
-    "daterange": "Clark Libraries keeps physical copies for CURRENT 1 YEAR ONLY; Latest issue in POPULAR PERIODICALS AREA",
-    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99900011261501861",
-    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
-    "description": "Jazz--Periodicals.",
-    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Down%20beat%22"
-  },
-  {
-    "title": "Publications of the Modern Language Association of America.",
-    "author": "",
-    "publisher": "Cambridge University Press on behalf of the Modern Language Association of America; Modern Language Association of America",
-    "daterange": "Clark Libraries keeps physical copies for CURRENT 5 YEARS",
-    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma993819201861",
-    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
-    "description": "Philologie--Périodiques.",
-    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Publications%20of%20the%20Modern%20Language%20Association%20of%20America%22"
-  },
-  {
-    "title": "Nutrition action health letter.",
-    "author": "",
-    "publisher": "Center for Science in the Public Interest",
-    "daterange": "Clark Libraries keeps physical copies for CURRENT 6 MONTHS; Latest issue in POPULAR PERIODICALS AREA",
-    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma994297801861",
-    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
-    "description": "Food",
-    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Nutrition%20action%20health%20letter%22"
-  },
-  {
-    "title": "AWI quarterly.",
-    "author": "",
-    "publisher": "Animal Welfare Institute",
-    "daterange": "Clark Libraries keeps physical copies for CURRENT 1 YEAR",
-    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma995534701861",
-    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
-    "description": "Animal welfare--Periodicals.",
-    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22AWI%20quarterly%22"
-  },
-  {
-    "title": "Innovations in early education, the international Reggio exchange.",
-    "author": "",
-    "publisher": "Wayne State University The Merrill-Palmer Institute",
-    "daterange": "Clark Libraries keeps physical copies for WIN 2009 -",
-    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma995640501861",
-    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
-    "description": "Education, Preschool--Periodicals.",
-    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Innovations%20in%20early%20education,%20the%20international%20Reggio%20exchange%22"
-  },
-  {
-    "title": "Smithsonian.",
-    "author": "",
-    "publisher": "Smithsonian Associates",
-    "daterange": "Clark Libraries keeps physical copies for CURRENT 5 YEARS; Latest issue in POPULAR PERIODICALS AREA",
-    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99630301861",
-    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
-    "description": "Sciences naturelles.",
-    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Smithsonian%22"
-  },
-  {
-    "title": "Ceramics monthly.",
-    "author": "",
-    "publisher": "American Ceramic Society; Professional Publications",
-    "daterange": "Clark Libraries keeps physical copies for CURRENT 5 YEARS",
-    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99748401861",
-    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
-    "description": "Ceramics--Periodicals.",
-    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Ceramics%20monthly%22"
-  },
-  {
-    "title": "CMA today.",
-    "author": "",
-    "publisher": "American Association of Medical Assistants",
-    "daterange": "Clark Libraries keeps physical copies for CURRENT 5 YEARS",
-    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99900010862501861",
-    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
-    "description": "Medical assistants--United States--Periodicals.",
-    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22CMA%20today%22"
-  },
-  {
-    "title": "Bon appétit.",
-    "author": "",
-    "publisher": "American Colortype Co",
-    "daterange": "Clark Libraries keeps physical copies for CURRENT 5 YEARS; Latest issue in POPULAR PERIODICALS AREA",
-    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99900010863601861",
-    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
-    "description": "Gastronomy--Periodicals.",
-    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Bon%20appétit%22"
-  },
-  {
-    "title": "Communication arts.",
-    "author": "",
-    "publisher": "Coyne & Blanchard",
-    "daterange": "Clark Libraries keeps physical copies for CURRENT 10 YEARS",
-    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99900010963201861",
-    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
-    "description": "Commercial art--Periodicals.",
-    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Communication%20arts%22"
-  },
-  {
-    "title": "Artforum international.",
-    "author": "",
-    "publisher": "Artforum Media LLC; Artforum International Magazine",
-    "daterange": "Clark Libraries keeps physical copies for CURRENT 5 YEARS",
-    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99900010963601861",
-    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
-    "description": "Arte--Revistas.",
-    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Artforum%20international%22"
+    "description": "Economics--Congresses.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22AEA%20papers%20and%20proceedings%22"
   },
   {
     "title": "American craft.",
     "author": "",
     "publisher": "American Craft Council",
-    "daterange": "Clark Libraries keeps physical copies for CURRENT 5 YEARS; Latest issue in POPULAR PERIODICALS AREA",
+    "daterange": "CURRENT 5 YEARS; Latest issue in POPULAR PERIODICALS AREA",
     "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99900011063901861",
     "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
     "description": "Decorative arts--United States--Periodicals.",
     "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22American%20craft%22"
   },
   {
+    "title": "American history.",
+    "author": "",
+    "publisher": "HistoryNet; World History Group; Weider History Group; PRIMEDIA; Cowles History Group a division of Cowles Magazines",
+    "daterange": "CURRENT 5 YEARS; Latest issue in POPULAR PERIODICALS AREA",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99900010862401861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "History--Periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22American%20history%22"
+  },
+  {
+    "title": "American scientist.",
+    "author": "",
+    "publisher": "Sigma Xi etc",
+    "daterange": "CURRENT 1 YEAR",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma993811901861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Science--Periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22American%20scientist%22"
+  },
+  {
+    "title": "Aperture.",
+    "author": "",
+    "publisher": "Aperture Foundation; Aperture; Minor White",
+    "daterange": "CURRENT 5 YEARS; Latest issue in POPULAR PERIODICALS AREA",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99823001861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Photographie--Périodiques.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Aperture%22"
+  },
+  {
+    "title": "AramcoWorld.",
+    "author": "",
+    "publisher": "Aramco Services Company",
+    "daterange": "JAN/FEB 2015 -",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99900041661901861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Civilization, Arab--Periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22AramcoWorld%22"
+  },
+  {
+    "title": "Art in America.",
+    "author": "",
+    "publisher": "Art Media AIA LLC; FF Sherman",
+    "daterange": "Latest issue in POPULAR PERIODICALS AREA; CURRENT 5 YEARS",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99900011263401861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Art--United States--Periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Art%20in%20America%22"
+  },
+  {
+    "title": "Artforum international.",
+    "author": "",
+    "publisher": "Artforum Media LLC; Artforum International Magazine",
+    "daterange": "CURRENT 5 YEARS",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99900010963601861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Arte--Revistas.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Artforum%20international%22"
+  },
+  {
+    "title": "Astronomy.",
+    "author": "",
+    "publisher": "Firecrown Media Inc; Kalmbach Publishing Co; AstroMedia Corp",
+    "daterange": "CURRENT 5 YEARS; Latest issue in POPULAR PERIODICALS AREA",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99747601861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Astronomy--Periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Astronomy%22"
+  },
+  {
+    "title": "Audubon.",
+    "author": "",
+    "publisher": "National Audubon Society",
+    "daterange": "1954-1965, 1967- NOV 1981*, MAR 1982 -; Latest issue in POPULAR PERIODICALS AREA",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99900011262301861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Birds--Conservation--Periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Audubon%22"
+  },
+  {
+    "title": "AWI quarterly.",
+    "author": "",
+    "publisher": "Animal Welfare Institute",
+    "daterange": "CURRENT 1 YEAR",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma995534701861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Animal welfare--Periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22AWI%20quarterly%22"
+  },
+  {
+    "title": "Bon appétit.",
+    "author": "",
+    "publisher": "American Colortype Co",
+    "daterange": "CURRENT 5 YEARS; Latest issue in POPULAR PERIODICALS AREA",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99900010863601861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Gastronomy--Periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Bon%20appétit%22"
+  },
+  {
+    "title": "Business week.",
+    "author": "",
+    "publisher": "Bloomberg LP etc",
+    "daterange": "JUL 2018 - NOV 2022",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99379001861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Affaires--Périodiques.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Business%20week%22"
+  },
+  {
+    "title": "Ceramics monthly.",
+    "author": "",
+    "publisher": "American Ceramic Society; Professional Publications",
+    "daterange": "CURRENT 5 YEARS",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99748401861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Ceramics--Periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Ceramics%20monthly%22"
+  },
+  {
+    "title": "Christianity today.",
+    "author": "",
+    "publisher": "Christianity Today International",
+    "daterange": "CURRENT YEAR ONLY",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99772201861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Christianity--20th century--Periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Christianity%20today%22"
+  },
+  {
+    "title": "CMA today.",
+    "author": "",
+    "publisher": "American Association of Medical Assistants",
+    "daterange": "CURRENT 5 YEARS",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99900010862501861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Medical assistants--United States--Periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22CMA%20today%22"
+  },
+  {
+    "title": "College & research libraries news.",
+    "author": "",
+    "publisher": "Association of College and Research Libraries",
+    "daterange": "JUL/AUG 2018 - DEC 2021",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma993816901861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Academic libraries--Periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22College%20&%20research%20libraries%20news%22"
+  },
+  {
+    "title": "Columbia.",
+    "author": "",
+    "publisher": "Washington State Historical Society",
+    "daterange": "1987-; Latest issue in POPULAR PERIODICALS AREA",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99900011263201861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Washington (State)--History--Periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Columbia%22"
+  },
+  {
+    "title": "Commentary.",
+    "author": "",
+    "publisher": "Commentary Inc; American Jewish Committee",
+    "daterange": "CURRENT 5 YEARS; Latest issue in POPULAR PERIODICALS AREA",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99743401861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Juifs--Périodiques.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Commentary%22"
+  },
+  {
+    "title": "Commonweal.",
+    "author": "",
+    "publisher": "Calvert Pub Corp",
+    "daterange": "CURRENT 1 YEAR",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99743501861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Literature--Periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Commonweal%22"
+  },
+  {
+    "title": "Communication arts.",
+    "author": "",
+    "publisher": "Coyne & Blanchard",
+    "daterange": "CURRENT 10 YEARS",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99900010963201861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Commercial art--Periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Communication%20arts%22"
+  },
+  {
+    "title": "Consumer reports.",
+    "author": "",
+    "publisher": "Consumer Reports Inc; Consumers Union of United States",
+    "daterange": "CURRENT 5 YEARS; Latest issue in POPULAR PERIODICALS AREA; ANNUAL BUYING GUIDE CATALOGUED:  Ref TX 335 .C633",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99900010862801861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Consumer education--Periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Consumer%20reports%22"
+  },
+  {
+    "title": "Discover.",
+    "author": "",
+    "publisher": "Kalmbach Publishing Co; Time",
+    "daterange": "CURRENT 5 YEARS; Latest issue in POPULAR PERIODICALS AREA",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma992578401861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Science--Periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Discover%22"
+  },
+  {
+    "title": "Down beat.",
+    "author": "",
+    "publisher": "Maher Publications; Down Beat Publishing Co Inc",
+    "daterange": "CURRENT 1 YEAR ONLY; Latest issue in POPULAR PERIODICALS AREA",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99900011261501861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Jazz--Periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Down%20beat%22"
+  },
+  {
+    "title": "Forbes.",
+    "author": "",
+    "publisher": "Forbes Media LLC; Forbes Inc",
+    "daterange": "CURRENT 5 YEARS; Latest issue in POPULAR PERIODICALS AREA",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99900011261101861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Business--Periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Forbes%22"
+  },
+  {
+    "title": "Fortune.",
+    "author": "",
+    "publisher": "Fortune Media (USA) Corporation; Time etc",
+    "daterange": "CURRENT 5 YEARS; Latest issue in POPULAR PERIODICALS AREA",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99445001861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Commerce--Periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Fortune%22"
+  },
+  {
+    "title": "Harper's.",
+    "author": "",
+    "publisher": "Harper's Magazine Foundation",
+    "daterange": "CURRENT 5 YEARS; Latest issue in POPULAR PERIODICALS AREA",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma993744401861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Sciences sociales--Périodiques.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Harper's%22"
+  },
+  {
+    "title": "Harvard business review.",
+    "author": "",
+    "publisher": "Graduate School of Business Administration Harvard University",
+    "daterange": "CURRENT 5 YEARS",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99900011260701861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Commerce",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Harvard%20business%20review%22"
+  },
+  {
+    "title": "Inc.",
+    "author": "",
+    "publisher": "Mansueto Ventures LLC; United Marine Pub",
+    "daterange": "CURRENT 1 YEAR; Latest issue in POPULAR PERIODICALS AREA",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma991078701861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Small business--United States--Periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Inc%22"
+  },
+  {
+    "title": "Innovations in early education, the international Reggio exchange.",
+    "author": "",
+    "publisher": "Wayne State University The Merrill-Palmer Institute",
+    "daterange": "WIN 2009 -",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma995640501861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Education, Preschool--Periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Innovations%20in%20early%20education,%20the%20international%20Reggio%20exchange%22"
+  },
+  {
+    "title": "Journal of economic literature.",
+    "author": "",
+    "publisher": "American Economic Association",
+    "daterange": "CURRENT 5 YEARS",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma993815801861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Economics--Periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Journal%20of%20economic%20literature%22"
+  },
+  {
+    "title": "Library journal.",
+    "author": "",
+    "publisher": "Library Journals; Reed Business Information; Library Journal",
+    "daterange": "CURRENT 5 YEARS",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99900011262901861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Library science--Periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Library%20journal%22"
+  },
+  {
+    "title": "Martyrdom and resistance.",
+    "author": "",
+    "publisher": "International Society for Yad Vashem Inc; American Federation of Jewish Fighters Camp Inmates and Nazi Victims",
+    "daterange": "",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99900161662601861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Holocaust, Jewish (1939-1945)--Periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Martyrdom%20and%20resistance%22"
+  },
+  {
+    "title": "MCN, the American journal of maternal child nursing.",
+    "author": "",
+    "publisher": "American Journal of Nursing Co",
+    "daterange": "JUL/AUG 2014 - SEP/OCT 2014",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma993817101861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Maternity nursing--Periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22MCN,%20the%20American%20journal%20of%20maternal%20child%20nursing%22"
+  },
+  {
+    "title": "Mother Jones.",
+    "author": "",
+    "publisher": "Foundation for National Progress",
+    "daterange": "CURRENT 5 YEARS; Latest issue in POPULAR PERIODICALS AREA",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99774201861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "News and Opinion-Periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Mother%20Jones%22"
+  },
+  {
+    "title": "Ms.",
+    "author": "",
+    "publisher": "Liberty Media for Women; Ms Magazine Corp",
+    "daterange": "1973-1989* 1991-; Latest issue in POPULAR PERIODICALS AREA; PUBLICATION SUSPENED FROM AUG 1998 TO APR 1999",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99900011263101861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Women--Periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Ms%22"
+  },
+  {
+    "title": "National geographic.",
+    "author": "",
+    "publisher": "National Geographic Society",
+    "daterange": "JUL 1965 - 1989*, 1990 - *; Latest issue in POPULAR PERIODICALS AREA",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99100001861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Geography--Periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22National%20geographic%22"
+  },
+  {
+    "title": "National review.",
+    "author": "",
+    "publisher": "National Review etc",
+    "daterange": "CURRENT 5 YEARS; Latest issue in POPULAR PERIODICALS AREA",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99900011261401861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Current events--Periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22National%20review%22"
+  },
+  {
+    "title": "National wildlife.",
+    "author": "",
+    "publisher": "National Wildlife Federation",
+    "daterange": "JUN/JUL 2018 - DEC/JAN 2020",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99900011263001861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Wildlife conservation--United States--Periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22National%20wildlife%22"
+  },
+  {
+    "title": "Natural history.",
+    "author": "",
+    "publisher": "American Museum of Natural History",
+    "daterange": "JUL/AUG 2018 - JUN 2020",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99900011261301861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Biology.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Natural%20history%22"
+  },
+  {
+    "title": "Nautilus : science connected.",
+    "author": "",
+    "publisher": "Nautilus Ventures LLC",
+    "daterange": "CURRENT 5 YEARS; Latest issue in POPULAR PERIODICALS AREA",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99900470663901861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Science--Periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Nautilus%20:%20science%20connected%22"
+  },
+  {
+    "title": "New scientist.",
+    "author": "",
+    "publisher": "Reed Business Information Ltd; New Science Publications",
+    "daterange": "CURRENT 5 YEARS; Latest issue in POPULAR PERIODICALS AREA",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99790501861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Science--Periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22New%20scientist%22"
+  },
+  {
+    "title": "News bulletin /",
+    "author": "",
+    "publisher": "The Council",
+    "daterange": "JUL/AUG 2007 - JUL/AUG 2009",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99900010963401861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Mathematics--Study and teaching--United States--Periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22News%20bulletin%20/%22"
+  },
+  {
+    "title": "Northwest Catholic.",
+    "author": "",
+    "publisher": "Archbishop of Seattle",
+    "daterange": "CURRENT YEAR ONLY; CONTINUES CATHOLIC NORTHWEST PROGRESS NEWSPAPER",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma996321601861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Catholics--Washington (State)--Seattle--Periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Northwest%20Catholic%22"
+  },
+  {
+    "title": "Nutrition action health letter.",
+    "author": "",
+    "publisher": "Center for Science in the Public Interest",
+    "daterange": "CURRENT 6 MONTHS; Latest issue in POPULAR PERIODICALS AREA",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma994297801861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Food",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Nutrition%20action%20health%20letter%22"
+  },
+  {
+    "title": "Poetry northwest.",
+    "author": "",
+    "publisher": "Patrician Press",
+    "daterange": "1962-2002, (suspended 2003-2004), SPR 2005 -; Latest issue in POPULAR PERIODICALS AREA",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99900010963001861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Poetry--Periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Poetry%20northwest%22"
+  },
+  {
+    "title": "Popular mechanics.",
+    "author": "",
+    "publisher": "Hearst Communications Inc; Popular Mechanics Co",
+    "daterange": "CURRENT 5 YEARS; Latest issue in POPULAR PERIODICALS AREA",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99900010962701861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Technology--Periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Popular%20mechanics%22"
+  },
+  {
+    "title": "Psychology today.",
+    "author": "",
+    "publisher": "Sussex pulishers LLC; Ziff-Davis Publishing Company; Sussex Publishers",
+    "daterange": "CURRENT 5 YEARS; Latest issue in POPULAR PERIODICALS AREA",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma993810901861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Psychology--Popular works--Periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Psychology%20today%22"
+  },
+  {
+    "title": "Publications of the Modern Language Association of America.",
+    "author": "",
+    "publisher": "Cambridge University Press on behalf of the Modern Language Association of America; Modern Language Association of America",
+    "daterange": "CURRENT 5 YEARS",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma993819201861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Philologie--Périodiques.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Publications%20of%20the%20Modern%20Language%20Association%20of%20America%22"
+  },
+  {
+    "title": "Science news.",
+    "author": "",
+    "publisher": "Society for Science & The Public; Science Service",
+    "daterange": "CURRENT YEAR ONLY; Latest issue in POPULAR PERIODICALS AREA",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99621201861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Science--Periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Science%20news%22"
+  },
+  {
+    "title": "Scientific American.",
+    "author": "",
+    "publisher": "Munn & Co",
+    "daterange": "JUL 2019 -",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma993815201861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Technology--Periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Scientific%20American%22"
+  },
+  {
+    "title": "Seattle.",
+    "author": "",
+    "publisher": "WayneCorp LLC; Tiger Oak Media; Adams Pub of the Pacific Northwest",
+    "daterange": "",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99900011263301861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Seattle (Wash.)--Periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Seattle%22"
+  },
+  {
+    "title": "Sky and telescope.",
+    "author": "",
+    "publisher": "AAS Sky Publishing LLC; Sky & Telescope Media; Sky Publishing Corporation",
+    "daterange": "CURRENT YEAR ONLY; JUL 2022 - OCT 2023",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99900011262601861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Astronomy--Periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Sky%20and%20telescope%22"
+  },
+  {
+    "title": "Smithsonian.",
+    "author": "",
+    "publisher": "Smithsonian Associates",
+    "daterange": "CURRENT 5 YEARS; Latest issue in POPULAR PERIODICALS AREA",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99630301861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Sciences naturelles.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Smithsonian%22"
+  },
+  {
+    "title": "The American economic review.",
+    "author": "",
+    "publisher": "American Economic Association",
+    "daterange": "CURRENT 2 YEARS",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma993810801861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Économie politique--Périodiques.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22The%20American%20economic%20review%22"
+  },
+  {
+    "title": "The Atlantic monthly.",
+    "author": "",
+    "publisher": "Atlantic Monthly Group; Atlantic Monthly Co",
+    "daterange": "CURRENT 5 YEARS; Latest issue in POPULAR PERIODICALS AREA",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99600901861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "American literature--Periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22The%20Atlantic%20monthly%22"
+  },
+  {
+    "title": "The independent (Clark College).",
+    "author": "",
+    "publisher": "Clark College",
+    "daterange": "1986 - *",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma995689101861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Vancouver (Wash.)--Newspapers.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22The%20independent%20(Clark%20College)%22"
+  },
+  {
+    "title": "The journal of economic perspectives : a journal of the American Economic Association.",
+    "author": "",
+    "publisher": "American Economic Association",
+    "daterange": "CURRENT 5 YEARS",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma993820501861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Economics--Periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22The%20journal%20of%20economic%20perspectives%20:%20a%20journal%20of%20the%20American%20Economic%20Association%22"
+  },
+  {
+    "title": "The Nation.",
+    "author": "",
+    "publisher": "The Nation Company LP; JH Richards",
+    "daterange": "CURRENT 5 YEARS; Latest issue in POPULAR PERIODICALS AREA",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma993813301861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "History, Modern--1989---Periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22The%20Nation%22"
+  },
+  {
+    "title": "The New England journal of medicine.",
+    "author": "",
+    "publisher": "Massachusetts Medical Society",
+    "daterange": "CURRENT 5 YEARS; JUL 5 2018 - OCT 25 2018",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99186301861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Medicine--Periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22The%20New%20England%20journal%20of%20medicine%22"
+  },
+  {
+    "title": "The new republic.",
+    "author": "",
+    "publisher": "The New Republic LLC; The Republic Pub Co",
+    "daterange": "CURRENT 5 YEARS; Latest issue in POPULAR PERIODICALS AREA",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99620701861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Political science--Periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22The%20new%20republic%22"
+  },
+  {
+    "title": "The New Yorker.",
+    "author": "",
+    "publisher": "Condé Nast Publications; D Carey; F-R Pub Corp",
+    "daterange": "1952-1694, CURRENT 5 YEARS; Latest issue in POPULAR PERIODICALS AREA",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99620501861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Literature--Collections--Periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22The%20New%20Yorker%22"
+  },
+  {
     "title": "The Rotarian /",
     "author": "",
     "publisher": "International Association of Rotary Clubs",
-    "daterange": "Clark Libraries keeps physical copies for CURRENT YEAR ONLY",
+    "daterange": "CURRENT YEAR ONLY",
     "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99900011263901861",
     "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
     "description": "Business--Periodicals.",
     "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22The%20Rotarian%20/%22"
   },
   {
-    "title": "AramcoWorld.",
+    "title": "The week.",
     "author": "",
-    "publisher": "Aramco Services Company",
-    "daterange": "Clark Libraries keeps physical copies for JAN/FEB 2015 -",
-    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99900041661901861",
+    "publisher": "Week Publications",
+    "daterange": "CURRENT 6 MONTHS; Latest issue in POPULAR PERIODICALS AREA",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99900010863501861",
     "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
-    "description": "Civilization, Arab--Periodicals.",
-    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22AramcoWorld%22"
+    "description": "World politics--Periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22The%20week%22"
+  },
+  {
+    "title": "Time.",
+    "author": "",
+    "publisher": "Time USA LLC; Meredith Corporation; Time Inc; Time Warner",
+    "daterange": "1948-1964,  JUL 2000 -; Latest issue in POPULAR PERIODICALS AREA",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma993814701861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "World politics--20th century--Periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Time%22"
+  },
+  {
+    "title": "Washington Examiner.",
+    "author": "",
+    "publisher": "MediaDC a subsidiary of Clarity Media Group",
+    "daterange": "CURRENT 5 YEARS; Latest issue in POPULAR PERIODICALS AREA",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99900457563801861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Politics and government.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Washington%20Examiner%22"
+  },
+  {
+    "title": "Wired.",
+    "author": "",
+    "publisher": "Condé Nast Publications; Wired USA",
+    "daterange": "CURRENT YEAR ONLY; Latest issue in POPULAR PERIODICALS AREA",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma994562801861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Computer networks--Periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Wired%22"
+  },
+  {
+    "title": "YC young children /",
+    "author": "",
+    "publisher": "National Association for the Education of Young Children",
+    "daterange": "CURRENT 5 YEARS",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99900010862601861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Education, Preschool--Periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22YC%20young%20children%20/%22"
+  },
+  {
+    "title": "American forests.",
+    "author": "",
+    "publisher": "American Forestry Association",
+    "daterange": "SUM 2019-WIN/SPR 2021",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99747401861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Forests and forestry--Periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22American%20forests%22"
+  },
+  {
+    "title": "IDEA fitness journal.",
+    "author": "",
+    "publisher": "IDEA Health & Fitness Association; International Dance-Exercise Association",
+    "daterange": "APR 2014-JAN/FEB 2020",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99900010863901861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Physical fitness--Periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22IDEA%20fitness%20journal%22"
+  },
+  {
+    "title": "Northwest humanist monthly.",
+    "author": "",
+    "publisher": "Humanists of the Portland/Vancouver Metro Area",
+    "daterange": "CURRENT ISSUE ONLY; Latest issue in POPULAR PERIODICALS AREA",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma994173501861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Humanism--Periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Northwest%20humanist%20monthly%22"
+  },
+  {
+    "title": "Oregon historical quarterly.",
+    "author": "",
+    "publisher": "Oregon Historical Society",
+    "daterange": "1948-1964*, 1968-1977*, 1979-1982*, 1983-; Latest issue in POPULAR PERIODICALS AREA",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma994239701861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Oregon--History--Periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Oregon%20historical%20quarterly%22"
+  },
+  {
+    "title": "Pacific historical review.",
+    "author": "",
+    "publisher": "University of California Press; Arthur H Clark Co",
+    "daterange": "FEB 1989 - AUG 2006",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma993813601861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Relations panpacifiques--Périodiques.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Pacific%20historical%20review%22"
+  },
+  {
+    "title": "Pacific horticulture.",
+    "author": "",
+    "publisher": "Pacific Horticultural Foundation",
+    "daterange": "AUTUMN 1983-*, SUM 2019",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99900010963701861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Gardening--Pacific States--Periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Pacific%20horticulture%22"
+  },
+  {
+    "title": "Paris match.",
+    "author": "",
+    "publisher": "Paris-Match",
+    "daterange": "JUN/JUL 2018 - SEP 2020",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99900010863701861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "CURRENT EVENTS.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Paris%20match%22"
+  },
+  {
+    "title": "People en español.",
+    "author": "",
+    "publisher": "Time Inc",
+    "daterange": "JUN/JUL 2020-APR 2022",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma993311601861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Hispanic Americans in mass media--Periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22People%20en%20español%22"
+  },
+  {
+    "title": "Popular photography.",
+    "author": "",
+    "publisher": "Bonnier Corp; Hachette Filipacchi Media",
+    "daterange": "",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99900010863301861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Photography--Periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Popular%20photography%22"
+  },
+  {
+    "title": "Radiologic technology.",
+    "author": "",
+    "publisher": "Grune & Stratton",
+    "daterange": "JUL/AUG 2018",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma995184701861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Medical radiology--Periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Radiologic%20technology%22"
+  },
+  {
+    "title": "Red book.",
+    "author": "",
+    "publisher": "Hearst Corp; Redbook Pub Co; McCall Co; Red Book Corp",
+    "daterange": "JUL/AUG 2018 - NOV/DEC 2018",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99900011262001861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Women--Periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Red%20book%22"
+  },
+  {
+    "title": "Rocky Mountain review of language and literature.",
+    "author": "",
+    "publisher": "Rocky Mountain Modern Language Association",
+    "daterange": "1975 - SPR 2008",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99900010963301861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Philology, Modern--Periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Rocky%20Mountain%20review%20of%20language%20and%20literature%22"
+  },
+  {
+    "title": "Rolling stone.",
+    "author": "",
+    "publisher": "Penske Business Media; Straight Arrow Publishers",
+    "daterange": "JUL 2018 - MAR 2022",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99900011262101861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Rock music--Periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Rolling%20stone%22"
+  },
+  {
+    "title": "Smart libraries.",
+    "author": "",
+    "publisher": "ALA TechSource",
+    "daterange": "JUL 2018 - MAR 2020",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma993761901861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Integrated library systems (Computer systems)--United States--Periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Smart%20libraries%22"
+  },
+  {
+    "title": "Sports illustrated.",
+    "author": "",
+    "publisher": "Sports Publishing Solutions Inc; Sportority inc D/B/A/ Minute media; Time",
+    "daterange": "JUL 2021 - APR 2022",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99741601861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Sports--Periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Sports%20illustrated%22"
+  },
+  {
+    "title": "Teaching children mathematics.",
+    "author": "",
+    "publisher": "National Council of Teachers of Mathematics",
+    "daterange": "AUG 2018-MAY 2019",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99563401861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Mathematics--Study and teaching (Elementary)--Periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Teaching%20children%20mathematics%22"
+  },
+  {
+    "title": "The American biology teacher /",
+    "author": "",
+    "publisher": "National Association of Biology Teachers",
+    "daterange": "AUG 2018 - NOV/DEC 2019",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma993811701861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Biology--Periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22The%20American%20biology%20teacher%20/%22"
+  },
+  {
+    "title": "The Reader's digest.",
+    "author": "",
+    "publisher": "The Reader's Digest Association",
+    "daterange": "JUL/AUG 2018 - JUN 2022",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99900011261001861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22The%20Reader's%20digest%22"
+  },
+  {
+    "title": "The Rocky Mountain review.",
+    "author": "",
+    "publisher": "Rocky Mountain Modern Language Association",
+    "daterange": "FALL 2008 - FALL 2018; INTERFILED WITH ROCKY MOUNTAIN REVIEW OF LANGUAGE AND LITERATURE",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma995803801861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Philology, Modern--Periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22The%20Rocky%20Mountain%20review%22"
+  },
+  {
+    "title": "The United States news.",
+    "author": "",
+    "publisher": "US News Pub Corp",
+    "daterange": "INTERFILED WITH: US NEWS &amp; WORLD REPORT; JAN 1941-DEC 1943,   JUL 1947-MAR 1948",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma993661501861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "World politics--Periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22The%20United%20States%20news%22"
+  },
+  {
+    "title": "The economist.",
+    "author": "",
+    "publisher": "Economist Newspaper Ltd",
+    "daterange": "v. 440-447 (2021-2023)",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99744001861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Economic history--Periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22The%20economist%22"
+  },
+  {
+    "title": "The magazine of fantasy and science fiction.",
+    "author": "",
+    "publisher": "Mercury Press Inc",
+    "daterange": "1982-1987",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99741201861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Science fiction--Periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22The%20magazine%20of%20fantasy%20and%20science%20fiction%22"
+  },
+  {
+    "title": "The teaching professor.",
+    "author": "",
+    "publisher": "Magna Publications",
+    "daterange": "JUN/JUL 2018 - AUG/SEP 2018",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99900010962301861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Teaching--Periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22The%20teaching%20professor%22"
+  },
+  {
+    "title": "The weekly standard.",
+    "author": "",
+    "publisher": "Clarity Media Group; News America Pub Inc",
+    "daterange": "JUL 2018 - DEC 2018",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99900010863101861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Politics and government",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22The%20weekly%20standard%22"
+  },
+  {
+    "title": "U.S. news & world report.",
+    "author": "",
+    "publisher": "US News & World Report Inc; US News Pub Corp",
+    "daterange": "1941-1943*, JUL 1947-1965, JUL 1999 - DEC 2010",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99900011262201861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "World politics--Periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22U.S.%20news%20&%20world%20report%22"
+  },
+  {
+    "title": "UN chronicle.",
+    "author": "United Nations, author.",
+    "publisher": "United Nations Department of Public Information; United Nations Office of Public Information",
+    "daterange": "AUG 2018 - JAN 2019",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99243401861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "International Agencies.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22UN%20chronicle%22"
+  },
+  {
+    "title": "Western folklore.",
+    "author": "",
+    "publisher": "California Folklore Society",
+    "daterange": "JAN 1989 - FALL 2004",
+    "permalink": "https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma993819101861",
+    "coverimage": "https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=",
+    "description": "Folklore--Periodicals.",
+    "deeplink": "https://research.ebsco.com/c/vqwdh7/search/results?q=JN%20%22Western%20folklore%22"
   }
 ]
