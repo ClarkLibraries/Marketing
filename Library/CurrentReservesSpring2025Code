@@ -1,0 +1,1250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Current Reserves Collection - Spring 2025</title>
+    <style>
+        /* Container isolation to prevent style conflicts */
+        .book-cards-widget {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 12px;
+            max-width: 1200px;
+            margin: 0 auto;
+            box-sizing: border-box;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+
+        .book-cards-widget * {
+            box-sizing: border-box;
+        }
+
+        .book-cards-widget h1 {
+            text-align: center;
+            color: #1e293b;
+            margin-bottom: 30px;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-weight: 700;
+        }
+
+        .collection-info {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #64748b;
+            font-size: 16px;
+        }
+
+        .sorting-controls {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .sort-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .sort-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #374151;
+            white-space: nowrap;
+        }
+
+        .sort-select {
+            padding: 8px 12px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            background: white;
+            font-size: 14px;
+            color: #374151;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            min-width: 120px;
+        }
+
+        .sort-select:hover {
+            border-color: #9ca3af;
+        }
+
+        .sort-select:focus {
+            outline: 3px solid #3b82f6;
+            outline-offset: 2px;
+            border-color: #3b82f6;
+        }
+
+        .sort-order-btn {
+            padding: 10px 16px;
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            box-shadow: 0 2px 6px rgba(99, 102, 241, 0.3);
+            min-height: 44px;
+        }
+
+        .sort-order-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+        }
+
+        .sort-order-btn:focus {
+            outline: 3px solid #3b82f6;
+            outline-offset: 2px;
+        }
+
+        .sort-order-btn.desc {
+            background: linear-gradient(135deg, #ef4444 0%, #f97316 100%);
+            box-shadow: 0 2px 6px rgba(239, 68, 68, 0.3);
+        }
+
+        .sort-order-btn.desc:hover {
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+        }
+
+        .search-section {
+            margin-bottom: 20px;
+        }
+
+        .search-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 15px;
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-input-group {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .search-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 5px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 10px 12px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            background: white;
+            font-size: 14px;
+            color: #374151;
+            transition: all 0.2s ease;
+            min-height: 44px;
+        }
+
+        .search-input:hover {
+            border-color: #9ca3af;
+        }
+
+        .search-input:focus {
+            outline: 3px solid #3b82f6;
+            outline-offset: 2px;
+            border-color: #3b82f6;
+        }
+
+        .clear-search-btn {
+            padding: 10px 16px;
+            background: #6b7280;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            min-height: 44px;
+        }
+
+        .clear-search-btn:enabled:hover {
+            background: #4b5563;
+        }
+
+        .clear-search-btn:focus {
+            outline: 3px solid #3b82f6;
+            outline-offset: 2px;
+        }
+
+        .clear-search-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 10px;
+        }
+
+        .flip-card {
+            background-color: transparent;
+            width: 100%;
+            height: 450px;
+            perspective: 1000px;
+            border-radius: 12px;
+            position: relative;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s ease-in-out;
+            transform-style: preserve-3d;
+            border-radius: 12px;
+        }
+
+        .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+        }
+
+        .flip-card-front {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0e7ff 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            cursor: pointer;
+            pointer-events: auto; /* Allow clicks by default */
+        }
+
+        .flip-card.flipped .flip-card-front {
+            pointer-events: none; /* Disable clicks on the front when the card is flipped */
+        }
+
+        .flip-card-back {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            transform: rotateY(180deg);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            text-align: left;
+            pointer-events: none; /* Disable clicks by default on the hidden back */
+        }
+
+        .flip-card.flipped .flip-card-back {
+            pointer-events: auto; /* Enable clicks on the back when the card is flipped */
+        }
+
+        .book-cover {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .cover-placeholder {
+            width: 200px;
+            height: 300px;
+            background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e0 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            color: #64748b;
+            font-size: 14px;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .flip-instruction {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 15px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .flip-card-button {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            border-radius: 12px;
+            z-index: 10;
+        }
+
+        .flip-card-button:focus {
+            outline: 3px solid #3b82f6;
+            outline-offset: 2px;
+        }
+
+        /* Screen reader only text for card fronts */
+        .card-front-text {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        .book-info {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .book-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1e293b;
+            line-height: 1.3;
+            margin-bottom: 8px;
+        }
+
+        .book-author {
+            font-size: 16px;
+            color: #475569;
+            font-weight: 500;
+        }
+
+        .book-course {
+            font-size: 16px;
+            color: #059669;
+            font-weight: 600;
+            background: #ecfdf5;
+            padding: 4px 8px;
+            border-radius: 6px;
+            display: inline-block;
+            margin-bottom: 4px;
+        }
+
+        .book-publisher {
+            font-size: 14px;
+            color: #64748b;
+            line-height: 1.4;
+        }
+
+        .book-date {
+            font-size: 14px;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .book-description {
+            font-size: 13px;
+            color: #64748b;
+            line-height: 1.4;
+            flex-grow: 1;
+            margin: 8px 0;
+        }
+
+        .book-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: stretch;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .book-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            text-decoration: none;
+            padding: 10px 16px;
+            border: none;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            min-height: 44px;
+            flex: none;
+            width: 100%;
+        }
+
+        .book-link:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+        }
+
+        .book-link:focus {
+            outline: 3px solid #3b82f6;
+            outline-offset: 2px;
+        }
+
+        .book-link:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .back-to-cover-btn {
+            background: #6b7280;
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background 0.2s;
+            min-height: 44px;
+            flex: 0 0 auto;
+        }
+
+        .back-to-cover-btn:hover {
+            background: #4b5563;
+        }
+
+        .back-to-cover-btn:focus {
+            outline: 3px solid #3b82f6;
+            outline-offset: 2px;
+        }
+
+        .loading, .error {
+            text-align: center;
+            padding: 40px;
+            font-size: 16px;
+            grid-column: 1 / -1;
+        }
+
+        .loading {
+            color: #64748b;
+        }
+
+        .error {
+            color: #dc2626;
+            background: #fef2f2;
+            border-radius: 8px;
+            border: 1px solid #fecaca;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        .refresh-notice {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            background: #f0f9ff;
+            border-radius: 8px;
+            color: #1e40af;
+            font-size: 14px;
+            border: 1px solid #dbeafe;
+        }
+
+        .controls-instructions {
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .controls-instructions h2 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1e293b;
+            margin: 0 0 10px 0;
+        }
+
+        .controls-instructions ul {
+            margin: 0;
+            padding-left: 20px;
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .controls-instructions li {
+            margin-bottom: 5px;
+        }
+
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 6px;
+            background: #000;
+            color: white;
+            padding: 8px;
+            text-decoration: none;
+            border-radius: 4px;
+            z-index: 100;
+        }
+
+        .skip-link:focus {
+            top: 6px;
+            outline: 3px solid #3b82f6;
+            outline-offset: 2px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .book-cards-widget {
+                padding: 15px;
+            }
+
+            .sorting-controls, .search-container {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px;
+            }
+
+            .sort-group {
+                flex-direction: column;
+                text-align: center;
+                gap: 8px;
+            }
+
+            .sort-select {
+                min-width: 200px;
+            }
+
+            .search-input-group {
+                min-width: 100%;
+            }
+
+            .cards-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 15px;
+            }
+
+            .flip-card {
+                height: 400px;
+            }
+
+            .flip-card-back {
+                padding: 15px;
+            }
+
+            .book-title {
+                font-size: 16px;
+            }
+
+            .book-actions {
+                flex-direction: column;
+            }
+
+            .book-link {
+                flex: none;
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .cards-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+                padding: 0 5px;
+            }
+
+            .flip-card {
+                height: 370px;
+            }
+
+            .book-title {
+                font-size: 15px;
+            }
+
+            .book-author, .book-publisher, .book-date {
+                font-size: 13px;
+            }
+
+            .cover-placeholder {
+                width: 150px;
+                height: 225px;
+            }
+        }
+
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+            .book-cards-widget {
+                background: white;
+                border: 2px solid black;
+            }
+
+            .flip-card-front, .flip-card-back {
+                border: 2px solid black;
+            }
+
+            .sort-select:focus,
+            .search-input:focus,
+            .sort-order-btn:focus,
+            .clear-search-btn:focus,
+            .book-link:focus,
+            .back-to-cover-btn:focus,
+            .flip-card-button:focus {
+                outline: 3px solid black;
+                outline-offset: 2px;
+            }
+        }
+
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+            .flip-card-inner {
+                transition: none;
+            }
+
+            .book-link:hover,
+            .sort-order-btn:hover {
+                transform: none;
+            }
+
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <main class="book-cards-widget" role="main">
+        <h1 id="main-content">Current Reserves Collection - Spring 2025</h1>
+        
+<div class="controls-instructions">
+            <h2>How to use this page</h2>
+            <ul>
+                <li>Use the search box to find specific books, authors, or courses.</li>
+                <li>Click on book covers to see details, or use Tab and Enter keys.</li>
+                <li>Use arrow keys to navigate between books.</li>
+                <li>Press Alt+F to jump to search, Alt+S for sort options.</li>
+                <li>Press Escape to clear your search.</li>
+            </ul>
+        </div>
+        
+        <div class="collection-info">
+            <div id="collectionCount" aria-live="polite" aria-atomic="true"></div>
+        </div>
+
+        <div class="search-section" role="search" aria-labelledby="search-heading">
+            <h2 id="search-heading" class="sr-only">Search Books</h2>
+            <div class="search-container">
+                <div class="search-input-group">
+                    <label for="searchInput" class="search-label">Search:</label>
+                    <input type="text" 
+                           id="searchInput" 
+                           class="search-input" 
+                           placeholder="Search titles, authors, courses..." 
+                           aria-describedby="search-help"
+                           autocomplete="off"
+                           spellcheck="false"
+                           role="searchbox"
+                           aria-controls="cardsContainer">
+                    <div id="search-help" class="sr-only">Search through book collection by title, author, course, or other details</div>
+                </div>
+                <button id="clearSearchBtn" 
+                        class="clear-search-btn"
+                        disabled
+                        aria-describedby="clear-search-help">
+                    Clear Search
+                </button>
+                <div id="clear-search-help" class="sr-only">Clear search and show all books</div>
+            </div>
+        </div>
+
+        <div class="sorting-controls" role="region" aria-labelledby="sort-heading">
+            <h2 id="sort-heading" class="sr-only">Sort and Filter Controls</h2>
+            <div class="sort-group">
+                <label for="sortBy" class="sort-label">Sort by:</label>
+                <select id="sortBy" class="sort-select" aria-describedby="sort-help">
+                    <option value="title">Title</option>
+                    <option value="author">Author</option>
+                    <option value="course">Course</option>
+                    <option value="date">Publication Date</option>
+                </select>
+                <div id="sort-help" class="sr-only">Choose how to sort the book collection</div>
+            </div>
+            
+            <div class="sort-group">
+                <span class="sort-label">Order:</span>
+                <button id="sortOrderBtn" class="sort-order-btn" aria-describedby="sort-order-help" aria-pressed="false">
+                    A → Z
+                </button>
+                <div id="sort-order-help" class="sr-only">Toggle between ascending and descending order</div>
+            </div>
+        </div>
+
+        <div id="cardsContainer" class="cards-grid" role="region" aria-labelledby="collection-heading" aria-describedby="collection-status">
+            <h2 id="collection-heading" class="sr-only">Book Collection</h2>
+            <div class="loading" role="status" aria-live="polite">Loading reserves collection...</div>
+        </div>
+        <div id="collection-status" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+        <div class="refresh-notice">
+            Collection updates automatically when new titles are added to the reserves database. [cite_start]Refresh the page to see the latest additions[cite: 132].
+        </div>
+    </main>
+
+    <script>
+        // ===== DISPLAY CONFIGURATION =====
+        const DISPLAY_CONFIG = {
+            showDate: false,
+            showDescription: false,
+            showPublisher: true,
+            showCourse: true,
+            showAuthor: true
+        };
+        // Configuration
+        const JSON_DATA_URL = 'https://raw.githubusercontent.com/ClarkLibraries/Marketing/refs/heads/main/Library/CurrentReservesSpring2025.json';
+
+        let bookData = [];
+        let filteredBookData = [];
+        let isLoading = false;
+        let currentSortBy = 'title';
+        let currentSortOrder = 'asc';
+        let currentSearchTerm = '';
+        // Utility functions
+        function sanitizeText(text) {
+            if (!text) return '';
+            return text.replace(/[<>&"']/g, function(match) {
+                const escapeMap = {
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    '&': '&amp;',
+                    '"': '&quot;',
+                    "'": '&#39;'
+                };
+                return escapeMap[match];
+            });
+        }
+
+        function isValidUrl(string) {
+            try {
+                const url = new URL(string);
+                return url.protocol === 'http:' || url.protocol === 'https:';
+            } catch (_) {
+                return false;
+            }
+        }
+
+        function getSortDescription() {
+            const sortLabels = {
+                'title': 'by title',
+                'author': 'by author',
+                'course': 'by course',
+                'date': 'by publication date'
+            };
+            const orderText = currentSortOrder === 'desc' ? 'Z to A' : 'A to Z';
+            return `${sortLabels[currentSortBy] || 'by title'} (${orderText})`;
+        }
+
+        function announceToScreenReader(message) {
+            const statusElement = document.getElementById('collection-status');
+            if (statusElement) {
+                statusElement.textContent = message;
+            }
+        }
+
+        // Event handlers for buttons - prevents event bubbling
+        function handleCatalogClick(event, url) {
+            event.stopPropagation();
+            if (url && isValidUrl(url)) {
+                window.open(url, '_blank', 'noopener,noreferrer');
+            }
+        }
+
+        function handleBackClick(event, cardId) {
+            event.stopPropagation();
+            flipCard(cardId);
+        }
+
+        // Debounced functions
+        const debouncedRender = (() => {
+            let timeoutId;
+            return (delay = 100) => {
+                clearTimeout(timeoutId);
+                timeoutId = setTimeout(() => {
+                    displayBooks();
+                }, delay);
+            };
+        })();
+        const debouncedSearch = (() => {
+            let timeoutId;
+            return (delay = 300) => {
+                clearTimeout(timeoutId);
+                timeoutId = setTimeout(() => {
+                    performSearch();
+                }, delay);
+            };
+        })();
+        // Search functionality
+        function handleSearch() {
+            const searchInput = document.getElementById('searchInput');
+            if (!searchInput) return;
+            
+            currentSearchTerm = searchInput.value.trim();
+            updateClearButton();
+            debouncedSearch();
+        }
+
+        function performSearch() {
+            if (!currentSearchTerm) {
+                filteredBookData = [...bookData];
+            } else {
+                const searchLower = currentSearchTerm.toLowerCase();
+                filteredBookData = bookData.filter(book => {
+                    const searchableText = [
+                        book.title || '',
+                        book.author || '',
+                        book.course || '',
+                        book.publisher || '',
+                        book.date || '',
+                        book.description || ''
+                    ].join(' ').toLowerCase();
+                    
+                    return searchableText.includes(searchLower);
+                });
+            }
+            
+            displayBooks();
+            updateCollectionInfo();
+            
+            const resultCount = filteredBookData.length;
+            const searchDesc = currentSearchTerm ? ` matching "${currentSearchTerm}"` : '';
+            announceToScreenReader(`${resultCount} book${resultCount !== 1 ? 's' : ''} found${searchDesc}`);
+        }
+
+        function clearSearch() {
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) {
+                searchInput.value = '';
+                currentSearchTerm = '';
+                searchInput.focus();
+            }
+            
+            filteredBookData = [...bookData];
+            updateClearButton();
+            displayBooks();
+            updateCollectionInfo();
+            
+            announceToScreenReader('Search cleared, showing all books');
+        }
+
+        function updateClearButton() {
+            const clearBtn = document.getElementById('clearSearchBtn');
+            if (!clearBtn) return;
+            
+            const hasSearch = currentSearchTerm.length > 0;
+            clearBtn.disabled = !hasSearch;
+            clearBtn.classList.toggle('disabled', !hasSearch);
+        }
+
+        // Load data
+        async function loadBookData() {
+            if (isLoading) return;
+            isLoading = true;
+            
+            try {
+                const response = await fetch(JSON_DATA_URL);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                if (Array.isArray(data)) {
+                    bookData = data;
+                } else if (data.books && Array.isArray(data.books)) {
+                    bookData = data.books;
+                } else {
+                    throw new Error('Invalid JSON structure - expected an array of books');
+                }
+                
+                if (bookData.length === 0) {
+                    throw new Error('No book data found');
+                }
+                
+                filteredBookData = [...bookData];
+                console.log(`Loaded ${bookData.length} reserves from GitHub`);
+                displayBooks();
+                updateCollectionInfo();
+                
+            } catch (error) {
+                console.error('Error loading book data:', error);
+                showError(`Failed to load reserves data: ${error.message}`);
+            } finally {
+                isLoading = false;
+            }
+        }
+
+        function showError(message) {
+            const container = document.getElementById('cardsContainer');
+            container.innerHTML = `
+                <div class="error" role="alert">
+                    <strong>Error:</strong> ${message}<br>
+                    <button onclick="loadBookData()" style="margin-top: 10px; padding: 8px 16px; background: #dc2626; color: white; border: none; border-radius: 4px; cursor: pointer; min-height: 44px;">
+                        Try Again
+                    </button>
+                </div>
+            `;
+        }
+
+        function updateCollectionInfo() {
+            const countElement = document.getElementById('collectionCount');
+            const statusElement = document.getElementById('collection-status');
+            
+            let message = '';
+            if (filteredBookData.length > 0) {
+                const sortDesc = getSortDescription();
+                const searchDesc = currentSearchTerm ? ` (filtered from ${bookData.length} total)` : '';
+                message = `Displaying ${filteredBookData.length} titles${searchDesc}, sorted ${sortDesc}`;
+            } else if (currentSearchTerm) {
+                message = `No titles found matching "${currentSearchTerm}"`;
+            } else {
+                message = 'No titles available';
+            }
+            
+            countElement.textContent = message;
+            statusElement.textContent = message;
+        }
+
+        // Sorting functionality
+        function sortBooks() {
+            filteredBookData.sort((a, b) => {
+                let aVal = '';
+                let bVal = '';
+                
+                switch (currentSortBy) {
+                    case 'title':
+                        aVal = (a.title || '').toLowerCase();
+                        bVal = (b.title || '').toLowerCase();
+                        break;
+                    case 'author':
+                        aVal = (a.author || '').toLowerCase();
+                        bVal = (b.author || '').toLowerCase();
+                        break;
+                    case 'course':
+                        aVal = (a.course || '').toLowerCase();
+                        bVal = (b.course || '').toLowerCase();
+                        break;
+                    case 'date':
+                        aVal = new Date(a.date || '1900-01-01');
+                        bVal = new Date(b.date || '1900-01-01');
+                        break;
+                    default:
+                        aVal = (a.title || '').toLowerCase();
+                        bVal = (b.title || '').toLowerCase();
+                }
+                
+                let comparison = 0;
+                if (currentSortBy === 'date') {
+                    comparison = aVal - bVal;
+                } else {
+                    comparison = aVal.localeCompare(bVal);
+                }
+                
+                return currentSortOrder === 'desc' ? -comparison : comparison;
+            });
+        }
+
+        function handleSortChange() {
+            const sortSelect = document.getElementById('sortBy');
+            if (!sortSelect) return;
+            
+            currentSortBy = sortSelect.value;
+            sortBooks();
+            displayBooks();
+            updateCollectionInfo();
+            
+            announceToScreenReader(`Books sorted ${getSortDescription()}`);
+        }
+
+        function toggleSortOrder() {
+            currentSortOrder = currentSortOrder === 'asc' ? 'desc' : 'asc';
+            
+            const sortOrderBtn = document.getElementById('sortOrderBtn');
+            if (sortOrderBtn) {
+                sortOrderBtn.textContent = currentSortOrder === 'desc' ? 'Z → A' : 'A → Z';
+                sortOrderBtn.classList.toggle('desc', currentSortOrder === 'desc');
+                sortOrderBtn.setAttribute('aria-pressed', currentSortOrder === 'desc' ? 'true' : 'false');
+            }
+            
+            sortBooks();
+            displayBooks();
+            updateCollectionInfo();
+            
+            announceToScreenReader(`Sort order changed to ${currentSortOrder === 'desc' ? 'descending' : 'ascending'}`);
+        }
+
+        // Card flip functionality
+        function flipCard(cardId) {
+            const card = document.getElementById(cardId);
+            if (!card) return;
+            
+            card.classList.toggle('flipped');
+            
+            // Update ARIA attributes for screen readers
+            const button = card.querySelector('.flip-card-button');
+            if (button) {
+                const isFlipped = card.classList.contains('flipped');
+                button.setAttribute('aria-expanded', isFlipped ? 'true' : 'false');
+                button.setAttribute('aria-label', isFlipped ? 
+                    'View book cover' : 
+                    `View details for ${button.dataset.bookTitle || 'this book'}`
+                );
+            }
+        }
+
+        // Display books
+        function displayBooks() {
+            const container = document.getElementById('cardsContainer');
+            if (!container) return;
+            
+            if (filteredBookData.length === 0) {
+                const message = currentSearchTerm ? `No books found matching "${sanitizeText(currentSearchTerm)}"` : 'No books available in the current collection.';
+                container.innerHTML = `<div class="error" role="alert">${message}</div>`;
+                return;
+            }
+            
+            // Sort the data before displaying
+            sortBooks();
+            const cardsHTML = filteredBookData.map((book, index) => {
+                const cardId = `card-${index}`;
+                const title = sanitizeText(book.title || 'Untitled');
+                const author = sanitizeText(book.author || 'Unknown Author');
+                const course = sanitizeText(book.course || '');
+                const publisher = sanitizeText(book.publisher || '');
+                const date = sanitizeText(book.date || '');
+                const description = sanitizeText(book.description || '');
+                const coverUrl = book.coverImage;
+                
+                const coverElement = coverUrl && isValidUrl(coverUrl) ? 
+                    `<img src="${coverUrl}" alt="Cover of ${title}" class="book-cover" loading="lazy">` :
+                    `<div class="cover-placeholder">
+                        <div>Cover image not available for<br><strong>${title}</strong></div>
+                    </div>`;
+                const courseDisplay = DISPLAY_CONFIG.showCourse && course ? 
+                    `<div class="book-course">${course}</div>` : '';
+                
+                const authorDisplay = DISPLAY_CONFIG.showAuthor && author ?
+                    `<div class="book-author">by ${author}</div>` : '';
+                
+                const publisherDisplay = DISPLAY_CONFIG.showPublisher && publisher ? 
+                    `<div class="book-publisher">${publisher}</div>` : '';
+                const dateDisplay = DISPLAY_CONFIG.showDate && date ? 
+                    `<div class="book-date">Published: ${date}</div>` : '';
+                
+                const descriptionDisplay = DISPLAY_CONFIG.showDescription && description ?
+                    `<div class="book-description">${description}</div>` : '';
+                
+                return `
+                    <article class="flip-card" id="${cardId}" aria-labelledby="${cardId}-title">
+    <div class="flip-card-inner">
+        <div class="flip-card-front">
+            <button class="flip-card-button" 
+                    onclick="event.stopPropagation(); flipCard('${cardId}');"
+                    aria-expanded="false"
+                    aria-label="View details for ${title.replace(/"/g, '&quot;')}"
+                    data-book-title="${title.replace(/"/g, '&quot;')}">
+                <span class="sr-only">Click to view book details</span>
+            </button>
+            <div class="card-front-text">
+                <h3 id="${cardId}-title">${title}</h3>
+                <p>by ${author}</p>
+                ${course ? `<p>Course: ${course}</p>` : ''}
+            </div>
+            ${coverElement}
+            <div class="flip-instruction" aria-hidden="true">Click for details</div>
+        </div>
+        <div class="flip-card-back">
+            <div class="book-info">
+                <h3 class="book-title" id="${cardId}-title-back">${title}</h3>
+                ${authorDisplay}
+                ${courseDisplay}
+                ${publisherDisplay}
+                ${dateDisplay}
+                ${descriptionDisplay}
+            </div>
+            <div class="book-actions">
+                <a href="${sanitizeText(book.permalink || '#')}"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="book-link"
+                   aria-describedby="${cardId}-catalog-help"
+                   data-permalink="${sanitizeText(book.permalink || '')}">
+                    View in Catalog
+                </a>
+                <div id="${cardId}-catalog-help" class="sr-only">Opens in new tab</div>
+                <button class="back-to-cover-btn"
+                        onclick="handleBackClick(event, '${cardId}')"
+                        aria-label="Return to book cover">
+                    Back to Cover
+                </button>
+            </div>
+        </div>
+    </div>
+</article>
+                `;
+            }).join('');
+            
+            container.innerHTML = cardsHTML;
+        }
+
+        // Keyboard navigation
+        function setupKeyboardNavigation() {
+            document.addEventListener('keydown', (event) => {
+                // Alt+F to focus search
+                if (event.altKey && event.key.toLowerCase() === 'f') {
+                    event.preventDefault();
+                    const searchInput = document.getElementById('searchInput');
+                    if (searchInput) {
+                        searchInput.focus();
+                        searchInput.select();
+                    }
+                }
+                
+                // Alt+S to focus sort controls
+                if (event.altKey && event.key.toLowerCase() === 's') {
+                    event.preventDefault();
+                    const sortSelect = document.getElementById('sortBy');
+                    if (sortSelect) {
+                        sortSelect.focus();
+                    }
+                }
+                
+                // Escape to clear search
+                if (event.key === 'Escape') {
+                    const searchInput = document.getElementById('searchInput');
+                    if (searchInput && document.activeElement === searchInput && currentSearchTerm) {
+                        event.preventDefault();
+                        clearSearch();
+                    }
+                }
+                
+                // Arrow key navigation for cards
+                if (event.key === 'ArrowLeft' || event.key === 'ArrowRight' || 
+                    event.key === 'ArrowUp' || event.key === 'ArrowDown') {
+                    
+                    const focusedElement = document.activeElement;
+                    if (focusedElement && focusedElement.classList.contains('flip-card-button')) {
+                        event.preventDefault();
+                        const allButtons = Array.from(document.querySelectorAll('.flip-card-button'));
+                        const currentIndex = allButtons.indexOf(focusedElement);
+                        
+                        let nextIndex = currentIndex;
+                        if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
+                            nextIndex = (currentIndex + 1) % allButtons.length;
+                        } else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
+                            nextIndex = currentIndex === 0 ? allButtons.length - 1 : currentIndex - 1;
+                        }
+                        
+                        if (nextIndex !== currentIndex && allButtons[nextIndex]) {
+                            allButtons[nextIndex].focus();
+                        }
+                    }
+                }
+            });
+        }
+
+        // Initialize the application
+        function initialize() {
+            // Set up event listeners
+            const searchInput = document.getElementById('searchInput');
+            const clearBtn = document.getElementById('clearSearchBtn');
+            const sortSelect = document.getElementById('sortBy');
+            const sortOrderBtn = document.getElementById('sortOrderBtn');
+            
+            if (searchInput) {
+                searchInput.addEventListener('input', handleSearch);
+                searchInput.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        performSearch();
+                    }
+                });
+            }
+            
+            if (clearBtn) {
+                clearBtn.addEventListener('click', clearSearch);
+            }
+            
+            if (sortSelect) {
+                sortSelect.addEventListener('change', handleSortChange);
+            }
+            
+            if (sortOrderBtn) {
+                sortOrderBtn.addEventListener('click', toggleSortOrder);
+            }
+            
+            // Set up keyboard navigation
+            setupKeyboardNavigation();
+            // Load initial data
+            loadBookData();
+        }
+
+        // Start the application when the DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initialize);
+        } else {
+            initialize();
+        }
+    </script>
+</body>
+</html>
