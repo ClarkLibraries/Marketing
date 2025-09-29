@@ -753,7 +753,7 @@
             showAuthor: true
         };
         // Configuration
-        const JSON_DATA_URL = 'https://clarklibraries.github.io/Marketing/Library/CurrentReservesSpring2025.json';
+        const JSON_DATA_URL = 'https://raw.githubusercontent.com/ClarkLibraries/Marketing/refs/heads/main/Library/CurrentReservesSpring2025.json';
 
         let bookData = [];
         let filteredBookData = [];
