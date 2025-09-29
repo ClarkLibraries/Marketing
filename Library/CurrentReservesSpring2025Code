@@ -30,6 +30,18 @@
             font-weight: 700;
         }
 
+        .book-instructor {
+            font-size: 14px;
+            color: #374151;
+            margin-bottom: 8px;
+        }
+
+        .book-catalog-record {
+            font-size: 14px;
+            color: #64748b;
+            margin-bottom: 8px;
+        }
+
         .collection-info {
             text-align: center;
             margin-bottom: 20px;
@@ -739,7 +751,7 @@
         <div id="collection-status" class="sr-only" aria-live="polite" aria-atomic="true"></div>
 
         <div class="refresh-notice">
-            Collection updates automatically when new titles are added to the reserves database. [cite_start]Refresh the page to see the latest additions[cite: 132].
+            Collection updates automatically when new titles are added to the reserves database. Refresh the page to see the latest additions.
         </div>
     </main>
 
@@ -750,7 +762,10 @@
             showDescription: false,
             showPublisher: true,
             showCourse: true,
-            showAuthor: true
+            showAuthor: true,
+            showInstructor: true,
+            showCatalogRecord: true,
+            showCatalogButton: false // Set to true to show the "View in Catalog" button
         };
         // Configuration
         const JSON_DATA_URL = 'https://raw.githubusercontent.com/ClarkLibraries/Marketing/refs/heads/main/Library/CurrentReservesSpring2025.json';
@@ -783,6 +798,12 @@
             } catch (_) {
                 return false;
             }
+        }
+
+        function extractCatalogRecord(permalink) {
+            if (!permalink) return '';
+            const parts = permalink.split('/');
+            return parts[parts.length - 1] || '';
         }
 
         function getSortDescription() {
@@ -857,7 +878,8 @@
                         book.course || '',
                         book.publisher || '',
                         book.date || '',
-                        book.description || ''
+                        book.description || '',
+                        book.instructor || ''
                     ].join(' ').toLowerCase();
                     
                     return searchableText.includes(searchLower);
@@ -1073,6 +1095,8 @@
                 const publisher = sanitizeText(book.publisher || '');
                 const date = sanitizeText(book.date || '');
                 const description = sanitizeText(book.description || '');
+                const instructor = sanitizeText(book.instructor || '');
+                const catalogRecord = extractCatalogRecord(book.permalink);
                 const coverUrl = book.coverImage;
                 
                 const coverElement = coverUrl && isValidUrl(coverUrl) ? 
@@ -1086,6 +1110,9 @@
                 const authorDisplay = DISPLAY_CONFIG.showAuthor && author ?
                     `<div class="book-author">by ${author}</div>` : '';
                 
+                const catalogRecordDisplay = DISPLAY_CONFIG.showCatalogRecord && catalogRecord ?
+                    `<div class="book-catalog-record"><strong>Catalog Record:</strong> ${catalogRecord}</div>` : '';
+                
                 const publisherDisplay = DISPLAY_CONFIG.showPublisher && publisher ? 
                     `<div class="book-publisher">${publisher}</div>` : '';
                 const dateDisplay = DISPLAY_CONFIG.showDate && date ? 
@@ -1093,6 +1120,20 @@
                 
                 const descriptionDisplay = DISPLAY_CONFIG.showDescription && description ?
                     `<div class="book-description">${description}</div>` : '';
+                
+                const instructorDisplay = DISPLAY_CONFIG.showInstructor && instructor ?
+                    `<div class="book-instructor"><strong>Instructor:</strong> ${instructor}</div>` : '';
+                
+                const catalogButtonDisplay = DISPLAY_CONFIG.showCatalogButton ?
+                    `<a href="${sanitizeText(book.permalink || '#')}"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="book-link"
+                       aria-describedby="${cardId}-catalog-help"
+                       data-permalink="${sanitizeText(book.permalink || '')}">
+                        View in Catalog
+                    </a>
+                    <div id="${cardId}-catalog-help" class="sr-only">Opens in new tab</div>` : '';
                 
                 return `
                     <article class="flip-card" id="${cardId}" aria-labelledby="${cardId}-title">
@@ -1109,6 +1150,7 @@
                 <h3 id="${cardId}-title">${title}</h3>
                 <p>by ${author}</p>
                 ${course ? `<p>Course: ${course}</p>` : ''}
+                ${instructor ? `<p>Instructor: ${instructor}</p>` : ''}
             </div>
             ${coverElement}
             <div class="flip-instruction" aria-hidden="true">Click for details</div>
@@ -1118,20 +1160,14 @@
                 <h3 class="book-title" id="${cardId}-title-back">${title}</h3>
                 ${authorDisplay}
                 ${courseDisplay}
+                ${instructorDisplay}
                 ${publisherDisplay}
                 ${dateDisplay}
                 ${descriptionDisplay}
+                ${catalogRecordDisplay}
             </div>
             <div class="book-actions">
-                <a href="${sanitizeText(book.permalink || '#')}"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   class="book-link"
-                   aria-describedby="${cardId}-catalog-help"
-                   data-permalink="${sanitizeText(book.permalink || '')}">
-                    View in Catalog
-                </a>
-                <div id="${cardId}-catalog-help" class="sr-only">Opens in new tab</div>
+                ${catalogButtonDisplay}
                 <button class="back-to-cover-btn"
                         onclick="handleBackClick(event, '${cardId}')"
                         aria-label="Return to book cover">
