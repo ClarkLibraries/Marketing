@@ -32,14 +32,14 @@
 
         .book-instructor {
             font-size: 14px;
-            color: #374151;
-            margin-bottom: 8px;
+            color: #64748b;
+            font-weight: 500;
         }
 
         .book-catalog-record {
             font-size: 14px;
             color: #64748b;
-            margin-bottom: 8px;
+            font-weight: 500;
         }
 
         .collection-info {
@@ -1159,12 +1159,13 @@
             <div class="book-info">
                 <h3 class="book-title" id="${cardId}-title-back">${title}</h3>
                 ${authorDisplay}
-                ${courseDisplay}
-                ${instructorDisplay}
                 ${publisherDisplay}
                 ${dateDisplay}
                 ${descriptionDisplay}
                 ${catalogRecordDisplay}
+                ${courseDisplay}
+                ${instructorDisplay}
+                ${descriptionDisplay}
             </div>
             <div class="book-actions">
                 ${catalogButtonDisplay}
