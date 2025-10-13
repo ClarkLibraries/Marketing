@@ -1,4 +1,10 @@
-<style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Current Reserves Collection - Spring 2025</title>
+    <style>
         /* Container isolation to prevent style conflicts */
         .book-cards-widget {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
@@ -24,11 +30,24 @@
             font-weight: 700;
         }
 
+        .book-instructor {
+            font-size: 14px;
+            color: #0f172a;
+            font-weight: 500;
+        }
+
+        .book-catalog-record {
+            font-size: 14px;
+            color: #0f172a;
+            font-weight: 500;
+        }
+
         .collection-info {
             text-align: center;
             margin-bottom: 20px;
-            color: #64748b;
+            color: #1e293b;
             font-size: 16px;
+            font-weight: 500;
         }
 
         .sorting-controls {
@@ -53,35 +72,35 @@
         .sort-label {
             font-size: 14px;
             font-weight: 600;
-            color: #374151;
+            color: #0f172a;
             white-space: nowrap;
         }
 
         .sort-select {
             padding: 8px 12px;
-            border: 2px solid #e5e7eb;
+            border: 2px solid #cbd5e0;
             border-radius: 8px;
             background: white;
             font-size: 14px;
-            color: #374151;
+            color: #0f172a;
             cursor: pointer;
             transition: all 0.2s ease;
             min-width: 120px;
         }
 
         .sort-select:hover {
-            border-color: #9ca3af;
+            border-color: #475569;
         }
 
         .sort-select:focus {
-            outline: 3px solid #fbbf24;
+            outline: 3px solid #1e40af;
             outline-offset: 2px;
-            border-color: #6366f1;
+            border-color: #1e40af;
         }
 
         .sort-order-btn {
-            padding: 8px 12px;
-            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            padding: 10px 16px;
+            background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
             color: white;
             border: none;
             border-radius: 8px;
@@ -90,26 +109,106 @@
             cursor: pointer;
             transition: all 0.3s ease;
             white-space: nowrap;
-            box-shadow: 0 2px 6px rgba(99, 102, 241, 0.3);
+            box-shadow: 0 2px 6px rgba(30, 64, 175, 0.3);
+            min-height: 44px;
         }
 
         .sort-order-btn:hover {
             transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+            box-shadow: 0 4px 12px rgba(30, 64, 175, 0.4);
         }
 
         .sort-order-btn:focus {
-            outline: 3px solid #fbbf24;
+            outline: 3px solid #000;
             outline-offset: 2px;
         }
 
         .sort-order-btn.desc {
-            background: linear-gradient(135deg, #ef4444 0%, #f97316 100%);
-            box-shadow: 0 2px 6px rgba(239, 68, 68, 0.3);
+            background: linear-gradient(135deg, #7c2d12 0%, #92400e 100%);
+            box-shadow: 0 2px 6px rgba(124, 45, 18, 0.3);
         }
 
         .sort-order-btn.desc:hover {
-            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+            box-shadow: 0 4px 12px rgba(124, 45, 18, 0.4);
+        }
+
+        .search-section {
+            margin-bottom: 20px;
+        }
+
+        .search-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 15px;
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-input-group {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .search-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 5px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 10px 12px;
+            border: 2px solid #cbd5e0;
+            border-radius: 8px;
+            background: white;
+            font-size: 14px;
+            color: #0f172a;
+            transition: all 0.2s ease;
+            min-height: 44px;
+        }
+
+        .search-input:hover {
+            border-color: #475569;
+        }
+
+        .search-input:focus {
+            outline: 3px solid #1e40af;
+            outline-offset: 2px;
+            border-color: #1e40af;
+        }
+
+        .clear-search-btn {
+            padding: 10px 16px;
+            background: #475569;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            min-height: 44px;
+        }
+
+        .clear-search-btn:enabled:hover {
+            background: #1e293b;
+        }
+
+        .clear-search-btn:focus {
+            outline: 3px solid #000;
+            outline-offset: 2px;
+        }
+
+        .clear-search-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
         }
 
         .cards-grid {
@@ -127,6 +226,7 @@
             height: 450px;
             perspective: 1000px;
             border-radius: 12px;
+            position: relative;
         }
 
         .flip-card-inner {
@@ -136,7 +236,6 @@
             text-align: center;
             transition: transform 0.6s ease-in-out;
             transform-style: preserve-3d;
-            cursor: pointer;
             border-radius: 12px;
         }
 
@@ -157,11 +256,18 @@
         }
 
         .flip-card-front {
-            background: linear-gradient(135deg, #f0f9ff 0%, #e0e7ff 100%);
+            background: linear-gradient(135deg, #f0f9ff 0%, #f5f3ff 100%);
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             position: relative;
+            cursor: pointer;
+            pointer-events: auto;
+        }
+
+        .flip-card.flipped .flip-card-front {
+            pointer-events: none;
         }
 
         .flip-card-back {
@@ -172,6 +278,11 @@
             flex-direction: column;
             justify-content: space-between;
             text-align: left;
+            pointer-events: none;
+        }
+
+        .flip-card.flipped .flip-card-back {
+            pointer-events: auto;
         }
 
         .book-cover {
@@ -190,7 +301,7 @@
             align-items: center;
             justify-content: center;
             border-radius: 8px;
-            color: #64748b;
+            color: #0f172a;
             font-size: 14px;
             text-align: center;
             padding: 20px;
@@ -201,12 +312,43 @@
             bottom: 10px;
             left: 50%;
             transform: translateX(-50%);
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.8);
             color: white;
-            padding: 6px 12px;
+            padding: 8px 16px;
             border-radius: 15px;
-            font-size: 12px;
-            opacity: 0.8;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .flip-card-button {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            border-radius: 12px;
+            z-index: 10;
+        }
+
+        .flip-card-button:focus {
+            outline: 3px solid #1e40af;
+            outline-offset: 2px;
+        }
+
+        /* Screen reader only text for card fronts */
+        .card-front-text {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
         }
 
         .book-info {
@@ -219,22 +361,22 @@
         .book-title {
             font-size: 18px;
             font-weight: 700;
-            color: #1e293b;
+            color: #0f172a;
             line-height: 1.3;
             margin-bottom: 8px;
         }
 
         .book-author {
             font-size: 16px;
-            color: #475569;
+            color: #0f172a;
             font-weight: 500;
         }
 
         .book-course {
             font-size: 16px;
-            color: #059669;
+            color: #ffffff;  /* Changed from #0f172a */
             font-weight: 600;
-            background: #ecfdf5;
+            background: #1e40af;  /* Changed from #fef3c7 */
             padding: 4px 8px;
             border-radius: 6px;
             display: inline-block;
@@ -243,76 +385,108 @@
 
         .book-publisher {
             font-size: 14px;
-            color: #64748b;
+            color: #0f172a;
             line-height: 1.4;
         }
 
         .book-date {
             font-size: 14px;
-            color: #64748b;
+            color: #0f172a;
             font-weight: 500;
         }
 
         .book-description {
             font-size: 13px;
-            color: #64748b;
+            color: #1e293b;
             line-height: 1.4;
             flex-grow: 1;
             margin: 8px 0;
         }
 
+        .book-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: stretch;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
         .book-link {
-            display: inline-block;
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
             color: white;
             text-decoration: none;
             padding: 10px 16px;
+            border: none;
             border-radius: 20px;
             font-size: 14px;
             font-weight: 600;
+            cursor: pointer;
             transition: all 0.3s ease;
-            margin-top: 12px;
             text-align: center;
-            align-self: flex-start;
+            min-height: 44px;
+            flex: none;
+            width: 100%;
         }
 
         .book-link:hover {
             transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+            box-shadow: 0 4px 12px rgba(30, 64, 175, 0.3);
         }
 
         .book-link:focus {
-            outline: 3px solid #fbbf24;
+            outline: 3px solid #000;
             outline-offset: 2px;
+        }
+
+        .book-link:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .back-to-cover-btn {
+            background: #475569;
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background 0.2s;
+            min-height: 44px;
+            flex: 0 0 auto;
+        }
+
+        .back-to-cover-btn:hover {
+            background: #0f172a;
+        }
+
+        .back-to-cover-btn:focus {
+            outline: 3px solid #1e40af;
+            outline-offset: 2px;
+        }
+
+        .loading, .error {
+            text-align: center;
+            padding: 40px;
+            font-size: 16px;
+            grid-column: 1 / -1;
         }
 
         .loading {
-            text-align: center;
-            padding: 40px;
-            font-size: 16px;
-            color: #64748b;
-            grid-column: 1 / -1;
+            color: #1e293b;
         }
 
         .error {
-            text-align: center;
-            padding: 40px;
-            font-size: 16px;
-            color: #dc2626;
-            grid-column: 1 / -1;
+            color: #0f172a;
             background: #fef2f2;
             border-radius: 8px;
-            border: 1px solid #fecaca;
-        }
-
-        .flip-card.keyboard-focused {
-            outline: 3px solid #fbbf24;
-            outline-offset: 2px;
-        }
-
-        .flip-card:focus {
-            outline: 3px solid #fbbf24;
-            outline-offset: 2px;
+            border: 2px solid #0f172a;
         }
 
         .sr-only {
@@ -331,11 +505,51 @@
             text-align: center;
             margin-top: 30px;
             padding: 20px;
-            background: #f0f9ff;
+            background: #dbeafe;
             border-radius: 8px;
-            color: #1e40af;
+            color: #0c2563;
             font-size: 14px;
-            border: 1px solid #dbeafe;
+            border: 2px solid #0c2563;
+        }
+
+        .controls-instructions {
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 2px solid #1e293b;
+        }
+
+        .controls-instructions h2 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #0f172a;
+            margin: 0 0 10px 0;
+        }
+
+        .controls-instructions p {
+            margin: 0 0 8px 0;
+            color: #0f172a;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 6px;
+            background: #000;
+            color: white;
+            padding: 8px;
+            text-decoration: none;
+            border-radius: 4px;
+            z-index: 100;
+        }
+
+        .skip-link:focus {
+            top: 6px;
+            outline: 3px solid #1e40af;
+            outline-offset: 2px;
         }
 
         /* Responsive Design */
@@ -344,7 +558,7 @@
                 padding: 15px;
             }
 
-            .sorting-controls {
+            .sorting-controls, .search-container {
                 flex-direction: column;
                 gap: 15px;
                 padding: 15px;
@@ -358,6 +572,10 @@
 
             .sort-select {
                 min-width: 200px;
+            }
+
+            .search-input-group {
+                min-width: 100%;
             }
 
             .cards-grid {
@@ -375,6 +593,15 @@
 
             .book-title {
                 font-size: 16px;
+            }
+
+            .book-actions {
+                flex-direction: column;
+            }
+
+            .book-link {
+                flex: none;
+                width: 100%;
             }
         }
 
@@ -421,728 +648,530 @@
                 transition: none;
             }
 
-            .book-link:hover {
+            .book-link:hover,
+            .sort-order-btn:hover {
                 transform: none;
+            }
+
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
             }
         }
     </style>
-<div class="book-cards-widget">
-        <h1>Current Reserves Collection - Spring 2025</h1>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <main class="book-cards-widget" role="main" id="main-content">
         
+<div class="controls-instructions">
+    <h2>How to use this collection</h2>
+    <p>Browse the book collection using the search and sort options below. Click any book card to view more details. Use Tab to navigate between interactive elements and Shift+Tab to navigate backwards. Press Enter or Space to activate buttons and cards.</p>
+</div>
+
         <div class="collection-info">
-            <span id="collectionCount">Loading collection...</span>
+            <div id="collectionCount" aria-live="polite" aria-atomic="true"></div>
         </div>
 
-        <!-- Search Section -->
-        <div class="search-section" role="region" aria-label="Search controls" style="margin-bottom: 20px;">
-            <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 15px; padding: 20px; background: #ffffff; border-radius: 12px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);">
-                <div style="display: flex; align-items: center; gap: 8px; flex: 1; min-width: 250px;">
-                    <label for="searchInput" style="font-size: 14px; font-weight: 600; color: #374151; white-space: nowrap;">Search:</label>
+        <div class="search-section" role="search" aria-labelledby="search-heading">
+            <h2 id="search-heading" class="sr-only">Search Books</h2>
+            <div class="search-container">
+                <div class="search-input-group">
+                    <label for="searchInput" class="search-label">Search:</label>
                     <input type="text" 
                            id="searchInput" 
                            class="search-input" 
                            placeholder="Search titles, authors, courses..." 
-                           onkeyup="handleSearch()"
-                           style="flex: 1; padding: 8px 12px; border: 2px solid #e5e7eb; border-radius: 8px; background: white; font-size: 14px; color: #374151; transition: all 0.2s ease;"
-                           onfocus="this.style.borderColor='#6366f1'; this.style.outline='3px solid #fbbf24'; this.style.outlineOffset='2px';"
-                           onblur="this.style.borderColor='#e5e7eb'; this.style.outline='none';"
-                           aria-label="Search through book collection by title, author, course, or other details">
+                           aria-describedby="search-help"
+                           autocomplete="off"
+                           spellcheck="false"
+                           role="searchbox"
+                           aria-controls="cardsContainer">
+                    <div id="search-help" class="sr-only">Search through book collection by title, author, course, or other details. Press Escape to clear.</div>
                 </div>
                 <button id="clearSearchBtn" 
-                        onclick="clearSearch()" 
-                        style="padding: 8px 12px; background: #6b7280; color: white; border: none; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; white-space: nowrap; opacity: 0.6; pointer-events: none;"
-                        onmouseover="if(!this.disabled) this.style.background='#4b5563'"
-                        onmouseout="if(!this.disabled) this.style.background='#6b7280'"
+                        class="clear-search-btn"
                         disabled
-                        aria-label="Clear search and show all books">
+                        aria-describedby="clear-search-help">
                     Clear Search
                 </button>
+                <div id="clear-search-help" class="sr-only">Clear search and show all books</div>
             </div>
         </div>
 
-        <div class="sorting-controls" role="region" aria-label="Sort and filter controls">
+        <div class="sorting-controls" role="region" aria-labelledby="sort-heading">
+            <h2 id="sort-heading" class="sr-only">Sort and Filter Controls</h2>
             <div class="sort-group">
                 <label for="sortBy" class="sort-label">Sort by:</label>
-                <select id="sortBy" class="sort-select" onchange="applySorting()" aria-label="Choose sorting criteria">
+                <select id="sortBy" class="sort-select" aria-describedby="sort-help">
                     <option value="title">Title</option>
                     <option value="author">Author</option>
                     <option value="course">Course</option>
                     <option value="date">Publication Date</option>
                 </select>
+                <div id="sort-help" class="sr-only">Choose how to sort the book collection</div>
             </div>
             
             <div class="sort-group">
                 <span class="sort-label">Order:</span>
-                <button id="sortOrderBtn" class="sort-order-btn" onclick="toggleSortOrder()" 
-                        aria-label="Toggle sort order between ascending and descending">
+                <button id="sortOrderBtn" class="sort-order-btn" aria-describedby="sort-order-help" aria-pressed="false">
                     A → Z
                 </button>
+                <div id="sort-order-help" class="sr-only">Toggle between ascending and descending order</div>
             </div>
         </div>
 
-        <div id="cardsContainer" class="cards-grid" role="region" aria-label="Complete reserves collection">
-            <div class="loading">Loading reserves...</div>
+        <div id="cardsContainer" class="cards-grid" role="region" aria-labelledby="collection-heading">
+            <h2 id="collection-heading" class="sr-only">Book Collection</h2>
+            <div class="loading" role="status" aria-live="polite">Loading reserves collection...</div>
         </div>
+        <div id="collection-status" class="sr-only" aria-live="polite" aria-atomic="true"></div>
 
         <div class="refresh-notice">
-            Collection updates automatically when new titles are added to the reserves database.
-            Refresh the page to see the latest additions.
+            Collection updates automatically when new titles are added to the reserves database. Refresh the page to see the latest additions.
         </div>
-    </div>
-<script>
-// ===== DISPLAY CONFIGURATION =====
-// Set these to true/false to control what displays on the back of cards
-const DISPLAY_CONFIG = {
-    showDate: false,           // Set to false to hide publication dates
-    showDescription: false,    // Set to false to hide descriptions
-    showPublisher: true,       // Set to false to hide publisher info
-    showCourse: true,          // Set to false to hide course info
-    showAuthor: true           // Set to false to hide author info
-};
+    </main>
 
-// Configuration - Updated data sources with better CORS handling
-const JSON_DATA_URL = 'https://raw.githubusercontent.com/ClarkLibraries/Marketing/refs/heads/main/Library/CurrentReservesSpring2025.json';
+    <script>
+        // ===== DISPLAY CONFIGURATION =====
+        const DISPLAY_CONFIG = {
+            showDate: false,
+            showDescription: false,
+            showPublisher: true,
+            showCourse: true,
+            showAuthor: true,
+            showInstructor: true,
+            showCatalogRecord: true,
+            showCatalogButton: false
+        };
+        // Configuration
+        const JSON_DATA_URL = 'https://raw.githubusercontent.com/ClarkLibraries/Marketing/refs/heads/main/Library/CurrentReservesSpring2025.json';
 
-let bookData = [];
-let filteredBookData = [];
-let isLoading = false;
-let currentSortBy = 'title';
-let currentSortOrder = 'asc'; // 'asc' or 'desc'
-let renderTimeout;
-let resizeTimeout;
-let searchTimeout;
-let currentSearchTerm = '';
-
-// Debounced render function
-const debouncedRender = (() => {
-    let timeoutId;
-    return (delay = 100) => {
-        clearTimeout(timeoutId);
-        timeoutId = setTimeout(() => {
-            displayBooks();
-        }, delay);
-    };
-})();
-
-// Debounced search function
-const debouncedSearch = (() => {
-    let timeoutId;
-    return (delay = 300) => {
-        clearTimeout(timeoutId);
-        timeoutId = setTimeout(() => {
-            performSearch();
-        }, delay);
-    };
-})();
-
-// Search functionality
-function handleSearch() {
-    const searchInput = document.getElementById('searchInput');
-    if (!searchInput) return;
-    
-    currentSearchTerm = searchInput.value.trim();
-    updateClearButton();
-    debouncedSearch();
-}
-
-function performSearch() {
-    if (!currentSearchTerm) {
-        filteredBookData = [...bookData];
-    } else {
-        const searchLower = currentSearchTerm.toLowerCase();
-        filteredBookData = bookData.filter(book => {
-            // Search across all text fields
-            const searchableText = [
-                book.title || '',
-                book.author || '',
-                book.course || '',
-                book.publisher || '',
-                book.date || '',
-                book.description || ''
-            ].join(' ').toLowerCase();
-            
-            return searchableText.includes(searchLower);
-        });
-    }
-    
-    displayBooks();
-    updateCollectionInfo();
-    
-    // Announce search results
-    const resultCount = filteredBookData.length;
-    const searchDesc = currentSearchTerm ? ` matching "${currentSearchTerm}"` : '';
-    announceToScreenReader(`${resultCount} book${resultCount !== 1 ? 's' : ''} found${searchDesc}`);
-}
-
-function clearSearch() {
-    const searchInput = document.getElementById('searchInput');
-    if (searchInput) {
-        searchInput.value = '';
-        currentSearchTerm = '';
-        searchInput.focus();
-    }
-    
-    filteredBookData = [...bookData];
-    updateClearButton();
-    displayBooks();
-    updateCollectionInfo();
-    
-    announceToScreenReader('Search cleared, showing all books');
-}
-
-function updateClearButton() {
-    const clearBtn = document.getElementById('clearSearchBtn');
-    if (!clearBtn) return;
-    
-    const hasSearch = currentSearchTerm.length > 0;
-    clearBtn.disabled = !hasSearch;
-    clearBtn.style.opacity = hasSearch ? '1' : '0.6';
-    clearBtn.style.pointerEvents = hasSearch ? 'auto' : 'none';
-    clearBtn.style.background = hasSearch ? '#6b7280' : '#9ca3af';
-}
-
-// Fetch book data from GitHub
-async function loadBookData() {
-    if (isLoading) return;
-    isLoading = true;
-    
-    try {
-        showLoading('Loading complete reserves collection...');
-        
-        const response = await fetch(JSON_DATA_URL);
-        
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        
-        const data = await response.json();
-        
-        // Handle different JSON structures
-        if (Array.isArray(data)) {
-            bookData = data;
-        } else if (data.books && Array.isArray(data.books)) {
-            bookData = data.books;
-        } else {
-            throw new Error('Invalid JSON structure - expected an array of books');
-        }
-        
-        if (bookData.length === 0) {
-            throw new Error('No book data found');
-        }
-        
-        // Initialize filtered data
-        filteredBookData = [...bookData];
-        
-        console.log(`Loaded ${bookData.length} reserves from GitHub`);
-        displayBooks();
-        updateCollectionInfo();
-        
-    } catch (error) {
-        console.error('Error loading book data:', error);
-        showError(`Failed to load reserves data: ${error.message}`);
-    } finally {
-        isLoading = false;
-    }
-}
-
-function showLoading(message = 'Loading...') {
-    const container = document.getElementById('cardsContainer');
-    container.innerHTML = `<div class="loading" role="status" aria-live="polite">${message}</div>`;
-}
-
-function showError(message) {
-    const container = document.getElementById('cardsContainer');
-    container.innerHTML = `
-        <div class="error" role="alert">
-            <strong>Error:</strong> ${message}<br>
-            <button onclick="loadBookData()" style="margin-top: 10px; padding: 8px 16px; background: #dc2626; color: white; border: none; border-radius: 4px; cursor: pointer;">
-                Try Again
-            </button>
-        </div>
-    `;
-}
-
-function updateCollectionInfo() {
-    const countElement = document.getElementById('collectionCount');
-    if (filteredBookData.length > 0) {
-        const sortDesc = getSortDescription();
-        const searchDesc = currentSearchTerm ? ` (filtered from ${bookData.length} total)` : '';
-        countElement.textContent = `Displaying ${filteredBookData.length} titles${searchDesc}, sorted ${sortDesc}`;
-        countElement.setAttribute('aria-live', 'polite');
-    } else if (currentSearchTerm) {
-        countElement.textContent = `No titles found matching "${currentSearchTerm}"`;
-    } else {
-        countElement.textContent = 'No titles available';
-    }
-}
-
-// Updated card creation with configurable elements
-function createCard(book, index) {
-    const cardId = `card-${index}`;
-    const title = sanitizeText(book.title || 'Untitled');
-    const author = sanitizeText(book.author || '');
-    const course = sanitizeText(book.course || '');
-    const publisher = sanitizeText(book.publisher || '');
-    const date = sanitizeText(book.date || 'Date unknown');
-    const description = sanitizeText(book.description || '');
-    const permalink = book.permalink || '#';
-    const coverImage = book.coverImage || '';
-    
-    const titleId = `title-${index}`;
-    const flipButtonId = `flip-btn-${index}`;
-    const backFlipButtonId = `back-flip-btn-${index}`;
-    const catalogLinkId = `catalog-link-${index}`;
-    const coverAlt = `Book cover for ${title}${author ? ' by ' + author : ''}`;
-    
-    // Build the book info section based on configuration
-    let bookInfoHTML = `<h3 class="book-title" id="${titleId}">${title}</h3>`;
-    
-    if (DISPLAY_CONFIG.showAuthor && author) {
-        bookInfoHTML += `<div class="book-author">by ${author}</div>`;
-    }
-    
-    if (DISPLAY_CONFIG.showCourse && course) {
-        bookInfoHTML += `<div class="book-course">${course}</div>`;
-    }
-    
-    if (DISPLAY_CONFIG.showPublisher && publisher) {
-        bookInfoHTML += `<div class="book-publisher">Publisher: ${publisher}</div>`;
-    }
-    
-    if (DISPLAY_CONFIG.showDate) {
-        bookInfoHTML += `<div class="book-date">Published: ${date}</div>`;
-    }
-    
-    if (DISPLAY_CONFIG.showDescription && description) {
-        bookInfoHTML += `<div class="book-description">${description}</div>`;
-    }
-    
-    return `
-        <article class="flip-card" 
-                 role="article" 
-                 aria-labelledby="${titleId}"
-                 data-title="${title.toLowerCase()}"
-                 data-author="${author.toLowerCase()}"
-                 data-course="${course.toLowerCase()}">
-            <div class="flip-card-inner" id="${cardId}">
-                <div class="flip-card-front" onclick="flipCard('${cardId}')">
-                    ${coverImage ? 
-                        `<img src="${coverImage}" 
-                             alt="${coverAlt}" 
-                             class="book-cover"
-                             loading="lazy"
-                             decoding="async"
-                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                         <div class="cover-placeholder" style="display: none;" aria-hidden="true">
-                            <div>Cover unavailable</div>
-                            <div style="font-size: 12px; margin-top: 8px;">${title}</div>
-                         </div>` :
-                        `<div class="cover-placeholder" aria-hidden="true">
-                            <div>Cover unavailable</div>
-                            <div style="font-size: 12px; margin-top: 8px;">${title}</div>
-                        </div>`
-                    }
-                    <div class="flip-instruction">
-                        Click to view details
-                        <button id="${flipButtonId}" 
-                                class="sr-only" 
-                                onclick="event.stopPropagation(); flipCard('${cardId}')"
-                                aria-label="View details for ${title}">
-                            View Details
-                        </button>
-                    </div>
-                </div>
-                <div class="flip-card-back" onclick="flipCard('${cardId}')">
-                    <div class="book-info">
-                        ${bookInfoHTML}
-                    </div>
-                    <div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: flex-start;">
-                        ${permalink !== '#' ? 
-                            `<a href="${permalink}" 
-                               id="${catalogLinkId}"
-                               class="book-link" 
-                               target="_blank" 
-                               rel="noopener noreferrer"
-                               onclick="event.stopPropagation()"
-                               aria-label="View ${title} in library catalog (opens in new tab)">
-                                View in Catalog
-                            </a>` : ''
-                        }
-                        <button id="${backFlipButtonId}" 
-                                onclick="event.stopPropagation(); flipCard('${cardId}')"
-                                style="background: #6b7280; color: white; border: none; padding: 8px 12px; border-radius: 6px; font-size: 12px; cursor: pointer; transition: background 0.2s;"
-                                onmouseover="this.style.background='#4b5563'"
-                                onmouseout="this.style.background='#6b7280'"
-                                aria-label="Return to cover view for ${title}">
-                            Back to Cover
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </article>
-    `;
-}
-
-// Enhanced keyboard navigation handler
-function handleGlobalKeydown(event) {
-    // Handle global keyboard shortcuts
-    if (event.altKey) {
-        switch(event.key) {
-            case 'f':
-            case 'F':
-                event.preventDefault();
-                document.getElementById('searchInput')?.focus();
-                announceToScreenReader('Search box focused');
-                break;
-            case 's':
-            case 'S':
-                event.preventDefault();
-                document.getElementById('sortBy')?.focus();
-                announceToScreenReader('Sort dropdown focused');
-                break;
-            case 'o':
-            case 'O':
-                event.preventDefault();
-                document.getElementById('sortOrderBtn')?.focus();
-                announceToScreenReader('Sort order button focused');
-                break;
-        }
-    }
-    
-    // Handle escape key to clear search
-    if (event.key === 'Escape') {
-        const searchInput = document.getElementById('searchInput');
-        if (searchInput && document.activeElement === searchInput && currentSearchTerm) {
-            event.preventDefault();
-            clearSearch();
-        }
-    }
-    
-    // Handle card navigation with arrow keys
-    if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(event.key)) {
-        const focusedElement = document.activeElement;
-        
-        // Only handle arrow keys if we're on a card element or its children
-        const cardElement = focusedElement.closest('.flip-card');
-        if (!cardElement) return;
-        
-        event.preventDefault();
-        
-        const allCards = Array.from(document.querySelectorAll('.flip-card'));
-        const currentIndex = allCards.indexOf(cardElement);
-        
-        let targetIndex = currentIndex;
-        const cardsPerRow = getCardsPerRow();
-        
-        switch(event.key) {
-            case 'ArrowLeft':
-                targetIndex = Math.max(0, currentIndex - 1);
-                break;
-            case 'ArrowRight':
-                targetIndex = Math.min(allCards.length - 1, currentIndex + 1);
-                break;
-            case 'ArrowUp':
-                targetIndex = Math.max(0, currentIndex - cardsPerRow);
-                break;
-            case 'ArrowDown':
-                targetIndex = Math.min(allCards.length - 1, currentIndex + cardsPerRow);
-                break;
-        }
-        
-        if (targetIndex !== currentIndex && allCards[targetIndex]) {
-            focusCardElement(allCards[targetIndex], focusedElement);
-        }
-    }
-}
-
-// Calculate cards per row for navigation
-function getCardsPerRow() {
-    const container = document.getElementById('cardsContainer');
-    if (!container) return 1;
-    
-    const cards = container.querySelectorAll('.flip-card');
-    if (cards.length < 2) return 1;
-    
-    const firstCardRect = cards[0].getBoundingClientRect();
-    const secondCardRect = cards[1].getBoundingClientRect();
-    
-    // If second card is on the same row (similar top position), count cards in that row
-    if (Math.abs(firstCardRect.top - secondCardRect.top) < 10) {
-        let cardsInRow = 1;
-        for (let i = 1; i < cards.length; i++) {
-            const cardRect = cards[i].getBoundingClientRect();
-            if (Math.abs(cardRect.top - firstCardRect.top) < 10) {
-                cardsInRow++;
-            } else {
-                break;
-            }
-        }
-        return cardsInRow;
-    }
-    
-    return 1; // Single column layout
-}
-
-// Focus the appropriate element within a card
-function focusCardElement(card, previousElement) {
-    const isFlipped = card.classList.contains('flipped');
-    
-    if (isFlipped) {
-        // Card is showing back - focus catalog link if available, otherwise flip button
-        const catalogLink = card.querySelector('.book-link');
-        const backFlipButton = card.querySelector('[id^="back-flip-btn-"]');
-        
-        if (catalogLink && previousElement && previousElement.classList.contains('book-link')) {
-            catalogLink.focus();
-        } else if (backFlipButton) {
-            backFlipButton.focus();
-        } else if (catalogLink) {
-            catalogLink.focus();
-        }
-    } else {
-        // Card is showing front - focus flip button
-        const flipButton = card.querySelector('[id^="flip-btn-"]');
-        if (flipButton) {
-            flipButton.focus();
-        }
-    }
-}
-
-// Sanitize text to prevent XSS
-function sanitizeText(text) {
-    if (!text) return '';
-    return text.toString()
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#x27;');
-}
-
-function flipCard(cardId) {
-    const cardElement = document.getElementById(cardId)?.parentElement;
-    if (!cardElement) return;
-    
-    const isCurrentlyFlipped = cardElement.classList.contains('flipped');
-    cardElement.classList.toggle('flipped');
-    
-    const title = cardElement.querySelector('.book-title')?.textContent || 'Book';
-    const action = !isCurrentlyFlipped ? 'Details view opened' : 'Returned to cover view';
-    
-    // Focus management after flip
-    setTimeout(() => {
-        if (!isCurrentlyFlipped) {
-            // Flipped to back - focus the catalog link if available, otherwise the back button
-            const catalogLink = cardElement.querySelector('.book-link');
-            const backButton = cardElement.querySelector('[id^="back-flip-btn-"]');
-            
-            if (catalogLink) {
-                catalogLink.focus();
-            } else if (backButton) {
-                backButton.focus();
-            }
-        } else {
-            // Flipped to front - focus the flip button
-            const flipButton = cardElement.querySelector('[id^="flip-btn-"]');
-            if (flipButton) {
-                flipButton.focus();
-            }
-        }
-    }, 300); // Wait for flip animation
-    
-    announceToScreenReader(`${title}: ${action}`);
-}
-
-function displayBooks() {
-    const container = document.getElementById('cardsContainer');
-    
-    if (filteredBookData.length === 0) {
-        const message = currentSearchTerm ? 
-            `No books found matching "${currentSearchTerm}"` : 
-            'No reserves available';
-        container.innerHTML = `<div class="loading" role="status" aria-live="polite">${message}</div>`;
-        return;
-    }
-    
-    const sortedBooks = getSortedBooks();
-    renderAllBooks(sortedBooks, container);
-}
-
-function renderAllBooks(books, container) {
-    const cardsHTML = books.map((book, index) => createCard(book, index)).join('');
-    container.innerHTML = cardsHTML;
-    
-    const searchDesc = currentSearchTerm ? ` matching "${currentSearchTerm}"` : '';
-    announceToScreenReader(`${books.length} reserve cards displayed${searchDesc}, sorted ${getSortDescription()}`);
-}
-
-function getSortedBooks() {
-    return [...filteredBookData].sort((a, b) => {
-        let valueA, valueB;
-        
-        switch (currentSortBy) {
-            case 'title':
-                valueA = (a.title || 'Untitled').toLowerCase().trim();
-                valueB = (b.title || 'Untitled').toLowerCase().trim();
-                break;
-            case 'author':
-                valueA = (a.author || 'Unknown Author').toLowerCase().trim();
-                valueB = (b.author || 'Unknown Author').toLowerCase().trim();
-                break;
-            case 'course':
-                valueA = (a.course || 'No Course').toLowerCase().trim();
-                valueB = (b.course || 'No Course').toLowerCase().trim();
-                break;
-            case 'date':
-                valueA = extractYear(a.date);
-                valueB = extractYear(b.date);
-                break;
-            default:
-                valueA = (a.title || 'Untitled').toLowerCase().trim();
-                valueB = (b.title || 'Untitled').toLowerCase().trim();
-        }
-        
-        let comparison;
-        if (currentSortBy === 'date') {
-            comparison = valueA - valueB;
-        } else {
-            comparison = valueA.localeCompare(valueB, undefined, { 
-                numeric: true, 
-                sensitivity: 'base' 
+        let bookData = [];
+        let filteredBookData = [];
+        let isLoading = false;
+        let currentSortBy = 'title';
+        let currentSortOrder = 'asc';
+        let currentSearchTerm = '';
+        // Utility functions
+        function sanitizeText(text) {
+            if (!text) return '';
+            return text.replace(/[<>&"']/g, function(match) {
+                const escapeMap = {
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    '&': '&amp;',
+                    '"': '&quot;',
+                    "'": '&#39;'
+                };
+                return escapeMap[match];
             });
         }
-        
-        return currentSortOrder === 'desc' ? -comparison : comparison;
-    });
-}
 
-function extractYear(dateString) {
-    if (!dateString) return 0;
-    
-    const cleaned = dateString.toString().trim();
-    const yearMatch = cleaned.match(/\b(19|20)\d{2}\b/);
-    return yearMatch ? parseInt(yearMatch[0]) : 0;
-}
-
-function getSortDescription() {
-    const criteria = currentSortBy === 'date' ? 'publication date' : currentSortBy;
-    const order = currentSortOrder === 'asc' ? 
-        (currentSortBy === 'date' ? 'oldest to newest' : 'A to Z') : 
-        (currentSortBy === 'date' ? 'newest to oldest' : 'Z to A');
-    return `by ${criteria}, ${order}`;
-}
-
-function applySorting() {
-    const sortSelect = document.getElementById('sortBy');
-    if (!sortSelect) return;
-    
-    currentSortBy = sortSelect.value;
-    updateSortOrderButton();
-    debouncedRender();
-    
-    announceToScreenReader(`Sorting changed to ${getSortDescription()}`);
-}
-
-function toggleSortOrder() {
-    currentSortOrder = currentSortOrder === 'asc' ? 'desc' : 'asc';
-    updateSortOrderButton();
-    debouncedRender();
-    
-    announceToScreenReader(`Sort order changed to ${getSortDescription()}`);
-}
-
-function updateSortOrderButton() {
-    const button = document.getElementById('sortOrderBtn');
-    if (!button) return;
-    
-    let buttonText, ariaLabel;
-    
-    if (currentSortBy === 'date') {
-        buttonText = currentSortOrder === 'asc' ? 'Oldest First' : 'Newest First';
-        ariaLabel = `Current order: ${currentSortOrder === 'asc' ? 'oldest to newest' : 'newest to oldest'}. Click to reverse order.`;
-    } else {
-        buttonText = currentSortOrder === 'asc' ? 'A → Z' : 'Z → A';
-        ariaLabel = `Current order: ${currentSortOrder === 'asc' ? 'A to Z' : 'Z to A'}. Click to reverse order.`;
-    }
-    
-    button.textContent = buttonText;
-    button.setAttribute('aria-label', ariaLabel);
-    button.classList.toggle('desc', currentSortOrder === 'desc');
-}
-
-function announceToScreenReader(message, priority = 'polite') {
-    const announcement = document.createElement('div');
-    announcement.setAttribute('aria-live', priority);
-    announcement.setAttribute('aria-atomic', 'true');
-    announcement.className = 'sr-only';
-    announcement.textContent = message;
-    
-    document.body.appendChild(announcement);
-    
-    setTimeout(() => {
-        if (document.body.contains(announcement)) {
-            document.body.removeChild(announcement);
-        }
-    }, 3000);
-}
-
-function handleResize() {
-    clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(() => {
-        if (filteredBookData.length > 0) {
-            const container = document.getElementById('cardsContainer');
-            if (container && container.children.length !== filteredBookData.length) {
-                debouncedRender(200);
+        function isValidUrl(string) {
+            try {
+                const url = new URL(string);
+                return url.protocol === 'http:' || url.protocol === 'https:';
+            } catch (_) {
+                return false;
             }
         }
-    }, 150);
-}
 
-function handleVisibilityChange() {
-    if (!document.hidden && bookData.length === 0 && !isLoading) {
-        console.log('Page visible and no data - retrying load');
-        loadBookData();
-    }
-}
+        function extractCatalogRecord(permalink) {
+            if (!permalink) return '';
+            const parts = permalink.split('/');
+            return parts[parts.length - 1] || '';
+        }
 
-function initializeApp() {
-    console.log('Initializing Reserves Collection App with Search');
-    
-    updateSortOrderButton();
-    updateClearButton();
-    loadBookData();
-    
-    // Add global keyboard event listener
-    document.addEventListener('keydown', handleGlobalKeydown, { passive: false });
-    
-    window.addEventListener('resize', handleResize, { passive: true });
-    document.addEventListener('visibilitychange', handleVisibilityChange, { passive: true });
-    
-    // Add keyboard navigation instructions
-    const instructions = document.createElement('div');
-    instructions.className = 'sr-only';
-    instructions.setAttribute('aria-live', 'polite');
-    instructions.textContent = 'Use arrow keys to navigate between cards. Alt+F to focus search, Alt+S to focus sort dropdown, Alt+O to focus sort order button. Press Escape to clear search.';
-    document.body.appendChild(instructions);
-    
-    console.log('Reserves Collection initialized successfully with search and enhanced keyboard navigation');
-    
-    // Log current display configuration
-    console.log('Display configuration:', DISPLAY_CONFIG);
-}
+        function getSortDescription() {
+            const sortLabels = {
+                'title': 'by title',
+                'author': 'by author',
+                'course': 'by course',
+                'date': 'by publication date'
+            };
+            const orderText = currentSortOrder === 'desc' ? 'Z to A' : 'A to Z';
+            return `${sortLabels[currentSortBy] || 'by title'} (${orderText})`;
+        }
 
-// Initialize when DOM is ready
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initializeApp);
-} else {
-    initializeApp();
-}
+        function announceToScreenReader(message) {
+            const statusElement = document.getElementById('collection-status');
+            if (statusElement) {
+                statusElement.textContent = message;
+            }
+        }
 
-// Cleanup function
-window.addEventListener('beforeunload', () => {
-    clearTimeout(renderTimeout);
-    clearTimeout(resizeTimeout);
-    clearTimeout(searchTimeout);
-    document.removeEventListener('keydown', handleGlobalKeydown);
-});
-</script>
+        // Event handlers for buttons - prevents event bubbling
+        function handleCatalogClick(event, url) {
+            event.stopPropagation();
+            if (url && isValidUrl(url)) {
+                window.open(url, '_blank', 'noopener,noreferrer');
+            }
+        }
+
+        function handleBackClick(event, cardId) {
+            event.stopPropagation();
+            flipCard(cardId);
+        }
+
+        // Debounced functions
+        const debouncedRender = (() => {
+            let timeoutId;
+            return (delay = 100) => {
+                clearTimeout(timeoutId);
+                timeoutId = setTimeout(() => {
+                    displayBooks();
+                }, delay);
+            };
+        })();
+        const debouncedSearch = (() => {
+            let timeoutId;
+            return (delay = 300) => {
+                clearTimeout(timeoutId);
+                timeoutId = setTimeout(() => {
+                    performSearch();
+                }, delay);
+            };
+        })();
+        // Search functionality
+        function handleSearch() {
+            const searchInput = document.getElementById('searchInput');
+            if (!searchInput) return;
+            
+            currentSearchTerm = searchInput.value.trim();
+            updateClearButton();
+            debouncedSearch();
+        }
+
+        function performSearch() {
+            if (!currentSearchTerm) {
+                filteredBookData = [...bookData];
+            } else {
+                const searchLower = currentSearchTerm.toLowerCase();
+                filteredBookData = bookData.filter(book => {
+                    const searchableText = [
+                        book.title || '',
+                        book.author || '',
+                        book.course || '',
+                        book.publisher || '',
+                        book.date || '',
+                        book.description || '',
+                        book.instructor || ''
+                    ].join(' ').toLowerCase();
+                    
+                    return searchableText.includes(searchLower);
+                });
+            }
+            
+            displayBooks();
+            updateCollectionInfo();
+            
+            const resultCount = filteredBookData.length;
+            const searchDesc = currentSearchTerm ? ` matching "${currentSearchTerm}"` : '';
+            announceToScreenReader(`${resultCount} book${resultCount !== 1 ? 's' : ''} found${searchDesc}`);
+        }
+
+        function clearSearch() {
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) {
+                searchInput.value = '';
+                currentSearchTerm = '';
+                searchInput.focus();
+            }
+            
+            filteredBookData = [...bookData];
+            updateClearButton();
+            displayBooks();
+            updateCollectionInfo();
+            
+            announceToScreenReader('Search cleared, showing all books');
+        }
+
+        function updateClearButton() {
+            const clearBtn = document.getElementById('clearSearchBtn');
+            if (!clearBtn) return;
+            
+            const hasSearch = currentSearchTerm.length > 0;
+            clearBtn.disabled = !hasSearch;
+            clearBtn.classList.toggle('disabled', !hasSearch);
+        }
+
+        // Load data
+        async function loadBookData() {
+            if (isLoading) return;
+            isLoading = true;
+            
+            try {
+                const response = await fetch(JSON_DATA_URL);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                if (Array.isArray(data)) {
+                    bookData = data;
+                } else if (data.books && Array.isArray(data.books)) {
+                    bookData = data.books;
+                } else {
+                    throw new Error('Invalid JSON structure - expected an array of books');
+                }
+                
+                if (bookData.length === 0) {
+                    throw new Error('No book data found');
+                }
+                
+                filteredBookData = [...bookData];
+                console.log(`Loaded ${bookData.length} reserves from GitHub`);
+                displayBooks();
+                updateCollectionInfo();
+                
+            } catch (error) {
+                console.error('Error loading book data:', error);
+                showError(`Failed to load reserves data: ${error.message}`);
+            } finally {
+                isLoading = false;
+            }
+        }
+
+        function showError(message) {
+            const container = document.getElementById('cardsContainer');
+            container.innerHTML = `
+                <div class="error" role="alert">
+                    <strong>Error:</strong> ${message}<br>
+                    <button onclick="loadBookData()" style="margin-top: 10px; padding: 8px 16px; background: #0f172a; color: white; border: none; border-radius: 4px; cursor: pointer; min-height: 44px;">
+                        Try Again
+                    </button>
+                </div>
+            `;
+        }
+
+        function updateCollectionInfo() {
+            const countElement = document.getElementById('collectionCount');
+            const statusElement = document.getElementById('collection-status');
+            
+            let message = '';
+            if (filteredBookData.length > 0) {
+                const sortDesc = getSortDescription();
+                const searchDesc = currentSearchTerm ? ` (filtered from ${bookData.length} total)` : '';
+                message = `Displaying ${filteredBookData.length} titles${searchDesc}, sorted ${sortDesc}`;
+            } else if (currentSearchTerm) {
+                message = `No titles found matching "${currentSearchTerm}"`;
+            } else {
+                message = 'No titles available';
+            }
+            
+            countElement.textContent = message;
+            statusElement.textContent = message;
+        }
+
+        // Sorting functionality
+function sortBooks() {
+            filteredBookData.sort((a, b) => {
+                let aVal = '';
+                let bVal = '';
+                
+                switch (currentSortBy) {
+                    case 'title':
+                        aVal = (a.title || '').toLowerCase();
+                        bVal = (b.title || '').toLowerCase();
+                        break;
+                    case 'author':
+                        aVal = (a.author || '').toLowerCase();
+                        bVal = (b.author || '').toLowerCase();
+                        break;
+                    case 'course':
+                        aVal = (a.course || '').toLowerCase();
+                        bVal = (b.course || '').toLowerCase();
+                        break;
+                    case 'date':
+                        aVal = a.date || '0';
+                        bVal = b.date || '0';
+                        break;
+                }
+                
+                if (aVal < bVal) return currentSortOrder === 'asc' ? -1 : 1;
+                if (aVal > bVal) return currentSortOrder === 'asc' ? 1 : -1;
+                return 0;
+            });
+        }
+
+        function toggleSortOrder() {
+            currentSortOrder = currentSortOrder === 'asc' ? 'desc' : 'asc';
+            const btn = document.getElementById('sortOrderBtn');
+            if (btn) {
+                btn.textContent = currentSortOrder === 'asc' ? 'A → Z' : 'Z → A';
+                btn.classList.toggle('desc');
+                btn.setAttribute('aria-pressed', currentSortOrder === 'desc');
+            }
+            sortBooks();
+            displayBooks();
+            updateCollectionInfo();
+            announceToScreenReader(`Sorting toggled to ${currentSortOrder === 'desc' ? 'descending' : 'ascending'} order`);
+        }
+
+        function flipCard(cardId) {
+            const card = document.getElementById(cardId);
+            if (card) {
+                card.classList.toggle('flipped');
+                const isFlipped = card.classList.contains('flipped');
+                const button = card.querySelector('.flip-card-button');
+                if (button) {
+                    button.setAttribute('aria-expanded', isFlipped);
+                }
+            }
+        }
+
+        // Display books
+        function displayBooks() {
+            const container = document.getElementById('cardsContainer');
+            if (!container) return;
+            
+            if (filteredBookData.length === 0) {
+                container.innerHTML = `
+                    <div class="loading" role="status">
+                        ${currentSearchTerm ? 'No books found matching your search.' : 'No books available.'}
+                    </div>
+                `;
+                return;
+            }
+
+            sortBooks();
+
+            const cardsHTML = filteredBookData.map((book, index) => {
+                const catalogRecord = extractCatalogRecord(book.permalink);
+                const bookId = `book-${index}-${Date.now()}`;
+                const coverImageUrl = book.coverImage || '';
+                const hasCoverImage = coverImageUrl && isValidUrl(coverImageUrl);
+                
+               const coverElement = hasCoverImage
+                    ? `<img src="${sanitizeText(coverImageUrl)}" alt="${sanitizeText(book.title || 'Untitled')} book cover" class="book-cover" loading="lazy">`
+                    : `<div class="cover-placeholder" role="img" aria-label="Cover image not available for ${sanitizeText(book.title || 'Untitled')}">Cover image not available</div>`;
+
+                let courseHTML = '';
+                if (DISPLAY_CONFIG.showCourse && book.course) {
+                    courseHTML = `<span class="book-course">${sanitizeText(book.course)}</span>`;
+                }
+
+                let authorHTML = '';
+                if (DISPLAY_CONFIG.showAuthor && book.author) {
+                    authorHTML = `<p class="book-author"><strong>Author:</strong> ${sanitizeText(book.author)}</p>`;
+                }
+
+                let publisherHTML = '';
+                if (DISPLAY_CONFIG.showPublisher && book.publisher) {
+                    publisherHTML = `<p class="book-publisher"><strong>Publisher:</strong> ${sanitizeText(book.publisher)}</p>`;
+                }
+
+                let dateHTML = '';
+                if (DISPLAY_CONFIG.showDate && book.date) {
+                    dateHTML = `<p class="book-date"><strong>Published:</strong> ${sanitizeText(book.date)}</p>`;
+                }
+
+                let descriptionHTML = '';
+                if (DISPLAY_CONFIG.showDescription && book.description) {
+                    descriptionHTML = `<p class="book-description">${sanitizeText(book.description)}</p>`;
+                }
+
+                let instructorHTML = '';
+                if (DISPLAY_CONFIG.showInstructor && book.instructor) {
+                    instructorHTML = `<p class="book-instructor"><strong>Instructor:</strong> ${sanitizeText(book.instructor)}</p>`;
+                }
+
+                let catalogRecordHTML = '';
+                if (DISPLAY_CONFIG.showCatalogRecord && catalogRecord) {
+                    catalogRecordHTML = `<p class="book-catalog-record"><strong>Catalog Record:</strong> ${sanitizeText(catalogRecord)}</p>`;
+                }
+
+                let catalogButtonHTML = '';
+                if (DISPLAY_CONFIG.showCatalogButton && book.permalink && isValidUrl(book.permalink)) {
+                    catalogButtonHTML = `
+                        <button class="book-link" 
+                                onclick="handleCatalogClick(event, '${book.permalink}')"
+                                aria-label="View catalog record for ${sanitizeText(book.title || 'this book')}">
+                            View in Catalog
+                        </button>
+                    `;
+                }
+
+                return `
+                    <div class="flip-card" id="${bookId}">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                ${coverElement}
+                                <div class="flip-instruction">Press Enter to view details</div>
+                                <button class="flip-card-button" 
+                                        onclick="flipCard('${bookId}')"
+                                        aria-expanded="false"
+                                        aria-label="View details for ${sanitizeText(book.title || 'Untitled')}">
+                                    <span class="card-front-text">${sanitizeText(book.title || 'Untitled')} by ${sanitizeText(book.author || 'Unknown author')}</span>
+                                </button>
+                            </div>
+                            <div class="flip-card-back">
+                                <div class="book-info">
+                                    <h3 class="book-title">${sanitizeText(book.title || 'Untitled')}</h3>
+                                    ${courseHTML}
+                                    ${authorHTML}
+                                    ${publisherHTML}
+                                    ${dateHTML}
+                                    ${descriptionHTML}
+                                    ${instructorHTML}
+                                    ${catalogRecordHTML}
+                                </div>
+                                <div class="book-actions">
+                                    ${catalogButtonHTML}
+                                    <button class="back-to-cover-btn" 
+                                            onclick="handleBackClick(event, '${bookId}')"
+                                            aria-label="Back to cover for ${sanitizeText(book.title || 'Untitled')}">
+                                        Back to Cover
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            container.innerHTML = cardsHTML;
+        }
+
+        // Event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            const clearSearchBtn = document.getElementById('clearSearchBtn');
+            const sortBySelect = document.getElementById('sortBy');
+            const sortOrderBtn = document.getElementById('sortOrderBtn');
+
+            if (searchInput) {
+                searchInput.addEventListener('input', handleSearch);
+                searchInput.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape') {
+                        clearSearch();
+                    }
+                });
+            }
+
+            if (clearSearchBtn) {
+                clearSearchBtn.addEventListener('click', clearSearch);
+            }
+
+            if (sortBySelect) {
+                sortBySelect.addEventListener('change', (e) => {
+                    currentSortBy = e.target.value;
+                    sortBooks();
+                    displayBooks();
+                    updateCollectionInfo();
+                    announceToScreenReader(`Sorting by ${e.target.options[e.target.selectedIndex].text}`);
+                });
+            }
+
+            if (sortOrderBtn) {
+                sortOrderBtn.addEventListener('click', toggleSortOrder);
+            }
+
+            loadBookData();
+        });
+    </script>
+</body>
+</html>
