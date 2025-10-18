@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Essential Art Magazines for Students</title>
+    <style> 
+        .art-magazines-showcase {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: transparent;
+            border-radius: 20px;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        .art-magazines-showcase *,
+        .art-magazines-showcase *::before,
+        .art-magazines-showcase *::after {
+            box-sizing: border-box;
+        }
+
+        .art-magazines-showcase .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .art-magazines-showcase .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #00629B;
+        }
+
+        .art-magazines-showcase .header h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin: 0 0 1rem 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            font-weight: 700;
+        }
+
+        .art-magazines-showcase .header p {
+            font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+
+        .art-magazines-showcase .magazines-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .art-magazines-showcase .magazine-card {
+            perspective: 1000px;
+            height: 450px;
+            position: relative;
+        }
+
+        .art-magazines-showcase .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            cursor: pointer;
+        }
+
+        .art-magazines-showcase .magazine-card:hover .card-inner,
+        .art-magazines-showcase .magazine-card:focus-within .card-inner,
+        .art-magazines-showcase .magazine-card.flipped .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .art-magazines-showcase .card-front,
+        .art-magazines-showcase .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            overflow: hidden;
+            background: white;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .art-magazines-showcase .card-back {
+            transform: rotateY(180deg);
+            padding: 2rem;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .art-magazines-showcase .card-image {
+            width: 100%;
+            height: 60%;
+            object-fit: cover;
+            border-bottom: 4px solid #00629B;
+        }
+
+        .art-magazines-showcase .card-front-content {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .art-magazines-showcase .card-title {
+            font-size: 1.4rem;
+            color: #2c3e50;
+            margin: 0 0 0.5rem 0;
+            font-weight: 600;
+        }
+
+        .art-magazines-showcase .card-publisher {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            margin: 0;
+            font-style: italic;
+            font-weight: 300;
+        }
+
+        .art-magazines-showcase .card-daterange {
+            background: #ecf0f1;
+            padding: 1rem;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            color: #2c3e50;
+            margin: 0 0 1.5rem 0;
+            border-left: 4px solid #00629B;
+            font-weight: 400;
+        }
+
+        .art-magazines-showcase .card-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .art-magazines-showcase .search-container {
+            position: relative;
+        }
+
+        .art-magazines-showcase .search-input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 2px solid #ddd;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            background: white;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+
+        .art-magazines-showcase .search-input:focus {
+            outline: none;
+            border-color: #00629B;
+            box-shadow: 0 0 0 3px rgba(0, 98, 155, 0.1);
+        }
+
+        .art-magazines-showcase .search-input::placeholder {
+            color: #7f8c8d;
+        }
+
+        .art-magazines-showcase .search-button {
+            background: linear-gradient(135deg, #00629B 0%, #004d7a 100%);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 0.5rem;
+            font-family: inherit;
+        }
+
+        .art-magazines-showcase .search-button:hover {
+            background: linear-gradient(135deg, #004d7a 0%, #00629B 100%);
+            transform: translateY(-2px);
+        }
+
+        .art-magazines-showcase .search-button:focus {
+            outline: 3px solid #ffd700;
+            outline-offset: 2px;
+        }
+
+        .art-magazines-showcase .search-button:disabled {
+            background: #bdc3c7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .art-magazines-showcase .card-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 1.5rem;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .art-magazines-showcase .card-link:hover {
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+            transform: scale(1.05);
+        }
+
+        .art-magazines-showcase .card-link:focus {
+            outline: 3px solid #ffd700;
+            outline-offset: 2px;
+        }
+
+        .art-magazines-showcase .flip-indicator {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(0, 98, 155, 0.8);
+            color: white;
+            padding: 0.3rem 0.6rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            z-index: 10;
+        }
+
+        .art-magazines-showcase .footer {
+            text-align: center;
+            color: #00629B;
+            margin-top: 3rem;
+            padding: 2rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .art-magazines-showcase .footer h2 {
+            font-size: 1.8rem;
+            margin: 0 0 1rem 0;
+            font-weight: 600;
+        }
+
+        .art-magazines-showcase .footer p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin: 0;
+            font-weight: 300;
+        }
+
+        .art-magazines-showcase .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* Touch-friendly flip toggle for mobile */
+        .art-magazines-showcase .flip-toggle {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: rgba(0, 98, 155, 0.9);
+            color: white;
+            border: none;
+            padding: 0.5rem;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1rem;
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+
+        .art-magazines-showcase .flip-toggle:hover {
+            background: rgba(0, 98, 155, 1);
+            transform: scale(1.1);
+        }
+
+        .art-magazines-showcase .flip-toggle:focus {
+            outline: 2px solid #ffd700;
+            outline-offset: 2px;
+        }
+
+        @media (max-width: 768px) {
+            .art-magazines-showcase .container {
+                padding: 1rem;
+            }
+            
+            .art-magazines-showcase .magazines-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .art-magazines-showcase .magazine-card {
+                height: 400px;
+            }
+
+            /* On mobile, require explicit interaction rather than hover */
+            .art-magazines-showcase .magazine-card:hover .card-inner {
+                transform: none;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .art-magazines-showcase .card-inner {
+                transition: none;
+            }
+            
+            .art-magazines-showcase .magazine-card:hover .card-inner,
+            .art-magazines-showcase .magazine-card:focus-within .card-inner,
+            .art-magazines-showcase .magazine-card.flipped .card-inner {
+                transform: none;
+            }
+
+            /* For reduced motion, show both sides stacked */
+            .art-magazines-showcase .card-front,
+            .art-magazines-showcase .card-back {
+                position: relative;
+                height: auto;
+                transform: none;
+                margin-bottom: 1rem;
+            }
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .art-magazines-showcase {
+                background: transparent;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="art-magazines-showcase">
+        <div class="container">
+            <header class="header">
+                <h1>Art Magazines</h1>
+                <p>Discover inspiration, techniques, and contemporary art discourse through these premier publications available online and on the Second Floor of Cannell Library</p>
+            </header>
+
+            <main>
+                <div class="magazines-grid" role="list">
+                    <article class="magazine-card" role="listitem" tabindex="0" aria-describedby="ceramics-desc">
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <div class="flip-indicator">Hover to flip</div>
+                                <button class="flip-toggle" onclick="toggleFlip(this)" aria-label="Flip card to see details">
+                                    <span aria-hidden="true">↻</span>
+                                </button>
+                                <img src="https://d2jv02qf7xgjwx.cloudfront.net/accounts/348611/images/ceramicsmonthly.jpg" 
+                                     alt="Ceramics Monthly magazine cover" 
+                                     class="card-image"
+                                     loading="lazy">
+                                <div class="card-front-content">
+                                    <h2 class="card-title">Ceramics Monthly</h2>
+                                    <p class="card-publisher">American Ceramic Society; Professional Publications</p>
+                                </div>
+                            </div>
+                            <div class="card-back">
+                                <div class="card-daterange">
+                                    <strong>Availability:</strong> Physical copies for the past five years; extended electronic access
+                                </div>
+                                <div class="card-actions">
+                                    <div class="search-container">
+                                        <label for="ceramics-search" class="sr-only">Search Ceramics Monthly articles</label>
+                                        <input type="text" 
+                                               class="search-input" 
+                                               placeholder="Search articles by keyword..."
+                                               id="ceramics-search"
+                                               aria-describedby="ceramics-search-help">
+                                        <div id="ceramics-search-help" class="sr-only">Enter keywords to search within Ceramics Monthly articles</div>
+                                        <button class="search-button" 
+                                                onclick="searchMagazine('ceramics', document.getElementById('ceramics-search').value)"
+                                                aria-label="Search Ceramics Monthly articles">
+                                            Search Articles
+                                        </button>
+                                    </div>
+                                    <a href="https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99748401861" 
+                                       class="card-link"
+                                       aria-label="Browse Ceramics Monthly magazine in library catalog">
+                                        Browse Magazine
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="ceramics-desc" class="sr-only">Ceramics Monthly magazine card. Hover or use flip button to see search and access options.</div>
+                    </article>
+
+                    <article class="magazine-card" role="listitem" tabindex="0" aria-describedby="artforum-desc">
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <div class="flip-indicator">Hover to flip</div>
+                                <button class="flip-toggle" onclick="toggleFlip(this)" aria-label="Flip card to see details">
+                                    <span aria-hidden="true">↻</span>
+                                </button>
+                                <img src="https://d2jv02qf7xgjwx.cloudfront.net/accounts/348611/images/artforumtest.jpg" 
+                                     alt="Artforum International magazine cover" 
+                                     class="card-image"
+                                     loading="lazy">
+                                <div class="card-front-content">
+                                    <h2 class="card-title">Artforum International</h2>
+                                    <p class="card-publisher">Artforum Media LLC; Artforum International Magazine</p>
+                                </div>
+                            </div>
+                            <div class="card-back">
+                                <div class="card-daterange">
+                                    <strong>Availability:</strong> Physical copies for the past five years; extended electronic access
+                                </div>
+                                <div class="card-actions">
+                                    <div class="search-container">
+                                        <label for="artforum-search" class="sr-only">Search Artforum International articles</label>
+                                        <input type="text" 
+                                               class="search-input" 
+                                               placeholder="Search articles by keyword..."
+                                               id="artforum-search"
+                                               aria-describedby="artforum-search-help">
+                                        <div id="artforum-search-help" class="sr-only">Enter keywords to search within Artforum International articles</div>
+                                        <button class="search-button" 
+                                                onclick="searchMagazine('artforum', document.getElementById('artforum-search').value)"
+                                                aria-label="Search Artforum International articles">
+                                            Search Articles
+                                        </button>
+                                    </div>
+                                    <a href="https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99900010963601861" 
+                                       class="card-link"
+                                       aria-label="Browse Artforum International magazine in library catalog">
+                                        Browse Magazine
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="artforum-desc" class="sr-only">Artforum International magazine card. Hover or use flip button to see search and access options.</div>
+                    </article>
+
+                    <article class="magazine-card" role="listitem" tabindex="0" aria-describedby="craft-desc">
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <div class="flip-indicator">Hover to flip</div>
+                                <button class="flip-toggle" onclick="toggleFlip(this)" aria-label="Flip card to see details">
+                                    <span aria-hidden="true">↻</span>
+                                </button>
+                                <img src="https://d2jv02qf7xgjwx.cloudfront.net/accounts/348611/images/americancrafttest.jpg" 
+                                     alt="American Craft magazine cover" 
+                                     class="card-image"
+                                     loading="lazy">
+                                <div class="card-front-content">
+                                    <h2 class="card-title">American Craft</h2>
+                                    <p class="card-publisher">American Craft Council</p>
+                                </div>
+                            </div>
+                            <div class="card-back">
+                                <div class="card-daterange">
+                                    <strong>Availability:</strong> Physical copies for the past five years; extended electronic access
+                                </div>
+                                <div class="card-actions">
+                                    <div class="search-container">
+                                        <label for="craft-search" class="sr-only">Search American Craft articles</label>
+                                        <input type="text" 
+                                               class="search-input" 
+                                               placeholder="Search articles by keyword..."
+                                               id="craft-search"
+                                               aria-describedby="craft-search-help">
+                                        <div id="craft-search-help" class="sr-only">Enter keywords to search within American Craft articles</div>
+                                        <button class="search-button" 
+                                                onclick="searchMagazine('craft', document.getElementById('craft-search').value)"
+                                                aria-label="Search American Craft articles">
+                                            Search Articles
+                                        </button>
+                                    </div>
+                                    <a href="https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99900011063901861" 
+                                       class="card-link"
+                                       aria-label="Browse American Craft magazine in library catalog">
+                                        Browse Magazine
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="craft-desc" class="sr-only">American Craft magazine card. Hover or use flip button to see search and access options.</div>
+                    </article>
+
+                    <article class="magazine-card" role="listitem" tabindex="0" aria-describedby="aia-desc">
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <div class="flip-indicator">Hover to flip</div>
+                                <button class="flip-toggle" onclick="toggleFlip(this)" aria-label="Flip card to see details">
+                                    <span aria-hidden="true">↻</span>
+                                </button>
+                                <img src="https://d2jv02qf7xgjwx.cloudfront.net/accounts/348611/images/AiAtest.jpg" 
+                                     alt="Art in America magazine cover" 
+                                     class="card-image"
+                                     loading="lazy">
+                                <div class="card-front-content">
+                                    <h2 class="card-title">Art in America</h2>
+                                    <p class="card-publisher">Art Media AIA LLC; FF Sherman</p>
+                                </div>
+                            </div>
+                            <div class="card-back">
+                                <div class="card-daterange">
+                                    <strong>Availability:</strong> Physical copies for the past five years; extended electronic access
+                                </div>
+                                <div class="card-actions">
+                                    <div class="search-container">
+                                        <label for="aia-search" class="sr-only">Search Art in America articles</label>
+                                        <input type="text" 
+                                               class="search-input" 
+                                               placeholder="Search articles by keyword..."
+                                               id="aia-search"
+                                               aria-describedby="aia-search-help">
+                                        <div id="aia-search-help" class="sr-only">Enter keywords to search within Art in America articles</div>
+                                        <button class="search-button" 
+                                                onclick="searchMagazine('aia', document.getElementById('aia-search').value)"
+                                                aria-label="Search Art in America articles">
+                                            Search Articles
+                                        </button>
+                                    </div>
+                                    <a href="https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99900011263401861" 
+                                       class="card-link"
+                                       aria-label="Browse Art in America magazine in library catalog">
+                                        Browse Magazine
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="aia-desc" class="sr-only">Art in America magazine card. Hover or use flip button to see search and access options.</div>
+                    </article>
+
+                    <article class="magazine-card" role="listitem" tabindex="0" aria-describedby="aperture-desc">
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <div class="flip-indicator">Hover to flip</div>
+                                <button class="flip-toggle" onclick="toggleFlip(this)" aria-label="Flip card to see details">
+                                    <span aria-hidden="true">↻</span>
+                                </button>
+                                <img src="https://aperture.org/wp-content/uploads/2025/09/9781597115810-4.jpg" 
+                                     alt="Aperture magazine cover" 
+                                     class="card-image"
+                                     loading="lazy">
+                                <div class="card-front-content">
+                                    <h2 class="card-title">Aperture</h2>
+                                    <p class="card-publisher">Aperture Foundation</p>
+                                </div>
+                            </div>
+                            <div class="card-back">
+                                <div class="card-daterange">
+                                    <strong>Availability:</strong> Physical copies for the past five years; extended electronic access
+                                </div>
+                                <div class="card-actions">
+                                    <div class="search-container">
+                                        <label for="aperture-search" class="sr-only">Search Aperture articles</label>
+                                        <input type="text" 
+                                               class="search-input" 
+                                               placeholder="Search articles by keyword..."
+                                               id="aperture-search"
+                                               aria-describedby="aperture-search-help">
+                                        <div id="aperture-search-help" class="sr-only">Enter keywords to search within Aperture articles</div>
+                                        <button class="search-button" 
+                                                onclick="searchMagazine('aperture', document.getElementById('aperture-search').value)"
+                                                aria-label="Search Aperture articles">
+                                            Search Articles
+                                        </button>
+                                    </div>
+                                    <a href="https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99823001861" 
+                                       class="card-link"
+                                       aria-label="Browse Aperture magazine in library catalog">
+                                        Browse Magazine
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="aperture-desc" class="sr-only">Aperture magazine card. Hover or use flip button to see search and access options.</div>
+                    </article>
+
+                    <article class="magazine-card" role="listitem" tabindex="0" aria-describedby="artnews-desc">
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <div class="flip-indicator">Hover to flip</div>
+                                <button class="flip-toggle" onclick="toggleFlip(this)" aria-label="Flip card to see details">
+                                    <span aria-hidden="true">↻</span>
+                                </button>
+                                <img src="https://www.artnews.com/wp-content/uploads/2014/04/img-artnews123212563510.jpg?w=1238" 
+                                     alt="ARTnews magazine cover" 
+                                     class="card-image"
+                                     loading="lazy">
+                                <div class="card-front-content">
+                                    <h2 class="card-title">ARTnews</h2>
+                                    <p class="card-publisher">Art Media, LLC</p>
+                                </div>
+                            </div>
+                            <div class="card-back">
+                                <div class="card-daterange">
+                                    <strong>Availability:</strong> Physical copies for the past five years; extended electronic access
+                                </div>
+                                <div class="card-actions">
+                                    <div class="search-container">
+                                        <label for="artnews-search" class="sr-only">Search ARTnews articles</label>
+                                        <input type="text" 
+                                               class="search-input" 
+                                               placeholder="Search articles by keyword..."
+                                               id="artnews-search"
+                                               aria-describedby="artnews-search-help">
+                                        <div id="artnews-search-help" class="sr-only">Enter keywords to search within ARTnews articles</div>
+                                        <button class="search-button" 
+                                                onclick="searchMagazine('artnews', document.getElementById('artnews-search').value)"
+                                                aria-label="Search ARTnews articles">
+                                            Search Articles
+                                        </button>
+                                    </div>
+                                    <a href="https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma993751801861" 
+                                       class="card-link"
+                                       aria-label="Browse ARTnews magazine in library catalog">
+                                        Browse Magazine
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="artnews-desc" class="sr-only">ARTnews magazine card. Hover or use flip button to see search and access options.</div>
+                    </article>
+
+                    <article class="magazine-card" role="listitem" tabindex="0" aria-describedby="downbeat-desc">
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <div class="flip-indicator">Hover to flip</div>
+                                <button class="flip-toggle" onclick="toggleFlip(this)" aria-label="Flip card to see details">
+                                    <span aria-hidden="true">↻</span>
+                                </button>
+                                <img src="https://www.downbeat.com/digitaledition/magazinecovers/2025/DB25_02.jpg" 
+                                     alt="Down Beat magazine cover" 
+                                     class="card-image"
+                                     loading="lazy">
+                                <div class="card-front-content">
+                                    <h2 class="card-title">Down Beat</h2>
+                                    <p class="card-publisher">Maher Publications</p>
+                                </div>
+                            </div>
+                            <div class="card-back">
+                                <div class="card-daterange">
+                                    <strong>Availability:</strong> CURRENT 1 YEAR ONLY - Latest issue in POPULAR PERIODICALS AREA
+                                </div>
+                                <div class="card-actions">
+                                    <div class="search-container">
+                                        <label for="downbeat-search" class="sr-only">Search Down Beat articles</label>
+                                        <input type="text" 
+                                               class="search-input" 
+                                               placeholder="Search articles by keyword..."
+                                               id="downbeat-search"
+                                               aria-describedby="downbeat-search-help">
+                                        <div id="downbeat-search-help" class="sr-only">Enter keywords to search within Down Beat articles</div>
+                                        <button class="search-button" 
+                                                onclick="searchMagazine('downbeat', document.getElementById('downbeat-search').value)"
+                                                aria-label="Search Down Beat articles">
+                                            Search Articles
+                                        </button>
+                                    </div>
+                                    <a href="https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99900011261501861" 
+                                       class="card-link"
+                                       aria-label="Browse Down Beat magazine in library catalog">
+                                        Browse Magazine
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="downbeat-desc" class="sr-only">Down Beat magazine card. Hover or use flip button to see search and access options.</div>
+                    </article>
+
+                    <article class="magazine-card" role="listitem" tabindex="0" aria-describedby="newyorker-desc">
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <div class="flip-indicator">Hover to flip</div>
+                                <button class="flip-toggle" onclick="toggleFlip(this)" aria-label="Flip card to see details">
+                                    <span aria-hidden="true">↻</span>
+                                </button>
+                                <img src="https://media.newyorker.com/photos/68e7c97bb1cda407ef41a368/master/w_1600,c_limit/2025_10_20.jpg" 
+                                     alt="New Yorker magazine cover" 
+                                     class="card-image"
+                                     loading="lazy">
+                                <div class="card-front-content">
+                                    <h2 class="card-title">New Yorker</h2>
+                                    <p class="card-publisher">Condé Nast Publications</p>
+                                </div>
+                            </div>
+                            <div class="card-back">
+                                <div class="card-daterange">
+                                    <strong>Availability:</strong> 1952-1694, CURRENT 5 YEARS - Latest issue in POPULAR PERIODICALS AREA
+                                </div>
+                                <div class="card-actions">
+                                    <div class="search-container">
+                                        <label for="newyorker-search" class="sr-only">Search New Yorker articles</label>
+                                        <input type="text" 
+                                               class="search-input" 
+                                               placeholder="Search articles by keyword..."
+                                               id="newyorker-search"
+                                               aria-describedby="newyorker-search-help">
+                                        <div id="newyorker-search-help" class="sr-only">Enter keywords to search within New Yorker articles</div>
+                                        <button class="search-button" 
+                                                onclick="searchMagazine('newyorker', document.getElementById('newyorker-search').value)"
+                                                aria-label="Search New Yorker articles">
+                                            Search Articles
+                                        </button>
+                                    </div>
+                                    <a href="https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99620501861" 
+                                       class="card-link"
+                                       aria-label="Browse New Yorker magazine in library catalog">
+                                        Browse Magazine
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="newyorker-desc" class="sr-only">New Yorker magazine card. Hover or use flip button to see search and access options.</div>
+                    </article>
+
+                    <article class="magazine-card" role="listitem" tabindex="0" aria-describedby="poetrynw-desc">
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <div class="flip-indicator">Hover to flip</div>
+                                <button class="flip-toggle" onclick="toggleFlip(this)" aria-label="Flip card to see details">
+                                    <span aria-hidden="true">↻</span>
+                                </button>
+                                <img src="https://www.poetrynw.org/wp-content/uploads/2025/07/SF25-Cover-scaled.jpg" 
+                                     alt="Poetry Northwest magazine cover" 
+                                     class="card-image"
+                                     loading="lazy">
+                                <div class="card-front-content">
+                                    <h2 class="card-title">Poetry Northwest</h2>
+                                    <p class="card-publisher">Patrician Press</p>
+                                </div>
+                            </div>
+                            <div class="card-back">
+                                <div class="card-daterange">
+                                    <strong>Availability:</strong> 1962-2002, (suspended 2003-2004), SPR 2005 - Latest issue in POPULAR PERIODICALS AREA
+                                </div>
+                                <div class="card-actions">
+                                    <div class="search-container">
+                                        <label for="poetrynw-search" class="sr-only">Search Poetry Northwest articles</label>
+                                        <input type="text" 
+                                               class="search-input" 
+                                               placeholder="Search articles by keyword..."
+                                               id="poetrynw-search"
+                                               aria-describedby="poetrynw-search-help">
+                                        <div id="poetrynw-search-help" class="sr-only">Enter keywords to search within Poetry Northwest articles</div>
+                                        <button class="search-button" 
+                                                onclick="searchMagazine('poetrynw', document.getElementById('poetrynw-search').value)"
+                                                aria-label="Search Poetry Northwest articles">
+                                            Search Articles
+                                        </button>
+                                    </div>
+                                    <a href="https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99900010963001861" 
+                                       class="card-link"
+                                       aria-label="Browse Poetry Northwest magazine in library catalog">
+                                        Browse Magazine
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="poetrynw-desc" class="sr-only">Poetry Northwest magazine card. Hover or use flip button to see search and access options.</div>
+                    </article>
+
+                    <article class="magazine-card" role="listitem" tabindex="0" aria-describedby="rollingstone-desc">
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <div class="flip-indicator">Hover to flip</div>
+                                <button class="flip-toggle" onclick="toggleFlip(this)" aria-label="Flip card to see details">
+                                    <span aria-hidden="true">↻</span>
+                                </button>
+                                <img src="https://www.rollingstone.com/wp-content/uploads/2025/10/R1405_COV_MoM_Jack-and-Hayley_FINAL_4x5_2.jpg" 
+                                     alt="Rolling Stone magazine cover" 
+                                     class="card-image"
+                                     loading="lazy">
+                                <div class="card-front-content">
+                                    <h2 class="card-title">Rolling Stone</h2>
+                                    <p class="card-publisher">Penske Business Media</p>
+                                </div>
+                            </div>
+                            <div class="card-back">
+                                <div class="card-daterange">
+                                    <strong>Availability:</strong> JUL 2018 - MAR 2022
+                                </div>
+                                <div class="card-actions">
+                                    <div class="search-container">
+                                        <label for="rollingstone-search" class="sr-only">Search Rolling Stone articles</label>
+                                        <input type="text" 
+                                               class="search-input" 
+                                               placeholder="Search articles by keyword..."
+                                               id="rollingstone-search"
+                                               aria-describedby="rollingstone-search-help">
+                                        <div id="rollingstone-search-help" class="sr-only">Enter keywords to search within Rolling Stone articles</div>
+                                        <button class="search-button" 
+                                                onclick="searchMagazine('rollingstone', document.getElementById('rollingstone-search').value)"
+                                                aria-label="Search Rolling Stone articles">
+                                            Search Articles
+                                        </button>
+                                    </div>
+                                    <a href="https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99900011262101861" 
+                                       class="card-link"
+                                       aria-label="Browse Rolling Stone magazine in library catalog">
+                                        Browse Magazine
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="rollingstone-desc" class="sr-only">Rolling Stone magazine card. Hover or use flip button to see search and access options.</div>
+                    </article>
+                </div>
+            </main>
+
+            <footer class="footer">
+                <h2>Need Help?</h2>
+                <p>Visit the Second Floor of Cannell Library or contact your librarian for assistance finding articles and resources.</p>
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        function toggleFlip(button) {
+            const card = button.closest('.magazine-card');
+            card.classList.toggle('flipped');
+        }
+
+        function searchMagazine(magazine, query) {
+    if (!query.trim()) {
+        alert('Please enter a search term.');
+        return;
+    }
+    
+    const searchLinks = {
+        'ceramics': 'https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99748401861',
+        'artforum': 'https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99900010963601861',
+        'craft': 'https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99900011063901861',
+        'aia': 'https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99900011263401861',
+        'aperture': 'https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99823001861',
+        'artnews': 'https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma993751801861',
+        'downbeat': 'https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99900011261501861',
+        'newyorker': 'https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99620501861',
+        'poetrynw': 'https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99900010963001861',
+        'rollingstone': 'https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma99900011262101861'
+    };
+    
+    if (searchLinks[magazine]) {
+        window.open(searchLinks[magazine] + '?query=' + encodeURIComponent(query), '_blank');
+    }
+}
+
+        // Keyboard navigation for card flipping
+        document.querySelectorAll('.magazine-card').forEach(card => {
+            card.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    card.classList.toggle('flipped');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
