@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>New Library Book: We Will Go Right Up to the Sun</title>
+    
+    <style>
+        /* Base Styles */
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            line-height: 1.5;
+            color: #444;
+            background-color: #f7f9fb;
+            padding: 20px;
+        }
+
+        /* Module 2: Info Box (Accent Box for Main Text) */
+        .module-container.info-module {
+            background-color: #ffffff;
+            border: 1px solid #e0e6ed;
+            padding: 25px 30px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border-left: 5px solid #334e68;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .module-container.info-module p {
+            margin: 0;
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        /* Emphasize the book title */
+        .info-module em {
+            font-style: normal;
+            font-weight: 600;
+            color: #334e68;
+        }
+
+        /* Link specific styling for the book title */
+        .info-module em a {
+            color: #334e68;
+            text-decoration: none;
+            font-weight: 700;
+        }
+        .info-module em a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="module-container info-module">
+    <p>We just added a stunning new book to the library: <em><a href="https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/3hpq3p/alma99900749460201861">We Will Go Right Up to the Sun: Female Pioneers of Geometric Abstraction</a></em>, published by Hirmer in 2024 to accompany an exhibition at the Wilhelm-Hack-Museum. The book reframes the history of geometric abstraction&mdash;a movement we often associate with a handful of famous men&mdash;by centering the women who shaped it, from Sophie Taeuber-Arp and Sonia Delaunay to lesser-known figures from Latin America and the Global South. It&#39;s lavishly illustrated, written in parallel German and English, and packed with essays covering everything from the Russian avant-garde to postwar Paris. If you&#39;re interested in art history, abstraction, or feminist perspectives on modernism, this one is well worth your time. Find it in the New Books section at Cannell Library.</p>
+</div>
+
+</body>
+</html>
