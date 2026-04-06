@@ -45,7 +45,7 @@
 }
 
 .book-widget .subhead {
-    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    font-size: clamp(1.6rem, 3vw, 2rem);
     color: #334e68;
 }
 
@@ -88,7 +88,7 @@
 .book-widget .counter {
     text-align: center;
     margin-top: 0.75rem;
-    font-size: clamp(1rem, 2.5vw, 1.1rem);
+    font-size: clamp(1.6rem, 3vw, 2rem);
 }
 
 /* Buttons */
@@ -104,7 +104,7 @@
     min-height: 44px;
     min-width: 44px;
     padding: 0.6rem 1rem;
-    font-size: 1rem;
+    font-size: 1.6rem;
     border: none;
     background: #00629B;
     color: #fff;
@@ -173,8 +173,27 @@
 <script>
 (function(){
 
-const BASE = 'https://d2jv02qf7xgjwx.cloudfront.net/accounts/348611/images/FemalePioneers';
-const TOTAL = 14;
+/* =========================
+   EDIT THIS FOR EACH BOOK
+   ========================= */
+const IMAGES = [
+    { src: "https://d2jv02qf7xgjwx.cloudfront.net/accounts/348611/images/FemalePioneers0.jpg", alt: "Front cover of the book We Will Go Right Up to the Sun" },
+    { src: "https://d2jv02qf7xgjwx.cloudfront.net/accounts/348611/images/FemalePioneers1.jpg", alt: "Interior page showing geometric abstract artwork" },
+    { src: "https://d2jv02qf7xgjwx.cloudfront.net/accounts/348611/images/FemalePioneers2.jpg", alt: "Interior page with text and artwork sample" },
+    { src: "https://d2jv02qf7xgjwx.cloudfront.net/accounts/348611/images/FemalePioneers3.jpg", alt: "Interior page featuring abstract composition" },
+    { src: "https://d2jv02qf7xgjwx.cloudfront.net/accounts/348611/images/FemalePioneers4.jpg", alt: "Interior page with exhibition content" },
+    { src: "https://d2jv02qf7xgjwx.cloudfront.net/accounts/348611/images/FemalePioneers5.jpg", alt: "Interior page showing artwork and description" },
+    { src: "https://d2jv02qf7xgjwx.cloudfront.net/accounts/348611/images/FemalePioneers6.jpg", alt: "Interior page with geometric abstraction example" },
+    { src: "https://d2jv02qf7xgjwx.cloudfront.net/accounts/348611/images/FemalePioneers7.jpg", alt: "Interior page with artist work sample" },
+    { src: "https://d2jv02qf7xgjwx.cloudfront.net/accounts/348611/images/FemalePioneers8.jpg", alt: "Interior page with artwork and text" },
+    { src: "https://d2jv02qf7xgjwx.cloudfront.net/accounts/348611/images/FemalePioneers9.jpg", alt: "Interior page featuring abstract shapes" },
+    { src: "https://d2jv02qf7xgjwx.cloudfront.net/accounts/348611/images/FemalePioneers10.jpg", alt: "Interior page with exhibition layout" },
+    { src: "https://d2jv02qf7xgjwx.cloudfront.net/accounts/348611/images/FemalePioneers11.jpg", alt: "Interior page showing artwork detail" },
+    { src: "https://d2jv02qf7xgjwx.cloudfront.net/accounts/348611/images/FemalePioneers12.jpg", alt: "Interior page with geometric design" },
+    { src: "https://d2jv02qf7xgjwx.cloudfront.net/accounts/348611/images/FemalePioneers13.jpg", alt: "Back cover of the book We Will Go Right Up to the Sun" }
+];
+
+const TOTAL = IMAGES.length;
 
 const stage = document.getElementById('stage');
 const counter = document.getElementById('counter');
@@ -185,21 +204,15 @@ let current = 0;
 let slides = [];
 let dots = [];
 
-/* ALT TEXT LOGIC */
-function getAltText(i){
-    if(i === 0) return "Front cover of the book We Will Go Right Up to the Sun";
-    if(i === TOTAL - 1) return "Back cover of the book We Will Go Right Up to the Sun";
-    return "Interior page from the book showing sample content";
-}
-
-for(let i=0;i<TOTAL;i++){
+/* BUILD SLIDES */
+IMAGES.forEach((item, i) => {
 
     let slide = document.createElement('div');
     slide.className = 'slide';
 
     let img = document.createElement('img');
-    img.src = BASE + i + ".jpg";
-    img.alt = getAltText(i);
+    img.src = item.src;
+    img.alt = item.alt;
 
     slide.appendChild(img);
     stage.appendChild(slide);
@@ -212,7 +225,7 @@ for(let i=0;i<TOTAL;i++){
 
     dotsWrap.appendChild(dot);
     dots.push(dot);
-}
+});
 
 function goTo(i){
     slides[current].classList.remove('active');
