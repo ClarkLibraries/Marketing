@@ -1,60 +1,256 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>New Library Book: We Will Go Right Up to the Sun</title>
-    
-    <style>
-        /* Base Styles */
-        body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            line-height: 1.5;
-            color: #444;
-            background-color: #f7f9fb;
-            padding: 20px;
-        }
+<div class="book-widget">
 
-        /* Module 2: Info Box (Accent Box for Main Text) */
-        .module-container.info-module {
-            background-color: #ffffff;
-            border: 1px solid #e0e6ed;
-            padding: 25px 30px;
-            border-radius: 8px;
-            margin-bottom: 30px;
-            border-left: 5px solid #334e68;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-        }
+<style>
+.book-widget {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: #333F48;
+}
 
-        .module-container.info-module p {
-            margin: 0;
-            font-size: 16px;
-            line-height: 1.7;
-        }
+/* Reset ONLY inside widget */
+.book-widget * {
+    box-sizing: border-box;
+}
 
-        /* Emphasize the book title */
-        .info-module em {
-            font-style: normal;
-            font-weight: 600;
-            color: #334e68;
-        }
+/* Skip link */
+.book-widget .skip-link {
+    position: absolute;
+    top: -100%;
+    left: 1rem;
+    background: #FF6A13;
+    color: #fff;
+    padding: 0.6rem 1rem;
+    font-weight: 600;
+    font-size: 1rem;
+    border-radius: 0 0 5px 5px;
+    z-index: 1000;
+}
+.book-widget .skip-link:focus {
+    top: 0;
+}
 
-        /* Link specific styling for the book title */
-        .info-module em a {
-            color: #334e68;
-            text-decoration: none;
-            font-weight: 700;
-        }
-        .info-module em a:hover {
-            text-decoration: underline;
-        }
-    </style>
-</head>
+/* Header */
+.book-widget .header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    background: #fff;
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+}
 
-<body>
+.book-widget h1 {
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    color: #00629B;
+    margin-bottom: 0.5rem;
+}
 
-<div class="module-container info-module">
-    <p>We just added a stunning new book to the library: <em><a href="https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/3hpq3p/alma99900749460201861">We Will Go Right Up to the Sun: Female Pioneers of Geometric Abstraction</a></em>, published by Hirmer in 2024 to accompany an exhibition at the Wilhelm-Hack-Museum. The book reframes the history of geometric abstraction&mdash;a movement we often associate with a handful of famous men&mdash;by centering the women who shaped it, from Sophie Taeuber-Arp and Sonia Delaunay to lesser-known figures from Latin America and the Global South. It&#39;s lavishly illustrated, written in parallel German and English, and packed with essays covering everything from the Russian avant-garde to postwar Paris. If you&#39;re interested in art history, abstraction, or feminist perspectives on modernism, this one is well worth your time. Find it in the New Books section at Cannell Library.</p>
+.book-widget .subhead {
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    color: #334e68;
+}
+
+/* Slideshow */
+.book-widget .slideshow {
+    background: #fff;
+    border-radius: 16px;
+    padding: 1rem;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+}
+
+.book-widget .slide-stage {
+    position: relative;
+    aspect-ratio: 4/3;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #f4f7fa;
+}
+
+.book-widget .slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.book-widget .slide.active {
+    opacity: 1;
+}
+
+.book-widget img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+/* Text */
+.book-widget .counter {
+    text-align: center;
+    margin-top: 0.75rem;
+    font-size: clamp(1rem, 2.5vw, 1.1rem);
+}
+
+/* Buttons */
+.book-widget .controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.book-widget button {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 0.6rem 1rem;
+    font-size: 1rem;
+    border: none;
+    background: #00629B;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.book-widget button:focus-visible {
+    outline: 3px solid #FF6A13;
+}
+
+/* Dots */
+.book-widget .dot-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 1rem;
+    gap: 0.4rem;
+}
+
+.book-widget .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #ccc;
+}
+
+.book-widget .dot.active {
+    background: #00629B;
+}
+
+/* Screen reader only */
+.book-widget .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+}
+</style>
+
+<a href="#widget-slideshow" class="skip-link">Skip to slideshow</a>
+
+<div class="header">
+    <h1>We Will Go Right Up to the Sun</h1>
+    <p class="subhead">Female Pioneers of Geometric Abstraction</p>
 </div>
 
-</body>
-</html>
+<div id="widget-slideshow" class="slideshow" tabindex="0">
+
+    <div class="sr-only" id="status" role="status" aria-live="polite"></div>
+
+    <div class="slide-stage" id="stage"></div>
+
+    <div class="counter" id="counter"></div>
+
+    <div class="controls">
+        <button id="prev">Prev</button>
+        <button id="next">Next</button>
+    </div>
+
+    <div class="dot-nav" id="dots"></div>
+
+</div>
+
+<script>
+(function(){
+
+/* =========================
+   EDIT THIS FOR EACH BOOK
+   ========================= */
+const IMAGES = [
+    { src: "https://d2jv02qf7xgjwx.cloudfront.net/accounts/348611/images/FemalePioneers0.jpg", alt: "Front cover of the book We Will Go Right Up to the Sun" },
+    { src: "https://d2jv02qf7xgjwx.cloudfront.net/accounts/348611/images/FemalePioneers1.jpg", alt: "Interior page showing geometric abstract artwork" },
+    { src: "https://d2jv02qf7xgjwx.cloudfront.net/accounts/348611/images/FemalePioneers2.jpg", alt: "Interior page with text and artwork sample" },
+    { src: "https://d2jv02qf7xgjwx.cloudfront.net/accounts/348611/images/FemalePioneers3.jpg", alt: "Interior page featuring abstract composition" },
+    { src: "https://d2jv02qf7xgjwx.cloudfront.net/accounts/348611/images/FemalePioneers4.jpg", alt: "Interior page with exhibition content" },
+    { src: "https://d2jv02qf7xgjwx.cloudfront.net/accounts/348611/images/FemalePioneers5.jpg", alt: "Interior page showing artwork and description" },
+    { src: "https://d2jv02qf7xgjwx.cloudfront.net/accounts/348611/images/FemalePioneers6.jpg", alt: "Interior page with geometric abstraction example" },
+    { src: "https://d2jv02qf7xgjwx.cloudfront.net/accounts/348611/images/FemalePioneers7.jpg", alt: "Interior page with artist work sample" },
+    { src: "https://d2jv02qf7xgjwx.cloudfront.net/accounts/348611/images/FemalePioneers8.jpg", alt: "Interior page with artwork and text" },
+    { src: "https://d2jv02qf7xgjwx.cloudfront.net/accounts/348611/images/FemalePioneers9.jpg", alt: "Interior page featuring abstract shapes" },
+    { src: "https://d2jv02qf7xgjwx.cloudfront.net/accounts/348611/images/FemalePioneers10.jpg", alt: "Interior page with exhibition layout" },
+    { src: "https://d2jv02qf7xgjwx.cloudfront.net/accounts/348611/images/FemalePioneers11.jpg", alt: "Interior page showing artwork detail" },
+    { src: "https://d2jv02qf7xgjwx.cloudfront.net/accounts/348611/images/FemalePioneers12.jpg", alt: "Interior page with geometric design" },
+    { src: "https://d2jv02qf7xgjwx.cloudfront.net/accounts/348611/images/FemalePioneers13.jpg", alt: "Back cover of the book We Will Go Right Up to the Sun" }
+];
+
+const TOTAL = IMAGES.length;
+
+const stage = document.getElementById('stage');
+const counter = document.getElementById('counter');
+const dotsWrap = document.getElementById('dots');
+const status = document.getElementById('status');
+
+let current = 0;
+let slides = [];
+let dots = [];
+
+/* BUILD SLIDES */
+IMAGES.forEach((item, i) => {
+
+    let slide = document.createElement('div');
+    slide.className = 'slide';
+
+    let img = document.createElement('img');
+    img.src = item.src;
+    img.alt = item.alt;
+
+    slide.appendChild(img);
+    stage.appendChild(slide);
+    slides.push(slide);
+
+    let dot = document.createElement('button');
+    dot.className = 'dot';
+    dot.setAttribute('aria-label', 'Go to image ' + (i+1));
+    dot.onclick = ()=>goTo(i);
+
+    dotsWrap.appendChild(dot);
+    dots.push(dot);
+});
+
+function goTo(i){
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+
+    current = (i + TOTAL) % TOTAL;
+
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+
+    counter.textContent = "Image " + (current+1) + " of " + TOTAL;
+    status.textContent = counter.textContent;
+}
+
+document.getElementById('prev').onclick = ()=>goTo(current-1);
+document.getElementById('next').onclick = ()=>goTo(current+1);
+
+document.getElementById('widget-slideshow').addEventListener('keydown', e=>{
+    if(e.key==="ArrowRight") goTo(current+1);
+    if(e.key==="ArrowLeft") goTo(current-1);
+});
+
+goTo(0);
+
+})();
+</script>
+
+</div>
