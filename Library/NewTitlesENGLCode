@@ -938,50 +938,6 @@
             }
         }
 
-        /* Dark mode support */
-        @media (prefers-color-scheme: dark) {
-            .resources-showcase {
-                background: linear-gradient(135deg, #001122 0%, #003366 50%, #2c3e50 100%);
-            }
-            
-            .resources-showcase .header, 
-            .resources-showcase .controls, 
-            .resources-showcase .magazine-card, 
-            .resources-showcase .footer, 
-            .resources-showcase .results-info, 
-            .resources-showcase .loading, 
-            .resources-showcase .no-results,
-            .resources-showcase .flip-card-front,
-            .resources-showcase .flip-card-back {
-                background: rgba(44, 62, 80, 0.95);
-                color: #ecf0f1;
-            }
-            
-            .resources-showcase .header h1, 
-            .resources-showcase .card-title, 
-            .resources-showcase .footer h2 {
-                color: #3498db;
-            }
-            
-            .resources-showcase .search-input, 
-            .resources-showcase .sort-select {
-                background: #34495e;
-                color: #ecf0f1;
-                border-color: #3498db;
-            }
-
-            .resources-showcase .front-content-overlay .card-title {
-                color: white; /* Keep white on dark overlay */
-            }
-
-            .resources-showcase .front-content-overlay .card-author {
-                color: rgba(255, 255, 255, 0.9);
-            }
-
-            .resources-showcase .flip-card-back p {
-                color: #ecf0f1;
-            }
-        }
 		</style>
 
 
