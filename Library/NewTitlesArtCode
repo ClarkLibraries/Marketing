@@ -1240,7 +1240,6 @@
             >
             <div class="front-content-overlay">
                 <h2 class="card-title">${title}</h2>
-                <p class="card-author">by ${author}</p>
                 <button class="flip-button" aria-expanded="false" aria-controls="${uniqueId}">
                     Learn More
                 </button>
