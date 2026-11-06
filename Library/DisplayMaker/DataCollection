@@ -1,0 +1,117 @@
+<dm-staff-guide></dm-staff-guide>
+<script>
+(function () {
+/* ===== Settings you can edit ===== */
+var ANALYTICS_URL = 'https://analytics12-na.alma.exlibrisgroup.com/analytics/saw.dll?Dashboard&PortalPath=%2Fshared%2FClark%20College%2F_portal%2FInternal%20Clark%20Libraries%20Dashboard%20for%20Occasional%20Reports&Page=Display%20Maker%20Values&PageIdentifier=selut4iirgltqr58&BookmarkState=v9qdjac7pc00bo57sbjfbs9gj6&options=mfrdgce';
+var HELP_NAME = 'Kevin Edwards, Technical Services';
+var HELP_EMAIL = 'kwedwards@clark.edu';
+
+var CSS = `:host{display:block}
+.w{all:initial;display:block;max-width:60em;margin:0 auto;padding:16px;border-radius:14px;color-scheme:light;
+  --bg:#f1f4f6;--panel:#fff;--ink:#1b2630;--muted:#4a5966;--line:#c5cfd8;--accent:#16606f;--soft:#e0eef1;--ok:#1d6b3e;
+  background:var(--bg);color:var(--ink);font-family:"Segoe UI",system-ui,-apple-system,Arial,sans-serif;font-size:17px;line-height:1.55}
+.w *,.w *::before,.w *::after{box-sizing:border-box}
+header{padding:4px 4px 16px}
+h2{margin:0 0 4px;font-size:1.6em;line-height:1.2}
+h3{margin:0 0 10px;font-size:1.25em;line-height:1.3;color:var(--accent)}
+h4{margin:14px 0 4px;font-size:1.05em}
+p{margin:0 0 10px}
+p:last-child,ol:last-child,ul:last-child{margin-bottom:0}
+.lede,.hint{color:var(--muted)}
+section{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;margin-bottom:16px}
+ol,ul{margin:0 0 10px;padding-left:1.4em}
+li{margin-bottom:6px}
+.steps{list-style:none;padding:0;margin:0;display:grid;gap:14px;counter-reset:s}
+.steps>li{counter-increment:s;display:grid;grid-template-columns:2.2em minmax(0,1fr);gap:12px;margin:0}
+.steps>li::before{content:counter(s);width:2em;height:2em;border-radius:50%;background:var(--accent);color:#fff;font-weight:700;display:grid;place-items:center;margin-top:.1em}
+.steps b.n{display:block}
+.note{background:var(--soft);border-left:4px solid var(--accent);border-radius:6px;padding:10px 14px;margin:10px 0}
+code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.9em;background:#eef2f4;border:1px solid var(--line);border-radius:4px;padding:1px 5px}
+a{color:var(--accent);font-weight:700;text-underline-offset:2px}
+:where(a,summary):focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:2px}
+details{border-top:1px solid var(--line);padding:8px 0}
+details:first-of-type{border-top:0}
+summary{cursor:pointer;font-weight:700}
+details p{margin-top:6px}
+.sr{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+@media print{.w{background:#fff}}
+`;
+var HTML = `<header><h2 id="gt">Build a Display from Catalog Records: Staff Guide</h2>
+<p class="lede">Use Alma Analytics to fill in a Display Maker list for you, instead of typing in every title by hand.</p></header>
+
+<section aria-labelledby="s0">
+<h3 id="s0">Which way should I build my display?</h3>
+<ul>
+<li><b>A few titles, or none from the catalog:</b> type them straight into the Display Maker (Step 2, “Type them in”). You only need a title and a link.</li>
+<li><b>A longer list of catalog titles:</b> follow the steps below. You collect permalinks, and Analytics supplies the author, publisher, year, subject, call number and ISBN for you.</li>
+</ul>
+<p class="hint">You can mix both: build the list with the steps below, then add web pages, videos or services along the way.</p>
+</section>
+
+<section aria-labelledby="s1">
+<h3 id="s1">Steps</h3>
+<ol class="steps">
+<li><div><b class="n">Collect the permalinks</b>
+<p>In Primo, open each title you want and copy its permalink. Paste them all into one list (a document or email draft is fine).</p></div></li>
+<li><div><b class="n">Get the MMS IDs</b>
+<p>The MMS ID is the number at the end of each permalink. Paste your permalinks into the <b>Permalinks to MMS IDs</b> tool on this page and select <b>Get MMS IDs</b>, then <b>Copy MMS IDs</b>.</p></div></li>
+<li><div><b class="n">Run the Analytics report</b>
+<p><a id="arep" target="_blank" rel="noopener noreferrer">Open the Display Maker Values report<span class="sr"> (opens in a new tab)</span></a>. Paste your MMS IDs into the MMS ID box and run the report.</p>
+<p>Check that you got one row for every title you expected.</p></div></li>
+<li><div><b class="n">Export the results</b>
+<p>Use the Export option under the results to save them as <b>CSV</b> or <b>Excel</b>. CSV is safest, because Excel can round long MMS ID numbers.</p></div></li>
+<li><div><b class="n">Convert the results to a list</b>
+<p>Open the <b>Analytics Results to Display Maker List</b> tool on this page. Choose your file and select <b>Convert</b>. Read the message it gives you: it tells you about missing links, missing cover images and anything it could not read.</p>
+<p>It builds each permalink from the MMS ID and each cover image address from the ISBN.</p></div></li>
+<li><div><b class="n">Add anything that is not in the catalog (optional)</b>
+<p>In the same tool, use <b>Add a resource that is not in the catalog</b> for a Writing Center page, a YouTube video or a campus service. See the section below.</p></div></li>
+<li><div><b class="n">Copy your list into the Display Maker</b>
+<p>Select <b>Copy my list</b>. In the Display Maker, go to Step 2, choose <b>Paste a list</b>, paste, and select <b>Use this list</b>. The right details switch on automatically.</p></div></li>
+<li><div><b class="n">Preview, copy and publish</b>
+<p>In Step 3, try the search and sort, fix anything flagged, and select <b>Copy display code</b>. In your LibGuide, choose <b>Add Content</b>, then <b>Media/Widget</b>, paste the code, and save.</p></div></li>
+</ol>
+<div class="note"><b>Keep a backup.</b> In the converter, <b>Save a backup file</b> keeps your list. To update the display later, paste that list back into the Display Maker and make your changes.</div>
+</section>
+
+<section aria-labelledby="s2">
+<h3 id="s2">Adding things that are not in the catalog</h3>
+<p>A display can hold anything with a link. For each one, you need:</p>
+<ul>
+<li><b>Title</b> (required) and a <b>link web address</b> starting with <code>https://</code>.</li>
+<li><b>Type</b> (optional), such as Website, Video or Service. This shows on the card and can be used to sort.</li>
+<li><b>Button text</b> (optional), such as “Watch the video”. If you leave it blank, the button says “View Resource”.</li>
+<li><b>Image</b> and <b>short description</b> (optional).</li>
+</ul>
+<p class="hint">Example: a display for a writing class could hold an MLA style guide from the catalog, a thesaurus, a link to the Writing Center and a tutorial video.</p>
+<p>Want to point people to a larger page, such as an event series? In Step 1 of the Display Maker, turn on <b>Add a “Learn more” section</b>.</p>
+</section>
+
+<section aria-labelledby="s3">
+<h3 id="s3">If something goes wrong</h3>
+<details><summary>A title is missing from the Analytics results</summary>
+<p>Check that the MMS ID was copied in full from its permalink. A record that was added very recently may not be in Analytics yet. You can still add the title by hand in the Display Maker.</p></details>
+<details><summary>The converter says an MMS ID looks damaged</summary>
+<p>Excel rounded the long number (it may look like <code>9.99E+16</code>). Export the report as CSV, or format the MMS ID column as Text, then convert again.</p></details>
+<details><summary>A cover image is blank</summary>
+<p>The title may have no ISBN, or the cover service may not have a picture for it. The card shows a placeholder. You can paste a different image address in the Display Maker.</p></details>
+<details><summary>The converter does not recognize a column</summary>
+<p>It lists the columns it did not use. Rename the heading to one of: title, author, publisher, year, subject, location, type, description, MMS ID, ISBN, permalink, cover image.</p></details>
+<details><summary>My list is very long</summary>
+<p>There is no fixed limit, and displays with hundreds of titles work. The Display Maker warns you if the list is large enough to load slowly on phones. If so, consider two smaller displays.</p></details>
+</section>
+
+<section aria-labelledby="s4">
+<h3 id="s4">Need help?</h3>
+<p><b>${HELP_NAME}</b><br><a id="hmail"></a></p>
+</section>`;
+
+function mount(hostEl) {
+  var R = hostEl.attachShadow({ mode: 'open' });
+  R.innerHTML = '<style>' + CSS + '</style><div class="w">' + HTML + '</div>';
+  var a = R.querySelector('#arep'); a.href = ANALYTICS_URL;
+  var m = R.querySelector('#hmail'); m.href = 'mailto:' + HELP_EMAIL; m.textContent = HELP_EMAIL;
+}
+var els = document.querySelectorAll('dm-staff-guide');
+for (var i = 0; i < els.length; i++) { if (!els[i].shadowRoot) mount(els[i]); }
+})();
+</script>
