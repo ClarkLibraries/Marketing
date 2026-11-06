@@ -1,0 +1,100 @@
+<dm-id-extractor></dm-id-extractor>
+<script>
+(function () {
+var CSS = `:host{display:block}
+.w{all:initial;display:grid;gap:16px;max-width:60em;margin:0 auto;padding:16px;border-radius:14px;color-scheme:light;
+  --bg:#f1f4f6;--panel:#fff;--ink:#1b2630;--muted:#4a5966;--line:#c5cfd8;--accent:#16606f;--soft:#e0eef1;--danger:#a3261f;--warn:#8a5300;--ok:#1d6b3e;
+  background:var(--bg);color:var(--ink);font-family:"Segoe UI",system-ui,-apple-system,Arial,sans-serif;font-size:17px;line-height:1.55;container-type:inline-size}
+.w *,.w *::before,.w *::after{box-sizing:border-box}
+[hidden]{display:none!important}
+h2{margin:0;font-size:1.5em;line-height:1.2}
+p{margin:0}
+.hint{color:var(--muted);font-size:.92em}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;display:grid;gap:14px;min-width:0}
+label,legend{font-weight:700}
+fieldset{border:0;margin:0;padding:0;min-width:0;display:grid;gap:8px}
+textarea{width:100%;font:inherit;color:var(--ink);background:var(--panel);border:2px solid var(--muted);border-radius:8px;padding:10px 12px;line-height:1.45;resize:vertical}
+textarea.out{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.9em;background:#f7f9fa}
+:where(a,button,input,textarea,summary):focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.btn{font:inherit;font-weight:700;min-height:2.8em;padding:8px 18px;border-radius:8px;border:2px solid var(--accent);background:var(--panel);color:var(--accent);cursor:pointer}
+.btn:hover{background:var(--soft)}
+.btn.pri{background:var(--accent);color:#fff}
+.btn.pri:hover{filter:brightness(1.1)}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips label{position:relative;font-weight:700;border:2px solid var(--line);border-radius:999px;padding:6px 16px;cursor:pointer;background:var(--panel)}
+.chips input{position:absolute;opacity:0;inset:0;margin:0;width:100%;height:100%;cursor:pointer}
+.chips label:has(input:checked){border-color:var(--accent);background:var(--soft)}
+.chips label:has(input:focus-visible){outline:3px solid var(--accent);outline-offset:2px}
+.chk{display:flex;gap:10px;align-items:center;font-weight:400;cursor:pointer}
+.chk input{width:1.2em;height:1.2em;accent-color:var(--accent)}
+.status{min-height:1.4em;color:var(--muted)}
+.msg{padding:10px 14px;border-radius:8px;border:2px solid var(--line);display:grid;gap:4px}
+.msg.good{border-color:var(--ok)}.msg.warn{border-color:var(--warn)}.msg.bad{border-color:var(--danger)}
+.msg:empty{display:none}
+.msg ul{margin:0;padding-left:1.3em}
+.sr{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+`;
+var HTML = `<div class="panel">
+<h2 id="t">Permalinks to MMS IDs</h2>
+<p class="hint">Paste the permalinks you collected. The MMS ID is the number at the end of each one. This tool pulls the numbers out for you so you can paste them into the Alma Analytics report.</p>
+<div style="display:grid;gap:4px"><label for="in">Paste your permalinks</label><span class="hint" id="in-h">One per line is easiest, but any mix of spaces, commas and line breaks works. Bare MMS IDs are fine too.</span>
+<textarea id="in" rows="8" aria-describedby="in-h" spellcheck="false"></textarea></div>
+<fieldset><legend>How should the IDs be separated?</legend>
+<div class="chips"><label><input type="radio" name="sep" value=";" checked> Semicolons</label><label><input type="radio" name="sep" value=","> Commas</label><label><input type="radio" name="sep" value="\\n"> One per line</label></div></fieldset>
+<label class="chk"><input type="checkbox" id="dedupe" checked> Remove duplicate IDs</label>
+<div class="row"><button type="button" class="btn pri" id="go">Get MMS IDs</button><button type="button" class="btn" id="clr">Clear</button></div>
+<div class="msg" id="msg" role="status" tabindex="-1"></div>
+<div id="outWrap" hidden style="display:grid;gap:8px"><label for="out">Your MMS IDs</label>
+<textarea id="out" class="out" rows="5" readonly spellcheck="false"></textarea>
+<div class="row"><button type="button" class="btn pri" id="copy">Copy MMS IDs</button><span class="status" id="cs" role="status"></span></div></div>
+</div>`;
+
+/*PURE-START*/
+function idFrom(tok) {
+  tok = String(tok || '').trim();
+  if (!tok) return null;
+  var m = /alma(\d{9,})/i.exec(tok);
+  if (m) return m[1];
+  if (/^\d{9,}$/.test(tok)) return tok;
+  m = /(\d{9,})\D*$/.exec(tok);
+  return m ? m[1] : null;
+}
+function extract(text, dedupe) {
+  var toks = String(text || '').split(/[\s,;]+/).filter(Boolean), ids = [], bad = [], seen = {}, dups = 0;
+  toks.forEach(function (t) {
+    var id = idFrom(t);
+    if (!id) { bad.push(t); return; }
+    if (dedupe && seen[id]) { dups++; return; }
+    seen[id] = 1; ids.push(id);
+  });
+  return { ids: ids, bad: bad, dups: dups, total: toks.length };
+}
+/*PURE-END*/
+
+function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+function mount(hostEl) {
+  var R = hostEl.attachShadow({ mode: 'open' });
+  R.innerHTML = '<style>' + CSS + '</style><div class="w">' + HTML + '</div>';
+  var $ = function (s) { return R.querySelector(s); };
+  $('#go').addEventListener('click', function () {
+    var r = extract($('#in').value, $('#dedupe').checked), msg = $('#msg');
+    if (!r.total) { msg.className = 'msg bad'; msg.innerHTML = '<b>Nothing to read yet.</b><span>Paste your permalinks in the box first.</span>'; $('#outWrap').hidden = true; msg.focus(); return; }
+    if (!r.ids.length) { msg.className = 'msg bad'; msg.innerHTML = '<b>No MMS IDs found.</b><span>An MMS ID is a long number, usually at the end of the permalink.</span>'; $('#outWrap').hidden = true; msg.focus(); return; }
+    var sepv = R.querySelector('input[name=sep]:checked').value, sep = sepv === '\\n' || sepv === '\n' ? '\n' : (sepv === ',' ? ', ' : ';');
+    $('#out').value = r.ids.join(sep); $('#outWrap').hidden = false; $('#cs').textContent = '';
+    var html = '<b>Found ' + r.ids.length + ' MMS ' + (r.ids.length === 1 ? 'ID' : 'IDs') + '.</b>';
+    if (r.dups) html += '<span>' + r.dups + ' duplicate ' + (r.dups === 1 ? 'ID was' : 'IDs were') + ' removed.</span>';
+    if (r.bad.length) html += '<span>These ' + r.bad.length + ' could not be read, so check them: </span><ul>' + r.bad.slice(0, 10).map(function (b) { return '<li>' + esc(b.length > 80 ? b.slice(0, 80) + '…' : b) + '</li>'; }).join('') + (r.bad.length > 10 ? '<li>and ' + (r.bad.length - 10) + ' more</li>' : '') + '</ul>';
+    msg.className = 'msg ' + (r.bad.length ? 'warn' : 'good'); msg.innerHTML = html; msg.focus();
+  });
+  $('#clr').addEventListener('click', function () { $('#in').value = ''; $('#out').value = ''; $('#outWrap').hidden = true; $('#msg').className = 'msg'; $('#msg').innerHTML = ''; $('#in').focus(); });
+  $('#copy').addEventListener('click', function () {
+    var t = $('#out');
+    (navigator.clipboard ? navigator.clipboard.writeText(t.value) : Promise.reject()).then(function () { $('#cs').textContent = 'Copied. Now paste it into the Analytics report.'; }, function () { t.focus(); t.select(); $('#cs').textContent = 'Selected. Press Ctrl+C (Cmd+C on a Mac) to copy.'; });
+  });
+}
+var els = document.querySelectorAll('dm-id-extractor');
+for (var i = 0; i < els.length; i++) { if (!els[i].shadowRoot) mount(els[i]); }
+})();
+</script>
