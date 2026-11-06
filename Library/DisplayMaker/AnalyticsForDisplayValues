@@ -1,0 +1,301 @@
+<dm-list-converter></dm-list-converter>
+<script>
+(function () {
+var PERMALINK_BASE = 'https://alliance-clark.primo.exlibrisgroup.com/permalink/01ALLIANCE_CC/1gf6rsg/alma';
+var COVER_BASE = 'https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.php?client=primo&isbn=';
+var XLSX_URL = 'https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js';
+
+var CSS = `:host{display:block}
+.w{all:initial;display:grid;gap:16px;max-width:60em;margin:0 auto;padding:16px;border-radius:14px;color-scheme:light;container-type:inline-size;
+  --bg:#f1f4f6;--panel:#fff;--ink:#1b2630;--muted:#4a5966;--line:#c5cfd8;--accent:#16606f;--soft:#e0eef1;--danger:#a3261f;--warn:#8a5300;--ok:#1d6b3e;
+  background:var(--bg);color:var(--ink);font-family:"Segoe UI",system-ui,-apple-system,Arial,sans-serif;font-size:17px;line-height:1.55}
+.w *,.w *::before,.w *::after{box-sizing:border-box}
+[hidden]{display:none!important}
+h2{margin:0;font-size:1.5em;line-height:1.2}
+h3{margin:0;font-size:1.2em;line-height:1.25}
+p{margin:0}
+.hint{color:var(--muted);font-size:.92em}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;display:grid;gap:14px;min-width:0}
+label,legend{font-weight:700}
+fieldset{border:0;margin:0;padding:0;min-width:0;display:grid;gap:8px}
+.f{display:grid;gap:4px;min-width:0}
+input[type=text],input[type=file],textarea{width:100%;font:inherit;color:var(--ink);background:var(--panel);border:2px solid var(--muted);border-radius:8px;padding:10px 12px;line-height:1.45}
+input[type=text]{min-height:2.8em}
+textarea{resize:vertical}
+textarea.out{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.88em;background:#f7f9fa}
+input[aria-invalid="true"]{border-color:var(--danger)}
+.err{color:var(--danger);font-size:.9em;font-weight:700}
+:where(a,button,input,textarea,summary):focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+a{color:var(--accent);font-weight:700}
+.btn{font:inherit;font-weight:700;min-height:2.8em;padding:8px 18px;border-radius:8px;border:2px solid var(--accent);background:var(--panel);color:var(--accent);cursor:pointer}
+.btn:hover{background:var(--soft)}
+.btn.pri{background:var(--accent);color:#fff}
+.btn.pri:hover{filter:brightness(1.1)}
+.btn.sm{min-height:2.2em;padding:3px 12px;font-size:.92em}
+.btn.armed{background:var(--danger);border-color:var(--danger);color:#fff}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.row.sb{justify-content:space-between}
+.chk{display:flex;gap:10px;align-items:flex-start;font-weight:400;cursor:pointer}
+.chk input{margin-top:.3em;width:1.2em;height:1.2em;flex:none;accent-color:var(--accent)}
+.grid2{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(15em,1fr))}
+.status{min-height:1.4em;color:var(--muted)}
+.msg{padding:10px 14px;border-radius:8px;border:2px solid var(--line);display:grid;gap:4px}
+.msg.good{border-color:var(--ok)}.msg.warn{border-color:var(--warn)}.msg.bad{border-color:var(--danger)}
+.msg:empty{display:none}
+.msg ul{margin:0;padding-left:1.3em}
+.list{list-style:none;margin:0;padding:6px;display:grid;gap:6px;max-height:20em;overflow:auto;border:1px solid var(--line);border-radius:8px}
+.list li{display:flex;gap:10px;justify-content:space-between;align-items:center;padding:6px 8px;border-radius:6px;background:#f7f9fa}
+.list .t{min-width:0;overflow-wrap:anywhere}
+.list .m{color:var(--muted);font-size:.85em;display:block}
+details>summary{cursor:pointer;font-weight:700;padding:4px 0}
+.sr{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+`;
+var HTML = `
+<div class="panel">
+<h2 id="t">Analytics Results to Display Maker List</h2>
+<p class="hint">Use the library catalog or a different Alma analysis to gather the MMS IDs for each resource you want to include (more details about this process are on another page of this guide).</p>
+<p class="hint">Once you have your MMS IDs, put them into a list with a semicolon separating them. Then paste that list into the dashboard prompt on the following page. The resulting list will include all the bibliographic information to add to your display and also the URLs for the cover images (if they appear in Primo); and additional URLs to search for articles in EBSCO related to each of your titles.</p>
+<p><a href="https://analytics12-na.alma.exlibrisgroup.com/analytics/saw.dll?Dashboard&amp;PortalPath=%2Fshared%2FClark%20College%2F_portal%2FInternal%20Clark%20Libraries%20Dashboard%20for%20Occasional%20Reports&amp;Page=Display%20Maker%20Values&amp;PageDelayedState=NotDelayed" target="_blank" rel="noopener">Open the Display Maker Values report in Alma Analytics (make sure you're logged into Alma first!) →</a></p>
+</div>
+<section class="panel" aria-labelledby="h1">
+<h3 id="h1">1. Convert your Analytics results</h3>
+<div class="f"><label for="file">Choose your exported file</label><span class="hint" id="file-h">Excel (.xlsx or .xls) or CSV. Your file stays in your browser. Nothing is uploaded anywhere.</span>
+<input type="file" id="file" accept=".xlsx,.xls,.csv,.tsv,.txt" aria-describedby="file-h"></div>
+<details><summary>Or paste copied cells instead</summary>
+<div class="f" style="margin-top:8px"><label for="paste">Paste the table here (include the header row)</label>
+<textarea id="paste" rows="6" spellcheck="false"></textarea></div></details>
+<div class="f"><span class="hint">Fill in what is missing, when your results have an MMS ID or ISBN column:</span>
+<label class="chk"><input type="checkbox" id="mkLink" checked><span>Make a permalink from the MMS ID when the file has no permalink</span></label>
+<label class="chk"><input type="checkbox" id="mkCover" checked><span>Make a cover image address from the ISBN when the file has no cover image</span></label></div>
+<div class="row"><button type="button" class="btn pri" id="convert">Convert</button><span class="status" id="cs" role="status"></span></div>
+<div class="msg" id="msg" role="status" tabindex="-1"></div>
+<details><summary>Which columns does it understand?</summary>
+<p class="hint" style="margin-top:8px">Headers can be in any order. It looks for: title (required), author, publisher, year or date, subject, location or call number, type, description, MMS ID, ISBN, permalink, cover image, link text. Other columns are ignored. For several ISBNs in one cell, the first valid one is used.</p></details>
+</section>
+
+<section class="panel" aria-labelledby="h2">
+<h3 id="h2">2. Add a resource that is not in the catalog (optional)</h3>
+<p class="hint">For a web page, video, campus service or anything else. Only the title is required, but it needs a link to be useful.</p>
+<form id="mform" novalidate>
+<div class="grid2">
+<div class="f"><label for="mt">Title</label><input type="text" id="mt" autocomplete="off"></div>
+<div class="f"><label for="mty">Type</label><input type="text" id="mty" autocomplete="off" placeholder="Website, Video, Service"></div>
+<div class="f"><label for="mu">Link web address</label><input type="text" id="mu" inputmode="url" autocomplete="off" placeholder="https://" aria-describedby="mu-e"><span class="err" id="mu-e"></span></div>
+<div class="f"><label for="ml">Button text (optional)</label><input type="text" id="ml" autocomplete="off" placeholder="Watch the video"></div>
+<div class="f"><label for="mi">Image web address (optional)</label><input type="text" id="mi" inputmode="url" autocomplete="off" placeholder="https://" aria-describedby="mi-e"><span class="err" id="mi-e"></span></div>
+<div class="f"><label for="md">Short description (optional)</label><input type="text" id="md" autocomplete="off"></div>
+</div>
+<div class="row" style="margin-top:12px"><button type="submit" class="btn pri">Add this resource</button><span class="status" id="ms" role="status"></span></div>
+</form>
+</section>
+
+<section class="panel" aria-labelledby="h3">
+<div class="row sb"><h3 id="h3">3. Review your list</h3><button type="button" class="btn sm" id="clear">Clear the list</button></div>
+<p class="hint" id="count" role="status"></p>
+<ul class="list" id="list" aria-label="Your list"></ul>
+</section>
+
+<section class="panel" aria-labelledby="h4">
+<h3 id="h4">4. Copy your list into the Display Maker</h3>
+<ol style="margin:0;padding-left:1.3em;display:grid;gap:4px"><li>Select <b>Copy my list</b>.</li><li>In the Display Maker, go to Step 2, choose <b>Paste a list</b>, paste, and select <b>Use this list</b>.</li></ol>
+<textarea id="out" class="out" rows="6" readonly spellcheck="false" aria-label="Your list, ready to paste into the Display Maker"></textarea>
+<div class="row"><button type="button" class="btn pri" id="copy">Copy my list</button><button type="button" class="btn" id="dl">Save a backup file</button><span class="status" id="os" role="status"></span></div>
+<details><summary>Blank spreadsheet for typing your own list</summary>
+<p class="hint" style="margin-top:8px">A CSV with the right column headings. Fill it in with Excel, then use it in step 1 above.</p>
+<div class="row" style="margin-top:8px"><button type="button" class="btn sm" id="tpl">Download blank spreadsheet</button></div></details>
+</section>
+`;
+
+/*PURE-START*/
+var ALIAS = {
+  title: 'title', name: 'title', booktitle: 'title', titlecomplete: 'title', resourcetitle: 'title',
+  mmsid: 'mmsid', mms: 'mmsid', mmsids: 'mmsid', mmsidnumber: 'mmsid', bibmmsid: 'mmsid',
+  isbn: 'isbn', isbns: 'isbn', isbnnumber: 'isbn',
+  type: 'type', resourcetype: 'type', materialtype: 'type', format: 'type',
+  author: 'author', authors: 'author', creator: 'author', authorcreator: 'author', creatorcontributor: 'author',
+  publisher: 'publisher', publishername: 'publisher',
+  year: 'year', date: 'year', publicationdate: 'year', publicationyear: 'year', pubdate: 'year', dateofpublication: 'year',
+  subject: 'subject', subjects: 'subject',
+  location: 'location', locationname: 'location', shelflocation: 'location', callnumber: 'location', permanentcallnumber: 'location', shelfmark: 'location',
+  description: 'description', summary: 'description', abstract: 'description', note: 'description',
+  permalink: 'permalink', link: 'permalink', url: 'permalink', linkurl: 'permalink', resourceurl: 'permalink',
+  coverimage: 'coverimage', cover: 'coverimage', image: 'coverimage', imageurl: 'coverimage', thumbnail: 'coverimage',
+  linklabel: 'linklabel', linktext: 'linklabel', buttontext: 'linklabel',
+  articlesaboutthisresource: 'articlesaboutthisresource', relatedarticles: 'relatedarticles', youmayalsolike: 'youmayalsolike'
+};
+var OUT_KEYS = ['title', 'type', 'author', 'publisher', 'year', 'subject', 'location', 'description', 'coverimage', 'permalink', 'linklabel', 'articlesaboutthisresource', 'relatedarticles', 'youmayalsolike'];
+var norm = function (k) { return String(k == null ? '' : k).toLowerCase().replace(/[^a-z0-9]/g, ''); };
+var isUrl = function (u) { return /^https?:\/\/\S+$/i.test(u || ''); };
+
+function parseDelimited(text) {
+  text = String(text).replace(/^﻿/, '');
+  var first = text.split(/\r?\n/, 1)[0] || '';
+  var d = first.indexOf('\t') > -1 ? '\t' : (first.split(';').length > first.split(',').length ? ';' : ',');
+  var rows = [], row = [], cell = '', q = false;
+  for (var i = 0; i < text.length; i++) {
+    var c = text[i];
+    if (q) { if (c === '"') { if (text[i + 1] === '"') { cell += '"'; i++; } else q = false; } else cell += c; }
+    else if (c === '"' && cell === '') q = true;
+    else if (c === d) { row.push(cell); cell = ''; }
+    else if (c === '\n' || c === '\r') { if (c === '\r' && text[i + 1] === '\n') i++; row.push(cell); rows.push(row); row = []; cell = ''; }
+    else cell += c;
+  }
+  if (cell !== '' || row.length) { row.push(cell); rows.push(row); }
+  return rows;
+}
+function pickIsbn(raw) {
+  var toks = String(raw || '').split(/[\s;,|]+/).map(function (t) { return t.replace(/[^0-9Xx]/g, ''); }).filter(function (t) { return /^(\d{13}|\d{9}[\dXx])$/.test(t); });
+  var l13 = toks.filter(function (t) { return t.length === 13; });
+  return l13[0] || toks[0] || '';
+}
+function convertRows(rows, opts) {
+  var hi = -1, i;
+  for (i = 0; i < Math.min(rows.length, 10); i++) {
+    if ((rows[i] || []).some(function (c) { return ALIAS[norm(c)] === 'title'; })) { hi = i; break; }
+  }
+  if (hi < 0) return { error: 'We could not find a Title column. The first row of your file should have column headings, including one called Title.' };
+  var head = rows[hi], map = {}, ignored = [];
+  head.forEach(function (h, ci) {
+    var k = ALIAS[norm(h)];
+    if (!k) { if (String(h == null ? '' : h).trim()) ignored.push(String(h).trim()); return; }
+    if (map[k] == null) map[k] = ci;
+  });
+  var items = [], noTitle = 0, noLink = 0, noCover = 0, sci = 0, dup = 0, seen = {};
+  for (var r = hi + 1; r < rows.length; r++) {
+    var row = rows[r] || [];
+    if (!row.some(function (c) { return String(c == null ? '' : c).trim(); })) continue;
+    var get = function (k) { var v = map[k] == null ? '' : row[map[k]]; return v == null ? '' : String(v).trim(); };
+    var title = get('title');
+    if (!title) { noTitle++; continue; }
+    var it = { _src: 'file', title: title };
+    ['type', 'author', 'publisher', 'subject', 'location', 'description', 'permalink', 'coverimage', 'linklabel', 'articlesaboutthisresource', 'relatedarticles', 'youmayalsolike'].forEach(function (k) { var v = get(k); if (v) it[k] = v; });
+    var y = get('year');
+    if (y) { var ym = /\b(1[5-9]\d\d|20\d\d)\b/.exec(y); it.year = ym ? ym[1] : y; }
+    var mms = get('mmsid'), mm = /^\D*(\d{9,})\D*$/.exec(mms);
+    if (mm) {
+      if (seen[mm[1]]) dup++; seen[mm[1]] = 1;
+      if (!it.permalink && opts.makeLink) it.permalink = PERMALINK_BASE + mm[1];
+    } else if (mms) sci++;
+    var isbn = pickIsbn(get('isbn'));
+    if (isbn && !it.coverimage && opts.makeCover) it.coverimage = COVER_BASE + isbn + '/lc.jpg';
+    if (!it.permalink) noLink++;
+    if (!it.coverimage) noCover++;
+    items.push(it);
+  }
+  return { items: items, mapped: Object.keys(map), ignored: ignored, noTitle: noTitle, noLink: noLink, noCover: noCover, sci: sci, dup: dup };
+}
+function cleanItems(items) {
+  return items.map(function (it) { var o = {}; OUT_KEYS.forEach(function (k) { if (it[k]) o[k] = it[k]; }); return o; });
+}
+/*PURE-END*/
+
+var esc = function (s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); };
+
+function mount(hostEl) {
+  var R = hostEl.attachShadow({ mode: 'open' });
+  R.innerHTML = '<style>' + CSS + '</style><div class="w">' + HTML + '</div>';
+  var $ = function (s) { return R.querySelector(s); };
+  var items = [], armTimer;
+
+  function say(sel, m) { $(sel).textContent = m; }
+  function copyFrom(ta, statusSel, ok) {
+    (navigator.clipboard ? navigator.clipboard.writeText(ta.value) : Promise.reject()).then(function () { say(statusSel, ok); }, function () { ta.focus(); ta.select(); say(statusSel, 'Selected. Press Ctrl+C (Cmd+C on a Mac) to copy.'); });
+  }
+  function refresh() {
+    var clean = cleanItems(items);
+    $('#out').value = JSON.stringify(clean);
+    $('#count').textContent = items.length ? items.length + (items.length === 1 ? ' title' : ' titles') + ' in your list.' : 'Your list is empty. Convert a file or add a resource above.';
+    $('#list').innerHTML = items.map(function (it, i) {
+      var bits = [it._src === 'manual' ? 'Added by hand' : 'From your file'];
+      bits.push(it.permalink ? 'has link' : 'no link'); bits.push(it.coverimage ? 'has image' : 'no image');
+      return '<li><span class="t">' + esc(it.title) + '<span class="m">' + bits.join(' · ') + '</span></span><button type="button" class="btn sm" data-rm="' + i + '">Remove<span class="sr"> ' + esc(it.title) + '</span></button></li>';
+    }).join('') || '<li><span class="t hint">Nothing here yet.</span></li>';
+    $('#os').textContent = '';
+  }
+  $('#list').addEventListener('click', function (e) {
+    var b = e.target.closest('[data-rm]'); if (!b) return;
+    items.splice(Number(b.dataset.rm), 1); refresh();
+  });
+
+  function finish(rows) {
+    var res = convertRows(rows, { makeLink: $('#mkLink').checked, makeCover: $('#mkCover').checked }), msg = $('#msg');
+    if (res.error) { msg.className = 'msg bad'; msg.innerHTML = '<b>Nothing was changed.</b><span>' + esc(res.error) + '</span>'; msg.focus(); return; }
+    if (!res.items.length) { msg.className = 'msg bad'; msg.innerHTML = '<b>No titles found.</b><span>Every row was missing a title.</span>'; msg.focus(); return; }
+    items = items.filter(function (it) { return it._src === 'manual'; }).concat(res.items);
+    var html = '<b>Converted ' + res.items.length + ' ' + (res.items.length === 1 ? 'title' : 'titles') + '.</b>', warn = false;
+    if (res.noTitle) { html += '<span>' + res.noTitle + ' ' + (res.noTitle === 1 ? 'row was' : 'rows were') + ' skipped because there was no title.</span>'; warn = true; }
+    if (res.sci) { html += '<span>' + res.sci + ' MMS ' + (res.sci === 1 ? 'ID looks' : 'IDs look') + ' damaged (for example, 9.99E+16). Excel rounds long numbers. Export the report as CSV, or set the MMS ID column to Text, then convert again.</span>'; warn = true; }
+    if (res.noLink) { html += '<span>' + res.noLink + ' ' + (res.noLink === 1 ? 'title has' : 'titles have') + ' no link. Check that your file has an MMS ID or permalink column.</span>'; warn = true; }
+    if (res.noCover) html += '<span>' + res.noCover + ' ' + (res.noCover === 1 ? 'title has' : 'titles have') + ' no cover image. They will show a placeholder.</span>';
+    if (res.dup) { html += '<span>' + res.dup + ' MMS ' + (res.dup === 1 ? 'ID appears' : 'IDs appear') + ' more than once.</span>'; warn = true; }
+    if (res.ignored.length) html += '<span>Columns not used: ' + esc(res.ignored.slice(0, 12).join(', ')) + (res.ignored.length > 12 ? ', and more' : '') + '.</span>';
+    msg.className = 'msg ' + (warn ? 'warn' : 'good'); msg.innerHTML = html; refresh(); msg.focus(); say('#cs', '');
+  }
+  function loadXlsx(cb) {
+    if (window.XLSX) return cb(null);
+    var s = document.createElement('script'); s.src = XLSX_URL;
+    s.onload = function () { cb(null); };
+    s.onerror = function () { cb(new Error('The Excel reader could not load.')); };
+    document.head.appendChild(s);
+  }
+  function fail(m) { var msg = $('#msg'); msg.className = 'msg bad'; msg.innerHTML = '<b>Nothing was changed.</b><span>' + esc(m) + '</span>'; say('#cs', ''); msg.focus(); }
+
+  $('#convert').addEventListener('click', function () {
+    var f = $('#file').files[0], pasted = $('#paste').value;
+    if (pasted.trim() && !f) { finish(parseDelimited(pasted)); return; }
+    if (!f) { fail('Choose your exported file first, or paste your table.'); return; }
+    say('#cs', 'Reading your file…');
+    var isX = /\.xlsx?$/i.test(f.name), fr = new FileReader();
+    fr.onerror = function () { fail('That file could not be read.'); };
+    if (!isX) { fr.onload = function () { finish(parseDelimited(String(fr.result))); }; fr.readAsText(f); return; }
+    fr.onload = function () {
+      loadXlsx(function (err) {
+        if (err) { fail('The Excel reader could not load. Save your results as CSV and choose that file instead, or paste the table.'); return; }
+        try {
+          var wb = XLSX.read(new Uint8Array(fr.result), { type: 'array' }), ws = wb.Sheets[wb.SheetNames[0]];
+          finish(XLSX.utils.sheet_to_json(ws, { header: 1, raw: false, defval: '' }));
+        } catch (e) { fail('That Excel file could not be read. ' + e.message); }
+      });
+    };
+    fr.readAsArrayBuffer(f);
+  });
+
+  $('#mform').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var t = $('#mt').value.trim(), u = $('#mu').value.trim(), im = $('#mi').value.trim(), bad = false;
+    [['#mu', u], ['#mi', im]].forEach(function (p) {
+      var wrong = p[1] && !isUrl(p[1]);
+      $(p[0]).setAttribute('aria-invalid', wrong ? 'true' : 'false');
+      $(p[0] + '-e').textContent = wrong ? 'A web address must start with https:// and have no spaces.' : '';
+      if (wrong) bad = true;
+    });
+    if (!t) { say('#ms', 'Add a title first.'); $('#mt').focus(); return; }
+    if (bad) { say('#ms', 'Fix the web address first.'); return; }
+    var it = { _src: 'manual', title: t, type: $('#mty').value.trim(), permalink: u, linklabel: $('#ml').value.trim(), coverimage: im, description: $('#md').value.trim() };
+    items.push(it); refresh(); $('#mform').reset(); say('#ms', 'Added “' + t + '”.'); $('#mt').focus();
+  });
+
+  $('#clear').addEventListener('click', function (e) {
+    var b = e.currentTarget;
+    if (!b.classList.contains('armed')) { b.classList.add('armed'); b.textContent = 'Select again to confirm'; clearTimeout(armTimer); armTimer = setTimeout(function () { b.classList.remove('armed'); b.textContent = 'Clear the list'; }, 4000); return; }
+    b.classList.remove('armed'); b.textContent = 'Clear the list'; items = []; $('#msg').className = 'msg'; $('#msg').innerHTML = ''; refresh();
+  });
+  $('#copy').addEventListener('click', function () {
+    if (!items.length) { say('#os', 'Your list is empty.'); return; }
+    copyFrom($('#out'), '#os', 'Copied. Now paste it into the Display Maker.');
+  });
+  $('#dl').addEventListener('click', function () {
+    if (!items.length) { say('#os', 'Your list is empty.'); return; }
+    var a = document.createElement('a'), url = URL.createObjectURL(new Blob([$('#out').value], { type: 'application/json' }));
+    a.href = url; a.download = 'display-list.json'; R.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url); say('#os', 'Backup file saved.');
+  });
+  $('#tpl').addEventListener('click', function () {
+    var a = document.createElement('a'), url = URL.createObjectURL(new Blob(['title,type,author,publisher,year,subject,location,description,mmsid,isbn,permalink,coverimage,linklabel\r\n'], { type: 'text/csv' }));
+    a.href = url; a.download = 'display-list-template.csv'; R.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+  });
+  refresh();
+}
+var els = document.querySelectorAll('dm-list-converter');
+for (var i = 0; i < els.length; i++) { if (!els[i].shadowRoot) mount(els[i]); }
+})();
+</script>
