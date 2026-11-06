@@ -1,0 +1,122 @@
+<dm-home></dm-home>
+<script>
+(function () {
+/* ===== Settings you can edit =====
+   Links start with "/" so they work on whatever LibGuides address staff use.
+   The g and p numbers are the same ones in your admin links. */
+var G = '1563522';
+var PAGES = {
+  maker: '11734791',
+  collect: '11735679',
+  analytics: '11734786',
+  mms: '11734782',
+  exam: '11734792'
+};
+var HELP_NAME = 'Kevin Edwards, Technical Services';
+var HELP_EMAIL = 'kwedwards@clark.edu';
+
+var CSS = `:host{display:block}
+.w{all:initial;display:grid;gap:16px;max-width:60em;margin:0 auto;padding:16px;border-radius:14px;color-scheme:light;container-type:inline-size;
+  --bg:#f1f4f6;--panel:#fff;--ink:#1b2630;--muted:#4a5966;--line:#c5cfd8;--accent:#16606f;--soft:#e0eef1;
+  background:var(--bg);color:var(--ink);font-family:"Segoe UI",system-ui,-apple-system,Arial,sans-serif;font-size:17px;line-height:1.55}
+.w *,.w *::before,.w *::after{box-sizing:border-box}
+h2{margin:0;font-size:1.7em;line-height:1.2;text-wrap:balance}
+h3{margin:0 0 8px;font-size:1.25em;line-height:1.3;color:var(--accent)}
+h4{margin:0;font-size:1.08em;line-height:1.3}
+p{margin:0 0 10px}
+p:last-child,ul:last-child{margin-bottom:0}
+.lede{font-size:1.08em;color:var(--muted);max-width:44em}
+.hero{background:var(--panel);border:1px solid var(--line);border-top:.35em solid var(--accent);border-radius:12px;padding:22px;display:grid;gap:10px}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;min-width:0}
+.hint{color:var(--muted);font-size:.93em}
+.two{display:grid;gap:16px;grid-template-columns:minmax(0,1fr)}
+@container (min-width:700px){.two{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
+ul{margin:0 0 10px;padding-left:1.3em}
+li{margin-bottom:6px}
+.path{border:2px solid var(--line);border-radius:10px;padding:14px;display:grid;gap:8px;background:#fafcfc}
+.path ol{margin:0;padding-left:1.3em;display:grid;gap:4px}
+.tag{display:inline-block;font-size:.8em;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--accent);border:1px solid var(--accent);border-radius:4px;padding:0 8px;justify-self:start}
+.cards{list-style:none;margin:0;padding:0;display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(15em,1fr))}
+.cards li{margin:0}
+.card{display:grid;gap:4px;height:100%;padding:14px 16px;border:2px solid var(--line);border-radius:10px;background:var(--panel);color:var(--ink);text-decoration:none}
+.card:hover{border-color:var(--accent);background:var(--soft)}
+.card .k{font-size:.8em;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+.card .n{font-weight:700;color:var(--accent);text-decoration:underline;text-underline-offset:2px}
+.card .d{font-size:.93em;color:var(--muted)}
+a{color:var(--accent);font-weight:700;text-underline-offset:2px}
+:where(a,summary):focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:6px}
+details{border-top:1px solid var(--line);padding:8px 0}
+details:first-of-type{border-top:0}
+summary{cursor:pointer;font-weight:700}
+details p{margin-top:6px}
+.sr{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+`;
+var HTML = `
+<header class="hero"><h2 id="t">Display Maker</h2>
+<p class="lede">Make a searchable, flip-card display of books, articles, videos, websites or services for your LibGuide. No coding needed.</p></header>
+
+<section class="panel" aria-labelledby="h1">
+<h3 id="h1">What is this for?</h3>
+<p>Libraries often want to gather a set of resources for a class, an event, a collection or a theme, and show them in one inviting place. The Display Maker turns a list of titles into a display with cover images, a search box, sorting, and Grid and List views. You paste the finished display into any LibGuide.</p>
+<ul>
+<li>Display <b>catalog titles</b> such as a comics and graphic novels collection, or the reference books for a writing class.</li>
+<li>Mix in resources that are <b>not in the catalog</b>, such as a Writing Center page, a YouTube video or a campus service.</li>
+<li>Add a <b>“Learn more”</b> section that links out to a larger page, such as an event series.</li>
+</ul>
+</section>
+
+<section class="panel" aria-labelledby="h2">
+<h3 id="h2">Choose your path</h3>
+<div class="two">
+<div class="path"><span class="tag">Quicker</span><h4>A short list, or resources outside the catalog</h4>
+<p class="hint">Type titles in one at a time. Only a title is required, plus a link if you want a button.</p>
+<ol><li>Go to the <a data-p="maker">Display Maker</a>.</li><li>In Step 2, choose “Type them in.”</li><li>Preview, copy the code, and paste it into your LibGuide.</li></ol></div>
+<div class="path"><span class="tag">Less typing</span><h4>A longer list of catalog titles</h4>
+<p class="hint">Let Alma Analytics fill in authors, publishers, years, subjects, call numbers and cover images for you.</p>
+<ol><li><a data-p="collect">Collect the permalinks</a> for your titles.</li><li>Get the numbers with <a data-p="mms">Permalinks to MMS IDs</a>.</li><li>Run the report in <a data-p="analytics">Alma Analytics for Display Values</a> and convert the results to a list.</li><li>Paste the list into the <a data-p="maker">Display Maker</a>.</li></ol></div>
+</div>
+<p class="hint" style="margin-top:12px">You can combine both paths. Build a list from the catalog, then add web pages or videos by hand.</p>
+</section>
+
+<section class="panel" aria-labelledby="h3">
+<h3 id="h3">What is on each page</h3>
+<ul class="cards" aria-label="Pages in this guide">
+<li><a class="card" data-p="maker"><span class="k">Build</span><span class="n">Display Maker</span><span class="d">The tool itself. Name your display, add titles, preview and copy the code.</span></a></li>
+<li><a class="card" data-p="collect"><span class="k">Prepare</span><span class="n">Data Collection from the Catalog or Elsewhere</span><span class="d">How to gather your titles and links, from the catalog or from anywhere else.</span></a></li>
+<li><a class="card" data-p="mms"><span class="k">Tool</span><span class="n">Permalinks to MMS IDs</span><span class="d">Paste permalinks and get the MMS IDs out, ready for the report.</span></a></li>
+<li><a class="card" data-p="analytics"><span class="k">Tool</span><span class="n">Alma Analytics for Display Values</span><span class="d">Get details for your titles from Analytics and convert them into a list for the Display Maker.</span></a></li>
+<li><a class="card" data-p="exam"><span class="k">See it</span><span class="n">Exam</span><span class="d">See what a finished display looks like.</span></a></li>
+</ul>
+</section>
+
+<section class="panel" aria-labelledby="h4">
+<h3 id="h4">Good to know</h3>
+<details><summary>Do I need to know how to code?</summary>
+<p>No. Everything is filled in through forms. The last step is to copy the code and paste it into a LibGuide as Media/Widget content.</p></details>
+<details><summary>Is my work saved?</summary>
+<p>The Display Maker keeps your work in your own browser as you go, so it stays on that computer. For anything you want to keep or update later, copy your list as a backup.</p></details>
+<details><summary>How many titles can a display hold?</summary>
+<p>There is no fixed limit, and displays with several hundred titles work. Very large lists can load slowly on phones, and the Display Maker will warn you.</p></details>
+<details><summary>Can I change a display after I publish it?</summary>
+<p>Yes. Paste your saved list back into the Display Maker, make your changes, copy the new code, and replace the old code in your LibGuide.</p></details>
+</section>
+
+<section class="panel" aria-labelledby="h5">
+<h3 id="h5">Questions or ideas?</h3>
+<p>Contact <b id="hn"></b> at <a id="hm"></a>. If there is a kind of resource you wish a display could handle, tell us.</p>
+</section>
+`;
+function mount(el) {
+  var R = el.attachShadow({ mode: 'open' });
+  R.innerHTML = '<style>' + CSS + '</style><div class="w">' + HTML + '</div>';
+  Array.prototype.forEach.call(R.querySelectorAll('[data-p]'), function (a) {
+    var id = PAGES[a.getAttribute('data-p')];
+    a.setAttribute('href', '/c.php?g=' + G + '&p=' + id);
+  });
+  R.querySelector('#hn').textContent = HELP_NAME;
+  var m = R.querySelector('#hm'); m.href = 'mailto:' + HELP_EMAIL; m.textContent = HELP_EMAIL;
+}
+var els = document.querySelectorAll('dm-home');
+for (var i = 0; i < els.length; i++) { if (!els[i].shadowRoot) mount(els[i]); }
+})();
+</script>
