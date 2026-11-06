@@ -1,0 +1,739 @@
+<comics-display-builder></comics-display-builder>
+<script>
+(function () {
+/* ===== Settings you can edit =====
+   HELP_URL: web address of your "how to make a list" documentation (leave '' until it exists).
+   HELP_CONTACT: who people should ask for help generating a list (leave '' to hide). */
+var HELP_URL = '';
+var HELP_CONTACT = '';
+
+var CSS = `/* Everything here lives inside a shadow root, so none of it can touch the host page, and the host page cannot restyle it. */
+:host{display:block}
+.cmx{all:initial;position:relative;display:grid;gap:20px;container-type:inline-size;max-width:60em;margin:0 auto;padding:16px;border-radius:14px;color-scheme:light;
+  --bg:#f1f4f6;--panel:#ffffff;--ink:#1b2630;--muted:#4a5966;--line:#c5cfd8;--accent:#16606f;--accent-ink:#ffffff;--soft:#e0eef1;--danger:#a3261f;--warn:#8a5300;--ok:#1d6b3e;--code-bg:#101820;--code-ink:#dbe6ef;--stage:#ffffff;
+  --font:"Segoe UI",system-ui,-apple-system,Arial,sans-serif;
+  background:var(--bg);color:var(--ink);font-family:var(--font);font-size:17px;line-height:1.55}
+.cmx *,.cmx *::before,.cmx *::after{box-sizing:border-box}
+[hidden]{display:none!important}
+.top{display:grid;gap:4px}
+.title{margin:0;font-size:1.6em;line-height:1.2;text-wrap:balance}
+h3{margin:0;font-size:1.35em;line-height:1.25;text-wrap:balance}
+h4,.sub{margin:0;font-size:1.1em}
+p{margin:0}
+a{color:var(--accent);font-weight:700}
+.lede,.hint{color:var(--muted)}
+.hint{font-size:.9em}
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.steps button{width:100%;display:flex;gap:10px;align-items:center;text-align:left;font:inherit;font-weight:700;padding:10px 12px;border:2px solid var(--line);border-radius:10px;background:var(--panel);color:var(--ink);cursor:pointer;min-height:3em}
+.steps button[aria-current="step"]{border-color:var(--accent);background:var(--soft)}
+.steps .n{flex:none;width:1.9em;height:1.9em;border-radius:50%;display:grid;place-items:center;background:var(--muted);color:var(--panel);font-size:.95em}
+.steps [aria-current="step"] .n{background:var(--accent);color:var(--accent-ink)}
+@container (max-width:560px){.steps .t{font-size:.85em}.steps button{padding:8px;gap:6px}}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;display:grid;gap:18px;min-width:0}
+.panel>header{display:grid;gap:4px}
+.group{display:grid;gap:10px;min-width:0}
+.f{display:grid;gap:4px;min-width:0}
+label,legend{font-weight:700}
+fieldset{border:0;margin:0;padding:0;min-width:0}
+input[type=text],textarea,select{width:100%;font:inherit;color:var(--ink);background:var(--panel);border:2px solid var(--muted);border-radius:8px;padding:10px 12px;min-height:2.9em}
+textarea{resize:vertical;line-height:1.45}
+input[aria-invalid="true"]{border-color:var(--danger)}
+.err{color:var(--danger);font-size:.9em;font-weight:700}
+:where(a,button,input,select,textarea,summary):focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.btn{font:inherit;font-weight:700;min-height:2.9em;padding:8px 18px;border-radius:8px;border:2px solid var(--accent);background:var(--panel);color:var(--accent);cursor:pointer}
+.btn:hover{background:var(--soft)}
+.btn.pri{background:var(--accent);color:var(--accent-ink)}
+.btn.pri:hover{filter:brightness(1.1)}
+.btn.sm{min-height:2.3em;padding:4px 12px;font-size:.95em}
+.btn.armed{background:var(--danger);border-color:var(--danger);color:var(--panel)}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.row.sb{justify-content:space-between}
+.chk{display:flex;gap:10px;align-items:flex-start;font-weight:400;cursor:pointer}
+.chk input{margin-top:.3em;width:1.25em;height:1.25em;flex:none;accent-color:var(--accent)}
+.chk b{font-weight:700}
+.checks{display:grid;grid-template-columns:repeat(auto-fit,minmax(15em,1fr));gap:10px 18px}
+.swatches{display:flex;flex-wrap:wrap;gap:10px}
+.sw{position:relative}
+.sw input{position:absolute;opacity:0;inset:0;width:100%;height:100%;margin:0;cursor:pointer}
+.sw span{display:flex;align-items:center;gap:8px;border:2px solid var(--line);border-radius:999px;padding:6px 14px 6px 8px;font-weight:400;background:var(--panel)}
+.sw i{width:1.5em;height:1.5em;border-radius:50%;display:block;border:2px solid var(--panel);box-shadow:0 0 0 1px var(--muted)}
+.sw input:checked+span{border-color:var(--accent);background:var(--soft);font-weight:700}
+.sw input:focus-visible+span{outline:3px solid var(--accent);outline-offset:2px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips label{position:relative;font-weight:700;border:2px solid var(--line);border-radius:999px;padding:8px 18px;cursor:pointer;background:var(--panel)}
+.chips input{position:absolute;opacity:0;inset:0;margin:0;width:100%;height:100%;cursor:pointer}
+.chips label:has(input:checked){border-color:var(--accent);background:var(--soft)}
+.chips label:has(input:focus-visible){outline:3px solid var(--accent);outline-offset:2px}
+.split{display:grid;gap:16px;grid-template-columns:minmax(0,1fr)}
+@container (min-width:760px){.split{grid-template-columns:minmax(0,15em) minmax(0,1fr)}}
+.tlist{list-style:none;margin:0;padding:0;display:grid;gap:4px;max-height:22em;overflow:auto;border:1px solid var(--line);border-radius:8px;padding:6px}
+.tlist button{width:100%;text-align:left;font:inherit;padding:8px 10px;border:2px solid transparent;border-radius:6px;background:transparent;color:var(--ink);cursor:pointer;overflow-wrap:anywhere}
+.tlist button:hover{background:var(--soft)}
+.tlist button[aria-current="true"]{border-color:var(--accent);background:var(--soft);font-weight:700}
+.editor{display:grid;gap:14px;min-width:0}
+.lrow{display:grid;grid-template-columns:repeat(auto-fit,minmax(12em,1fr));gap:10px;align-items:end;padding:12px;border:1px solid var(--line);border-radius:8px}
+.note{background:var(--soft);border-radius:8px;padding:10px 14px;display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;justify-content:space-between}
+.msg{padding:10px 14px;border-radius:8px;border:2px solid var(--line);display:grid;gap:4px}
+.msg.good{border-color:var(--ok)}.msg.bad{border-color:var(--danger)}
+.msg:empty{display:none}
+.stage{background:var(--stage);border:1px dashed var(--line);border-radius:8px;padding:10px;overflow:auto}
+#host{margin:0 auto;width:100%;max-width:100%}
+.issues{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.issues li{display:flex;gap:10px;align-items:flex-start;flex-wrap:wrap}
+.tag{flex:none;font-size:.8em;font-weight:700;text-transform:uppercase;letter-spacing:.05em;border:1px solid currentColor;border-radius:4px;padding:0 8px}
+.tag.bad{color:var(--danger)}.tag.warn{color:var(--warn)}.tag.ok{color:var(--ok)}
+ol.how{margin:0;padding-left:1.4em;display:grid;gap:6px}
+#code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.85em;background:var(--code-bg);color:var(--code-ink);border-color:var(--code-bg);min-height:12em;white-space:pre;overflow:auto}
+details>summary{cursor:pointer;font-weight:700;padding:4px 0}
+.nav{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;border-top:1px solid var(--line);padding-top:16px}
+.status{color:var(--muted);min-height:1.4em}
+.sr{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+`;
+var HTML = `<header class="top"><h2 class="title">Digital Display Maker</h2><p class="lede">Make a searchable display of books, articles, videos, websites or other resources for your LibGuide in three steps. No coding needed.</p></header>
+
+  <nav aria-label="Steps">
+    <ol class="steps" id="stepBar">
+      <li><button type="button" data-step="1"><span class="n" aria-hidden="true">1</span><span class="t">Name your display</span></button></li>
+      <li><button type="button" data-step="2"><span class="n" aria-hidden="true">2</span><span class="t">Add your titles</span></button></li>
+      <li><button type="button" data-step="3"><span class="n" aria-hidden="true">3</span><span class="t">Preview and copy</span></button></li>
+    </ol>
+  </nav>
+
+  <section class="panel" id="p1" aria-labelledby="h1s">
+    <header><h3 id="h1s" tabindex="-1">Step 1: Name your display</h3><p class="hint">Your work saves in this browser as you go.</p></header>
+    <div class="f"><label for="name">Display name</label><span class="hint" id="name-h">This appears as the big heading at the top.</span>
+      <input type="text" id="name" aria-describedby="name-h" autocomplete="off"></div>
+    <div class="f"><label for="intro">Short introduction (optional)</label><span class="hint" id="intro-h">One or two sentences under the heading.</span>
+      <textarea id="intro" rows="2" aria-describedby="intro-h"></textarea></div>
+    <fieldset class="group"><legend>Color</legend><div class="swatches" id="colors"></div></fieldset>
+
+    <div class="group">
+      <label class="chk"><input type="checkbox" id="moreOn"><span><b>Add a \u201cLearn more\u201d section with links to other pages</b><br><span class="hint">For a web page, research guide, event series, video, campus service or anything else that gives more context. The links appear below the titles.</span></span></label>
+      <div id="moreFields" class="group">
+        <div class="f"><label for="moreHead">Section heading</label><input type="text" id="moreHead" autocomplete="off"></div>
+        <div class="f"><label for="moreNote">Sentence under the heading (optional)</label><textarea id="moreNote" rows="2"></textarea></div>
+        <div class="group"><h4 id="linksH">Links</h4>
+          <div class="group" id="linkList" aria-labelledby="linksH"></div>
+          <div class="row"><button type="button" class="btn sm" id="addLink">Add a link</button></div></div>
+      </div>
+    </div>
+
+    <div class="group">
+      <label class="chk"><input type="checkbox" id="ftOn"><span><b>Show a \u201cNeed help?\u201d box at the bottom</b><br><span class="hint">A heading, a sentence, and one button, such as a link to Ask a Librarian.</span></span></label>
+      <div id="ftFields" class="group">
+        <div class="f"><label for="ftHead">Box heading</label><input type="text" id="ftHead" autocomplete="off"></div>
+        <div class="f"><label for="ftNote">Sentence under the heading</label><textarea id="ftNote" rows="2"></textarea></div>
+        <div class="f"><label for="ftLabel">Button text</label><input type="text" id="ftLabel" autocomplete="off"></div>
+        <div class="f"><label for="ftUrl">Button web address</label><span class="hint" id="ftUrl-h">Starts with https://</span><input type="text" id="ftUrl" inputmode="url" aria-describedby="ftUrl-h ftUrl-e" autocomplete="off"><span class="err" id="ftUrl-e"></span></div>
+      </div>
+    </div>
+    <details><summary>Advanced (most people can skip this)</summary>
+      <div class="f" style="margin-top:8px"><label for="advId">Display ID</label><span class="hint" id="advId-h">Only change this if you put two different displays on the same LibGuide page. Each one needs its own ID: letters, numbers and hyphens.</span>
+        <input type="text" id="advId" aria-describedby="advId-h" autocomplete="off" spellcheck="false"></div></details>
+    <div class="nav"><button type="button" class="btn sm" id="reset1">Reset/Start over</button><button type="button" class="btn pri" data-go="2">Next: Add your titles</button></div>
+  </section>
+
+  <section class="panel" id="p2" aria-labelledby="h2s" hidden>
+    <header><h3 id="h2s" tabindex="-1">Step 2: Add your titles</h3><p class="hint">A \u201ctitle\u201d can be a book, article, video, website, service or anything else. It does not need a catalog record. Only the name is required.</p></header>
+    <div class="note" id="sampleNote"><span>These are <b>example titles</b> so you can see how it looks. Remove them before you copy your display.</span><button type="button" class="btn sm" id="clearSample">Remove the examples</button></div>
+    <fieldset class="group"><legend>What should each title show?</legend>
+      <p class="hint">Turn off anything you don't have or don't want. The title is always shown.</p>
+      <div class="checks" id="fieldChecks"></div></fieldset>
+    <fieldset class="group"><legend>How do you want to add titles?</legend>
+      <div class="chips"><label><input type="radio" name="m" value="type" checked> Type them in</label><label><input type="radio" name="m" value="paste"> Paste a list</label></div></fieldset>
+
+    <div id="mType" class="group">
+      <div class="row sb"><h4 id="countH">Your titles</h4><button type="button" class="btn pri sm" id="addTitle">Add a title</button></div>
+      <p class="hint" id="bigNote" hidden>This is a long list. It will work, but typing in this many titles is slow. \u201cPaste a list\u201d is easier for lists this size.</p>
+      <div class="split">
+        <ul class="tlist" id="tlist" aria-label="Your titles"></ul>
+        <div class="editor" id="editor"></div>
+      </div>
+    </div>
+
+    <div id="mPaste" class="group" hidden>
+      <div class="f"><label for="pasteText">Paste your list here</label>
+        <span class="hint" id="pasteText-h">Use the list your catalog or Alma Analytics tool made (JSON format). It should start with [ and end with ]. Any extra details we don't use are ignored.</span>
+        <textarea id="pasteText" rows="8" aria-describedby="pasteText-h" spellcheck="false"></textarea></div>
+      <p class="hint" id="pasteHelp"></p>
+      <details><summary>Which details can a list include?</summary>
+        <p class="hint" style="margin-top:8px">Each entry can have: title (required), type, author, publisher, year, subject, location, description, coverimage, permalink, linklabel, articlesaboutthisresource, relatedarticles, youmayalsolike. Entries for things outside the catalog, such as a video or a campus service, can have just a title and a permalink.</p></details>
+      <div class="f"><label for="pasteFile">Or choose a saved list file</label><input type="file" id="pasteFile" accept=".json,.txt,application/json,text/plain"></div>
+      <fieldset class="group"><legend>What should happen to titles you already have?</legend>
+        <div class="chips"><label><input type="radio" name="pm" value="replace" checked> Replace them</label><label><input type="radio" name="pm" value="add"> Add to them</label></div></fieldset>
+      <div class="row"><button type="button" class="btn pri" id="pasteGo">Use this list</button></div>
+      <div class="msg" id="pasteMsg" role="status" tabindex="-1"></div>
+    </div>
+
+    <details><summary>Copy your titles as a list</summary>
+      <div class="f" style="margin-top:8px"><span class="hint" id="exp-h">Handy for saving a backup, or for pasting into this tool later on another computer.</span>
+        <textarea id="expText" rows="4" readonly aria-label="Your titles as a list" aria-describedby="exp-h" spellcheck="false"></textarea>
+        <div class="row"><button type="button" class="btn sm" id="expCopy">Copy my list</button><span class="status" id="expMsg" role="status"></span></div></div></details>
+
+    <div class="nav"><button type="button" class="btn" data-go="1">Back</button><button type="button" class="btn pri" data-go="3">Next: Preview and copy</button></div>
+  </section>
+
+  <section class="panel" id="p3" aria-labelledby="h3s" hidden>
+    <header><h3 id="h3s" tabindex="-1">Step 3: Preview and copy</h3><p class="hint">Try the search, sort, Grid and List buttons below. This is how it will look on your LibGuide.</p></header>
+    <div class="group"><h4>Check before you copy</h4><ul class="issues" id="problems"></ul></div>
+    <div class="chips" role="radiogroup" aria-label="Preview size"><label><input type="radio" name="w" value="380"> Phone</label><label><input type="radio" name="w" value="780"> Tablet</label><label><input type="radio" name="w" value="100%" checked> Full width</label></div>
+    <div class="stage"><div id="host"></div></div>
+    <div class="group">
+      <h3 class="sub">Put it in your LibGuide</h3>
+      <ol class="how">
+        <li>Select <b>Copy display code</b>.</li>
+        <li>In your LibGuide, choose <b>Add Content</b>, then <b>Media/Widget</b>. Menu names can differ a little by LibGuides version.</li>
+        <li>Paste into the box meant for embed or HTML code, then save.</li>
+      </ol>
+      <div class="row"><button type="button" class="btn pri" id="copy">Copy display code</button><span class="status" id="copyMsg" role="status"></span></div>
+      <p class="hint" id="sizeNote"></p>
+      <details id="codeBox"><summary>Show the code (optional)</summary><div class="f" style="margin-top:8px"><label for="code" class="sr">Display code</label><textarea id="code" readonly rows="10" spellcheck="false"></textarea></div></details>
+    </div>
+    <div class="nav"><button type="button" class="btn" data-go="2">Back</button><button type="button" class="btn sm" id="reset">Start over</button></div>
+  </section>
+`;
+/* ===== Runtime: this exact function is copied into the exported code ===== */
+function lgsInit(root, data, cfg) {
+  var F = cfg.fields, uid = cfg.id;
+  var LABELS = { type: 'Type', author: 'Author', publisher: 'Publisher', year: 'Year', subject: 'Subject', location: 'Location', description: 'Description' };
+  var DETAIL_KEYS = ['type', 'author', 'publisher', 'year', 'subject', 'location', 'description'];
+  var BTN = [['permalink', 'View Resource', ' lgs-primary'], ['articlesaboutthisresource', 'Articles About This Resource', ''], ['relatedarticles', 'Related Articles', ''], ['youmayalsolike', 'You May Also Like', '']];
+  var $ = function (s) { return root.querySelector(s); };
+  var list = $('.lgs-list'), info = $('.lgs-info'), empty = $('.lgs-empty'), search = $('.lgs-search'), sortEl = $('.lgs-sort');
+  var views = root.querySelectorAll('.lgs-view');
+  var state = { q: '', sort: 'title', view: 'grid' }, shown = [], timer;
+  var esc = function (s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); };
+  var safe = function (u) { return /^https?:\/\/\S+$/i.test(u || '') ? u : ''; };
+  var cmp = function (a, b) { return String(a || '').localeCompare(String(b || ''), undefined, { numeric: true, sensitivity: 'base' }); };
+  var ph = function () { return '<div class="lgs-x lgs-ph" aria-hidden="true"><span class="lgs-x lgs-i">No image available</span></div>'; };
+
+  function cover(it) {
+    var u = F.coverimage && safe(it.coverimage);
+    return u ? '<img class="lgs-x lgs-img" src="' + esc(u) + '" alt="Cover image for ' + esc(it.title) + '" loading="lazy">' : ph();
+  }
+  function details(it) {
+    var h = '';
+    DETAIL_KEYS.forEach(function (k) {
+      if (F[k] && it[k]) h += '<div class="lgs-x lgs-drow"><dt class="lgs-x lgs-dt">' + LABELS[k] + '</dt><dd class="lgs-x lgs-dd">' + esc(it[k]) + '</dd></div>';
+    });
+    return h ? '<dl class="lgs-x lgs-dl">' + h + '</dl>' : '';
+  }
+  function actions(it) {
+    var h = '';
+    BTN.forEach(function (b) {
+      var u = F[b[0]] && safe(it[b[0]]);
+      var text = (b[0] === 'permalink' && F.linklabel && it.linklabel) ? it.linklabel : b[1];
+      if (u) h += '<a class="lgs-x lgs-act' + b[2] + '" href="' + esc(u) + '" target="_blank" rel="noopener noreferrer">' + esc(text) + '<span class="lgs-x lgs-sr"> for ' + esc(it.title) + ', opens in a new tab</span></a>';
+    });
+    return h ? '<div class="lgs-x lgs-actions">' + h + '</div>' : '';
+  }
+  function gridCard(it, i) {
+    var id = uid + '-c' + i, d = details(it) + actions(it);
+    return '<li class="lgs-x lgs-cell"><article class="lgs-x lgs-flip"><div class="lgs-x lgs-inner">' +
+      '<div class="lgs-x lgs-face lgs-front"><div class="lgs-x lgs-cover">' + cover(it) + '</div><div class="lgs-x lgs-cap"><h3 class="lgs-x lgs-t">' + esc(it.title) + '</h3>' +
+      '<button type="button" class="lgs-x lgs-flipbtn" aria-expanded="false" aria-controls="' + id + '">Learn more<span class="lgs-x lgs-sr"> about ' + esc(it.title) + '</span></button></div></div>' +
+      '<div class="lgs-x lgs-face lgs-back" id="' + id + '" inert><p class="lgs-x lgs-bt">' + esc(it.title) + '</p>' + (d || '<p class="lgs-x lgs-p">No more details for this title.</p>') +
+      '<button type="button" class="lgs-x lgs-backbtn">Back<span class="lgs-x lgs-sr"> to the cover of ' + esc(it.title) + '</span></button></div></div></article></li>';
+  }
+  function listRow(it) {
+    return '<li class="lgs-x lgs-cell"><article class="lgs-x lgs-row"><div class="lgs-x lgs-rcover">' + cover(it) + '</div><div class="lgs-x lgs-rinfo"><h3 class="lgs-x lgs-rt">' + esc(it.title) + '</h3>' + details(it) + '</div>' + actions(it) + '</article></li>';
+  }
+  function render() {
+    list.className = 'lgs-x ' + (state.view === 'grid' ? 'lgs-grid' : 'lgs-rows');
+    list.innerHTML = shown.map(function (it, i) { return state.view === 'grid' ? gridCard(it, i) : listRow(it); }).join('');
+    empty.hidden = shown.length > 0;
+  }
+  function apply() {
+    var t = state.q.trim().toLowerCase(), keys = ['title'].concat(DETAIL_KEYS).filter(function (k) { return k === 'title' || F[k]; });
+    shown = data.filter(function (it) { return !t || keys.some(function (k) { return String(it[k] || '').toLowerCase().indexOf(t) > -1; }); });
+    var s = state.sort;
+    shown.sort(function (a, b) {
+      if (s === 'year') return (parseInt(b.year, 10) || 0) - (parseInt(a.year, 10) || 0) || cmp(a.title, b.title);
+      return cmp(a[s], b[s]) || cmp(a.title, b.title);
+    });
+    var n = shown.length, tot = data.length, w = function (x) { return x + (x === 1 ? ' title' : ' titles'); };
+    info.textContent = t ? 'Showing ' + n + ' of ' + w(tot) + ' for \u201c' + state.q.trim() + '\u201d' : 'Showing all ' + w(tot);
+    render();
+  }
+  function flip(card, on) {
+    var f = card.querySelector('.lgs-front'), b = card.querySelector('.lgs-back'), btn = card.querySelector('.lgs-flipbtn');
+    card.classList.toggle('lgs-flipped', on);
+    f.inert = on; b.inert = !on;
+    btn.setAttribute('aria-expanded', on ? 'true' : 'false');
+    var t = on ? (b.querySelector('a') || b.querySelector('button')) : btn;
+    if (t) t.focus({ preventScroll: true });
+  }
+
+  search.addEventListener('input', function () { clearTimeout(timer); timer = setTimeout(function () { state.q = search.value; apply(); }, 200); });
+  if (sortEl) sortEl.addEventListener('change', function () { state.sort = sortEl.value; apply(); });
+  Array.prototype.forEach.call(views, function (b) {
+    b.addEventListener('click', function () {
+      state.view = b.getAttribute('data-view');
+      Array.prototype.forEach.call(views, function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+      render();
+    });
+  });
+  list.addEventListener('click', function (e) {
+    var t = e.target.closest ? e.target : e.target.parentNode, card = t.closest('.lgs-flip');
+    if (!card) return;
+    if (t.closest('.lgs-flipbtn')) flip(card, true);
+    else if (t.closest('.lgs-backbtn')) flip(card, false);
+  });
+  list.addEventListener('keydown', function (e) {
+    if (e.key !== 'Escape') return;
+    var card = e.target.closest && e.target.closest('.lgs-flip');
+    if (card && card.classList.contains('lgs-flipped')) { e.preventDefault(); flip(card, false); }
+  });
+  list.addEventListener('error', function (e) {
+    var im = e.target; if (im && im.tagName === 'IMG') im.outerHTML = ph();
+  }, true);
+  apply();
+}
+
+/* ===== Fields, colors, CSS, markup and export ===== */
+const FIELDS = [
+  { k: 'type', l: 'Type of resource', g: 'text', h: 'For example: Book, Video, Website, Service' },
+  { k: 'author', l: 'Author', g: 'text' }, { k: 'publisher', l: 'Publisher', g: 'text' },
+  { k: 'year', l: 'Year', g: 'text' }, { k: 'subject', l: 'Subject', g: 'text' },
+  { k: 'location', l: 'Location (shelf or call number)', g: 'text' },
+  { k: 'description', l: 'Short description', g: 'text', h: 'One or two sentences about this resource' },
+  { k: 'coverimage', l: 'Cover picture', g: 'url', h: 'Web address of the cover image - (e.g. right-click cover image in the catalog and copy "image address")' },
+  { k: 'permalink', l: '\u201cView Resource\u201d button', g: 'url', h: 'Web address of the catalog record, permalink, video, web page or other resource' },
+  { k: 'linklabel', l: 'Custom text for the main button', g: 'text', h: 'For example: Watch the video, Visit the Writing Center. Leave blank to use \u201cView Resource\u201d.' },
+  { k: 'articlesaboutthisresource', l: '\u201cArticles About This Resource\u201d button', g: 'url', h: 'Web address for the button' },
+  { k: 'relatedarticles', l: '\u201cRelated Articles\u201d button', g: 'url', h: 'Web address for the button' },
+  { k: 'youmayalsolike', l: '\u201cYou May Also Like\u201d button', g: 'url', h: 'Web address for the button' }
+];
+const ALL_KEYS = ['title'].concat(FIELDS.map(f => f.k));
+const BIG_NOTE = 300, BIG_WARN = 400;
+const COLORS = [
+  { id: 'navy', n: 'Navy', c: '#334e68' }, { id: 'teal', n: 'Teal', c: '#1f6064' },
+  { id: 'plum', n: 'Plum', c: '#5a3b78' }, { id: 'forest', n: 'Forest', c: '#2f5d3a' },
+  { id: 'wine', n: 'Wine', c: '#7b2c3b' }, { id: 'slate', n: 'Slate', c: '#3d4a5c' }
+];
+const esc = s => String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+const isUrl = u => /^https?:\/\/\S+$/i.test(u || '');
+const slug = s => String(s || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 28);
+const cleanId = s => { s = String(s || '').replace(/[^A-Za-z0-9_-]/g, ''); return /^[A-Za-z]/.test(s) ? s : 'lgs-' + s; };
+function mix(hex, to, t) {
+  const c = [1, 3, 5].map(i => parseInt(hex.substr(i, 2), 16));
+  return '#' + c.map((v, i) => Math.round(v + (to[i] - v) * t).toString(16).padStart(2, '0')).join('');
+}
+const tint = (c, t) => mix(c, [255, 255, 255], t);
+const dark = (c, t) => mix(c, [0, 0, 0], t);
+
+function lgsCss(id, P) {
+  const S = '#' + id, out = [];
+  const T = tint(P, .93), T2 = tint(P, .85), B = tint(P, .75), D = dark(P, .25);
+  const r = (sel, body) => out.push(sel.split(',').map(s => S + ' ' + s.trim()).join(',') + '{' + body + '}');
+  out.push(`/* Everything below is limited to ${S}. It does not change the rest of the page. */`);
+  out.push(`${S}{all:initial;display:block;position:relative;container-type:inline-size;max-width:75em;margin:0 auto;font-family:"Segoe UI",system-ui,-apple-system,Arial,sans-serif;font-size:max(1rem,16px);line-height:1.55;color:#26323f}`);
+  r('.lgs-x', 'box-sizing:border-box;display:block;margin:0;padding:0;border:0;background:none;box-shadow:none;border-radius:0;font:inherit;color:inherit;text-decoration:none;text-transform:none;letter-spacing:normal;text-shadow:none;text-indent:0;word-spacing:normal;white-space:normal;text-align:inherit;float:none;position:static;width:auto;height:auto;min-width:0;max-width:none;list-style:none;opacity:1;overflow:visible;transform:none;transition:none;vertical-align:baseline;cursor:auto;filter:none');
+  r('.lgs-x::before,.lgs-x::after', 'content:none');
+  r('.lgs-x[hidden]', 'display:none');
+  r('.lgs-i', 'display:inline');
+  r('.lgs-wrap', 'display:flex;flex-direction:column;gap:1.25em;padding:1em;background:#fff;border-radius:1em;overflow-wrap:break-word');
+  out.push(`@container (min-width:640px){${S} .lgs-wrap{padding:1.5em;gap:1.5em}}`);
+  r('.lgs-head', `text-align:center;padding:1.5em 1em;background:${T};border-top:.3em solid ${P};border-radius:1em`);
+  r('.lgs-h', `color:${P};font-size:1.75em;font-size:clamp(1.5em,1em + 3cqi,2.5em);font-weight:700;line-height:1.2`);
+  r('.lgs-intro', 'max-width:40em;margin:.6em auto 0;font-size:1.0625em;color:#3b4856');
+  r('.lgs-controls', `display:grid;gap:1em;padding:1.1em;background:${T};border-radius:.9em`);
+  out.push(`@container (min-width:700px){${S} .lgs-controls{grid-template-columns:minmax(0,2fr) max-content minmax(0,1fr);align-items:end}${S} .lgs-controls.lgs-two{grid-template-columns:minmax(0,2fr) max-content}}`);
+  r('.lgs-field', 'display:flex;flex-direction:column;gap:.35em');
+  r('.lgs-lbl', `color:${P};font-weight:700`);
+  r('.lgs-search,.lgs-sort', `width:100%;min-height:2.75em;padding:.55em .8em;border:2px solid ${P};border-radius:.5em;background:#fff;color:#26323f;font-size:1em;line-height:1.3`);
+  r('.lgs-search:focus-visible,.lgs-sort:focus-visible', `outline:3px solid ${P};outline-offset:2px`);
+  r('.lgs-toggle', `display:flex;gap:.2em;padding:.2em;border:2px solid ${P};border-radius:.5em;background:#fff`);
+  r('.lgs-view', `flex:1;min-height:2.4em;padding:.4em 1.2em;border-radius:.3em;background:transparent;color:${P};font-weight:700;text-align:center;white-space:nowrap;cursor:pointer`);
+  r('.lgs-view[aria-pressed="true"]', `background:${P};color:#fff`);
+  r('.lgs-view:hover', `background:${T2}`);
+  r('.lgs-view[aria-pressed="true"]:hover', `background:${D}`);
+  r('.lgs-view:focus-visible', `outline:3px solid ${P};outline-offset:2px`);
+  r('.lgs-info', `text-align:center;font-weight:700;color:${P}`);
+  r('.lgs-empty', `text-align:center;padding:2em 1em;background:${T};border-radius:.9em;color:${P};font-weight:700`);
+  r('.lgs-grid', 'display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,17.5em),1fr));gap:1.25em');
+  r('.lgs-rows', 'display:flex;flex-direction:column;gap:1em');
+  r('.lgs-cell', 'display:flex');
+  r('.lgs-flip', 'display:flex;flex:1;min-width:0;perspective:1200px');
+  r('.lgs-inner', 'display:grid;flex:1;min-width:0;transform-style:preserve-3d;transition:transform .6s');
+  r('.lgs-flip.lgs-flipped .lgs-inner', 'transform:rotateY(180deg)');
+  r('.lgs-face', `grid-area:1/1;display:flex;flex-direction:column;min-width:0;background:#fff;border:1px solid ${B};border-radius:.9em;box-shadow:0 3px 12px rgba(20,35,50,.14);overflow:hidden;backface-visibility:hidden;-webkit-backface-visibility:hidden`);
+  r('.lgs-front', 'position:relative');
+  r('.lgs-back', 'transform:rotateY(180deg);padding:1em;gap:.6em');
+  r('.lgs-cover', `position:relative;flex:1 1 auto;aspect-ratio:2/3;background:linear-gradient(135deg,${T},${T2});overflow:hidden`);
+  r('.lgs-img', 'position:absolute;top:0;left:0;width:100%;height:100%;padding:.75em;object-fit:contain');
+  r('.lgs-ph', `display:flex;align-items:center;justify-content:center;width:100%;height:100%;padding:1em;text-align:center;color:${P};font-weight:700`);
+  r('.lgs-cap', 'flex:none;display:flex;flex-direction:column;align-items:center;gap:.5em;padding:.8em;background:rgba(16,24,34,.93);color:#fff;text-align:center');
+  r('.lgs-t', 'color:#fff;font-size:1.05em;font-weight:700;line-height:1.25');
+  r('.lgs-flipbtn', 'min-height:2.4em;padding:.4em 1.1em;border-radius:.4em;background:#fff;color:#16202b;font-weight:700;text-align:center;cursor:pointer');
+  r('.lgs-flipbtn:hover', 'background:#dfe8ee');
+  r('.lgs-flipbtn:focus-visible', 'outline:3px solid #fff;outline-offset:2px');
+  r('.lgs-bt', `color:${P};font-size:1.05em;font-weight:700;line-height:1.3`);
+  r('.lgs-p', 'font-size:.95em');
+  r('.lgs-dl', 'display:flex;flex-direction:column;gap:.4em');
+  r('.lgs-drow', 'display:flex;flex-direction:column;font-size:.93em');
+  r('.lgs-dt', `color:${P};font-size:.8em;font-weight:700;letter-spacing:.04em;text-transform:uppercase`);
+  r('.lgs-actions', 'display:flex;flex-direction:column;gap:.5em;margin-top:.3em');
+  r('.lgs-act', `display:flex;align-items:center;justify-content:center;min-height:2.5em;padding:.5em .9em;border:2px solid ${P};border-radius:.45em;background:#fff;color:${P};font-size:.95em;font-weight:700;line-height:1.3;text-align:center;text-decoration:none;cursor:pointer`);
+  r('.lgs-act:hover', `background:${T2}`);
+  r('.lgs-primary', `background:${P};color:#fff`);
+  r('.lgs-primary:hover', `background:${D}`);
+  r('.lgs-act:focus-visible,.lgs-backbtn:focus-visible', `outline:3px solid ${P};outline-offset:2px`);
+  r('.lgs-backbtn', `align-self:center;margin-top:auto;min-height:2.4em;padding:.4em 1.3em;border:2px solid ${P};border-radius:.4em;background:#fff;color:${P};font-weight:700;cursor:pointer`);
+  r('.lgs-backbtn:hover', `background:${T2}`);
+  r('.lgs-row', `flex:1;display:grid;grid-template-columns:6.5em minmax(0,1fr);gap:1em;padding:1em;background:#fff;border:1px solid ${B};border-radius:.9em;box-shadow:0 2px 8px rgba(20,35,50,.1)`);
+  r('.lgs-row>.lgs-actions', 'grid-column:1/-1;margin:0');
+  out.push(`@container (min-width:640px){${S} .lgs-row{grid-template-columns:7.5em minmax(0,1fr) 15em}${S} .lgs-row>.lgs-actions{grid-column:auto}}`);
+  r('.lgs-rcover', `position:relative;aspect-ratio:2/3;background:linear-gradient(135deg,${T},${T2});border-radius:.5em;overflow:hidden`);
+  r('.lgs-rcover .lgs-img', 'padding:.3em');
+  r('.lgs-rcover .lgs-ph', 'padding:.5em;font-size:.8em');
+  r('.lgs-rt', `color:${P};font-size:1.2em;font-weight:700;line-height:1.3;margin-bottom:.5em`);
+  r('.lgs-foot', `display:flex;flex-direction:column;align-items:center;gap:.8em;padding:1.5em 1em;text-align:center;background:${T};border-radius:1em`);
+  r('.lgs-fh', `color:${P};font-size:1.35em;font-weight:700;line-height:1.3`);
+  r('.lgs-fp', 'max-width:40em;color:#3b4856');
+  r('.lgs-foot .lgs-act', 'display:inline-flex;padding:.55em 1.5em');
+  r('.lgs-morelist', 'display:flex;flex-wrap:wrap;justify-content:center;gap:.7em');
+  r('.lgs-sr', 'position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap');
+  out.push(`@media (prefers-reduced-motion:no-preference){${S} .lgs-flip{transition:transform .2s}${S} .lgs-flip:hover{transform:translateY(-4px)}}`);
+  out.push(`@media (prefers-reduced-motion:reduce){${S} .lgs-inner{transition:none}}`);
+  out.push(`@media (forced-colors:active){${S} .lgs-view[aria-pressed="true"]{outline:2px solid Highlight}}`);
+  return '<style>\n' + out.join('\n') + '\n</style>';
+}
+
+function lgsShell(id, cfg, fields) {
+  const ft = cfg.footerOn && cfg.ftLabel && isUrl(cfg.ftUrl) ? `
+<footer class="lgs-x lgs-foot"><h2 class="lgs-x lgs-fh">${esc(cfg.ftHead)}</h2>${cfg.ftNote ? `<p class="lgs-x lgs-fp">${esc(cfg.ftNote)}</p>` : ''}<a class="lgs-x lgs-act lgs-primary" href="${esc(cfg.ftUrl)}" target="_blank" rel="noopener noreferrer">${esc(cfg.ftLabel)}<span class="lgs-x lgs-sr"> (opens in a new tab)</span></a></footer>` : '';
+  const links = (cfg.links || []).filter(l => String(l.label || '').trim() && isUrl(String(l.url || '').trim()));
+  const more = cfg.moreOn && links.length ? `
+<nav class="lgs-x lgs-foot lgs-more" aria-labelledby="${id}-more"><h2 class="lgs-x lgs-fh" id="${id}-more">${esc(cfg.moreHead || 'Learn more')}</h2>${cfg.moreNote ? `<p class="lgs-x lgs-fp">${esc(cfg.moreNote)}</p>` : ''}<ul class="lgs-x lgs-morelist" role="list">${links.map(l => `<li class="lgs-x"><a class="lgs-x lgs-act" href="${esc(String(l.url).trim())}" target="_blank" rel="noopener noreferrer">${esc(String(l.label).trim())}<span class="lgs-x lgs-sr"> (opens in a new tab)</span></a></li>`).join('')}</ul></nav>` : '';
+  const sorts = [['title', 'Title (A to Z)']].concat(fields.type ? [['type', 'Type (A to Z)']] : [], fields.author ? [['author', 'Author (A to Z)']] : [], fields.publisher ? [['publisher', 'Publisher (A to Z)']] : [], fields.year ? [['year', 'Year (newest first)']] : []);
+  const sortHtml = sorts.length > 1 ? `
+<div class="lgs-x lgs-field"><label class="lgs-x lgs-lbl" for="${id}-sort">Sort by</label><select class="lgs-x lgs-sort" id="${id}-sort">${sorts.map(s => `<option value="${s[0]}">${s[1]}</option>`).join('')}</select></div>` : '';
+  const kinds = ['title'].concat(['type', 'author', 'publisher', 'year', 'subject', 'location', 'description'].filter(k => fields[k]));
+  return `<section id="${id}" aria-labelledby="${id}-title"><div class="lgs-x lgs-wrap">
+<header class="lgs-x lgs-head"><h2 class="lgs-x lgs-h" id="${id}-title">${esc(cfg.name)}</h2>${cfg.intro ? `<p class="lgs-x lgs-intro">${esc(cfg.intro)}</p>` : ''}</header>
+<div class="lgs-x lgs-controls${sorts.length > 1 ? '' : ' lgs-two'}" role="search" aria-label="Search and sort">
+<div class="lgs-x lgs-field"><label class="lgs-x lgs-lbl" for="${id}-search">Search by keyword</label><input class="lgs-x lgs-search" id="${id}-search" type="search" placeholder="Type to search" autocomplete="off" aria-describedby="${id}-sh"><span class="lgs-x lgs-sr" id="${id}-sh">Results update as you type. Searches ${kinds.join(', ')}.</span></div>
+<div class="lgs-x lgs-field"><span class="lgs-x lgs-lbl" id="${id}-vl">View</span><div class="lgs-x lgs-toggle" role="group" aria-labelledby="${id}-vl"><button type="button" class="lgs-x lgs-view" data-view="grid" aria-pressed="true">Grid</button><button type="button" class="lgs-x lgs-view" data-view="list" aria-pressed="false">List</button></div></div>${sortHtml}
+</div>
+<p class="lgs-x lgs-info" role="status"></p>
+<ul class="lgs-x lgs-grid lgs-list" role="list"></ul>
+<p class="lgs-x lgs-empty" role="status" hidden>No titles match your search. Try a different word.</p>${more}${ft}
+</div></section>`;
+}
+
+function lgsExport(st) {
+  const id = cleanId(st.advId || 'lgs-' + (slug(st.name) || 'display'));
+  const P = (COLORS.find(c => c.id === st.color) || COLORS[0]).c;
+  const on = {}; ALL_KEYS.forEach(k => on[k] = k === 'title' || !!st.fields[k]);
+  const data = st.items.filter(it => String(it.title || '').trim()).map(it => {
+    const o = {}; ALL_KEYS.forEach(k => { const v = String(it[k] == null ? '' : it[k]).trim(); if (on[k] && v) o[k] = v; }); return o;
+  });
+  const fields = {}; FIELDS.forEach(f => fields[f.k] = !!st.fields[f.k]);
+  const json = JSON.stringify(data).replace(/</g, '\\u003c').replace(new RegExp('\\u2028', 'g'), '\\u2028').replace(new RegExp('\\u2029', 'g'), '\\u2029');
+  const cfgJson = JSON.stringify({ id, fields }).replace(/</g, '\\u003c');
+  const script = `<scr` + `ipt>
+(function(){
+var root=document.getElementById(${JSON.stringify(id)});
+if(!root||root.getAttribute("data-lgs-ready"))return;
+root.setAttribute("data-lgs-ready","1");
+var DATA=${json};
+var CFG=${cfgJson};
+${lgsInit.toString()}
+lgsInit(root,DATA,CFG);
+})();
+</scr` + `ipt>`;
+  const css = lgsCss(id, P), shell = lgsShell(id, st, fields);
+  return { id, P, css, shell, script, data, fields, code: css + '\n' + shell + '\n' + script };
+}
+
+function mount(hostEl) {
+var R = hostEl.attachShadow({ mode: 'open' });
+R.innerHTML = '<style>' + CSS + '</style><div class="cmx">' + HTML + '</div>';
+/* ===== Builder UI ===== */
+const KEY = 'cmx-builder-v1';
+const $ = s => R.querySelector(s);
+const $$ = s => Array.from(R.querySelectorAll(s));
+let uid = 1; const nid = () => 'i' + (uid++);
+let st, lastProblems = [];
+
+function sample() {
+  const e = (title, author, publisher, year, subject, n, extra) => Object.assign({ _id: nid(), _ex: true, title, type: 'Book', author, publisher, year, subject, location: 'Graphic Novels shelf', permalink: 'https://example.edu/catalog/' + n }, extra || {});
+  return {
+    name: 'Example Name of a Display', intro: '', color: 'navy',
+    moreOn: false, moreHead: 'Learn more', moreNote: '', links: [],
+    footerOn: true, ftHead: 'Need assistance? Reach out to us:', ftLabel: 'Contact Us', ftUrl: 'https://library.clark.edu/content/ask-librarian',
+    ftNote: 'Opens in a new tab. For more information about Clark Libraries, visit the website at http://library.clark.edu/',
+    advId: '', fields: { type: false, author: true, publisher: true, year: true, subject: true, location: true, description: false, coverimage: true, permalink: true, linklabel: false, articlesaboutthisresource: false, relatedarticles: false, youmayalsolike: false },
+    items: [
+      e('The Example Title', 'Example, Author Name', 'Example Publisher', '2026', 'Example Subject Term', 1),
+    ], sel: null, step: 1
+  };
+}
+function fix(s) {
+  const d = sample();
+  const o = Object.assign({}, d, s, { fields: Object.assign({}, d.fields, s.fields) });
+  o.items = (Array.isArray(s.items) ? s.items : []).map(it => Object.assign({}, it, { _id: nid() }));
+  o.links = (Array.isArray(s.links) ? s.links : []).map(l => ({ _id: nid(), label: String(l.label || ''), url: String(l.url || '') }));
+  o.sel = o.items[0] ? o.items[0]._id : null; o.step = [1, 2, 3].includes(s.step) ? s.step : 1;
+  return o;
+}
+function load() { try { const s = JSON.parse(localStorage.getItem(KEY)); if (s && Array.isArray(s.items)) return fix(s); } catch (e) { } return null; }
+let saveT; function save() { clearTimeout(saveT); saveT = setTimeout(() => { try { localStorage.setItem(KEY, JSON.stringify(st)); } catch (e) { } }, 300); }
+const say = (sel, m) => { $(sel).textContent = m; };
+const armed = (btn, label, fn) => {
+  if (!btn.classList.contains('armed')) { btn.classList.add('armed'); btn.textContent = 'Select again to confirm'; setTimeout(() => { if (btn.isConnected) { btn.classList.remove('armed'); btn.textContent = label; } }, 4000); return; }
+  btn.classList.remove('armed'); btn.textContent = label; fn();
+};
+
+/* ---- steps ---- */
+function showStep(n, focus) {
+  st.step = n;
+  [1, 2, 3].forEach(i => { $('#p' + i).hidden = i !== n; const b = $(`#stepBar button[data-step="${i}"]`); if (i === n) b.setAttribute('aria-current', 'step'); else b.removeAttribute('aria-current'); });
+  if (n === 2) { renderFieldChecks(); renderTList(); renderEditor(); updateExport(); }
+  if (n === 3) renderPreview();
+  if (focus) { const h = $('#h' + n + 's'); h.focus(); }
+  save();
+}
+R.addEventListener('click', e => {
+  const s = e.target.closest('[data-step]'), g = e.target.closest('[data-go]');
+  if (s) showStep(Number(s.dataset.step), true); else if (g) showStep(Number(g.dataset.go), true);
+});
+
+/* ---- step 1 ---- */
+$('#colors').innerHTML = COLORS.map(c => `<label class="sw"><input type="radio" name="color" value="${c.id}"><span><i style="background:${c.c}"></i>${c.n}</span></label>`).join('');
+function syncStep1() {
+  $('#name').value = st.name; $('#intro').value = st.intro; $('#ftOn').checked = st.footerOn;
+  $('#ftHead').value = st.ftHead; $('#ftNote').value = st.ftNote; $('#ftLabel').value = st.ftLabel; $('#ftUrl').value = st.ftUrl;
+  $('#moreOn').checked = st.moreOn; $('#moreHead').value = st.moreHead; $('#moreNote').value = st.moreNote; $('#moreFields').hidden = !st.moreOn;
+  $('#advId').value = st.advId || 'lgs-' + (slug(st.name) || 'display');
+  $$('input[name=color]').forEach(r => r.checked = r.value === st.color);
+  $('#ftFields').hidden = !st.footerOn; urlErr('#ftUrl', '#ftUrl-e'); renderLinks();
+}
+function urlErr(inp, err) { const v = $(inp).value.trim(), bad = v && !isUrl(v); $(inp).setAttribute('aria-invalid', bad ? 'true' : 'false'); $(err).textContent = bad ? 'A web address must start with https:// and have no spaces.' : ''; }
+const bind = (sel, key, after) => $(sel).addEventListener('input', e => { st[key] = e.target.value; if (after) after(); save(); });
+bind('#name', 'name', () => { if (!st.advId) $('#advId').value = 'lgs-' + (slug(st.name) || 'display'); });
+bind('#intro', 'intro'); bind('#ftHead', 'ftHead'); bind('#ftNote', 'ftNote'); bind('#ftLabel', 'ftLabel');
+bind('#moreHead', 'moreHead'); bind('#moreNote', 'moreNote');
+bind('#ftUrl', 'ftUrl', () => urlErr('#ftUrl', '#ftUrl-e'));
+$('#ftOn').addEventListener('change', e => { st.footerOn = e.target.checked; $('#ftFields').hidden = !st.footerOn; save(); });
+$('#moreOn').addEventListener('change', e => {
+  st.moreOn = e.target.checked; $('#moreFields').hidden = !st.moreOn;
+  if (st.moreOn && !st.links.length) { st.links.push({ _id: nid(), label: '', url: '' }); renderLinks(); }
+  save();
+});
+$('#advId').addEventListener('input', e => { st.advId = e.target.value; save(); });
+$('#advId').addEventListener('change', e => { st.advId = cleanId(e.target.value); e.target.value = st.advId; save(); });
+$$('#colors input').forEach(r => r.addEventListener('change', () => { st.color = r.value; save(); }));
+
+/* ---- step 1: "Learn more" links ---- */
+function renderLinks() {
+  $('#linkList').innerHTML = st.links.map((l, i) => `<div class="lrow">` +
+    `<div class="f"><label for="lk-l-${l._id}">Link ${i + 1} button text</label><input type="text" id="lk-l-${l._id}" data-lk="label" value="${esc(l.label)}" autocomplete="off"></div>` +
+    `<div class="f"><label for="lk-u-${l._id}">Link ${i + 1} web address</label><input type="text" id="lk-u-${l._id}" data-lk="url" value="${esc(l.url)}" inputmode="url" autocomplete="off" aria-describedby="lk-e-${l._id}"><span class="err" id="lk-e-${l._id}"></span></div>` +
+    `<div><button type="button" class="btn sm" data-rm="${l._id}">Remove<span class="sr"> link ${i + 1}</span></button></div></div>`).join('') || '<p class="hint">No links yet. Select <b>Add a link</b>.</p>';
+  $$('#linkList input[data-lk=url]').forEach(linkErr);
+}
+function linkErr(inp) {
+  const v = inp.value.trim(), bad = v && !isUrl(v);
+  inp.setAttribute('aria-invalid', bad ? 'true' : 'false');
+  const err = $('#' + inp.id.replace('lk-u-', 'lk-e-')); if (err) err.textContent = bad ? 'A web address must start with https:// and have no spaces.' : '';
+}
+$('#linkList').addEventListener('input', e => {
+  const row = e.target.closest('.lrow'), k = e.target.dataset.lk; if (!row || !k) return;
+  const id = e.target.id.replace(/^lk-[lu]-/, ''), l = st.links.find(x => x._id === id); if (!l) return;
+  l[k] = e.target.value; if (k === 'url') linkErr(e.target); save();
+});
+$('#linkList').addEventListener('click', e => {
+  const b = e.target.closest('[data-rm]'); if (!b) return;
+  st.links = st.links.filter(l => l._id !== b.dataset.rm); renderLinks(); save(); $('#addLink').focus();
+});
+$('#addLink').addEventListener('click', () => {
+  const l = { _id: nid(), label: '', url: '' }; st.links.push(l); renderLinks(); save();
+  const inp = $('#lk-l-' + l._id); if (inp) inp.focus();
+});
+
+/* ---- step 2: fields ---- */
+function renderFieldChecks() {
+  $('#fieldChecks').innerHTML = FIELDS.map(f => `<label class="chk"><input type="checkbox" data-f="${f.k}"${st.fields[f.k] ? ' checked' : ''}><span><b>${f.l}</b></span></label>`).join('');
+}
+$('#fieldChecks').addEventListener('change', e => { const k = e.target.dataset.f; if (k) { st.fields[k] = e.target.checked; renderEditor(); updateExport(); save(); } });
+$$('input[name=m]').forEach(r => r.addEventListener('change', () => { $('#mType').hidden = r.value !== 'type' || !r.checked; $('#mPaste').hidden = r.value !== 'paste' || !r.checked; }));
+
+/* ---- step 2: help for pasting a list ---- */
+(function () {
+  const h = $('#pasteHelp'), url = isUrl(HELP_URL) ? HELP_URL : '', who = String(HELP_CONTACT || '').trim();
+  if (!url && !who) { h.hidden = true; return; }
+  h.append('Not sure how to make a list? ');
+  if (url) { const a = document.createElement('a'); a.href = url; a.target = '_blank'; a.rel = 'noopener noreferrer'; a.textContent = 'Read the how-to guide'; h.append(a, ' (opens in a new tab). '); }
+  if (who) h.append('For help, contact ' + who + '.');
+})();
+
+/* ---- step 2: type them in ---- */
+const label = it => (String(it.title || '').trim() || '(no title yet)') + (it._ex ? ' (example)' : '');
+const cur = () => st.items.find(i => i._id === st.sel);
+function renderTList() {
+  $('#countH').textContent = `Your titles (${st.items.length})`;
+  $('#bigNote').hidden = st.items.length < BIG_NOTE;
+  $('#tlist').innerHTML = st.items.map(it => `<li><button type="button" data-sel="${it._id}"${it._id === st.sel ? ' aria-current="true"' : ''}>${esc(label(it))}</button></li>`).join('') || '<li class="hint" style="padding:8px">No titles yet.</li>';
+  $('#sampleNote').hidden = !st.items.some(i => i._ex);
+}
+$('#tlist').addEventListener('click', e => { const b = e.target.closest('[data-sel]'); if (b) { st.sel = b.dataset.sel; renderTList(); renderEditor(); } });
+function renderEditor() {
+  const it = cur(), box = $('#editor');
+  if (!it) { box.innerHTML = '<p class="hint">Select <b>Add a title</b> to start.</p>'; return; }
+  const row = (k, l, h, isUrlField) => `<div class="f"><label for="ed-${k}">${l}</label>${h ? `<span class="hint" id="ed-${k}-h">${h}</span>` : ''}<input type="text" id="ed-${k}" data-k="${k}" value="${esc(it[k])}" autocomplete="off"${isUrlField ? ' inputmode="url"' : ''} aria-describedby="${h ? `ed-${k}-h ` : ''}ed-${k}-e"><span class="err" id="ed-${k}-e"></span></div>`;
+  box.innerHTML = row('title', 'Title (required)', '', false) +
+    FIELDS.filter(f => st.fields[f.k]).map(f => row(f.k, f.l, f.h, f.g === 'url')).join('') +
+    `<div class="row"><button type="button" class="btn sm" id="delTitle">Delete this title</button></div>`;
+  $$('#editor input').forEach(i => fieldCheck(i));
+}
+function fieldCheck(inp) {
+  const k = inp.dataset.k, v = inp.value.trim(), f = FIELDS.find(x => x.k === k);
+  let m = '';
+  if (k === 'title' && !v) m = 'Every title needs a name.';
+  else if (f && f.g === 'url' && v && !isUrl(v)) m = 'A web address must start with https:// and have no spaces.';
+  inp.setAttribute('aria-invalid', m ? 'true' : 'false'); $('#' + inp.id.replace(/$/, '-e')).textContent = m;
+}
+$('#editor').addEventListener('input', e => {
+  const it = cur(), k = e.target.dataset.k; if (!it || !k) return;
+  it[k] = e.target.value; delete it._ex; fieldCheck(e.target);
+  if (k === 'title') { const b = $(`#tlist [data-sel="${it._id}"]`); if (b) b.textContent = label(it); }
+  $('#sampleNote').hidden = !st.items.some(i => i._ex); updateExport(); save();
+});
+$('#editor').addEventListener('click', e => {
+  if (e.target.id !== 'delTitle') return;
+  armed(e.target, 'Delete this title', () => {
+    const i = st.items.findIndex(x => x._id === st.sel); st.items.splice(i, 1);
+    st.sel = st.items[Math.min(i, st.items.length - 1)] ? st.items[Math.min(i, st.items.length - 1)]._id : null;
+    renderTList(); renderEditor(); updateExport(); save(); $('#addTitle').focus();
+  });
+});
+$('#addTitle').addEventListener('click', () => {
+  const it = { _id: nid(), title: '' }; st.items.push(it); st.sel = it._id; renderTList(); renderEditor(); updateExport(); save();
+  $('#ed-title').focus(); $('#tlist').scrollTop = 1e6;
+});
+$('#clearSample').addEventListener('click', () => {
+  st.items = st.items.filter(i => !i._ex); st.sel = st.items[0] ? st.items[0]._id : null;
+  renderTList(); renderEditor(); updateExport(); save(); $('#addTitle').focus();
+});
+
+/* ---- step 2: paste a list ---- */
+const norm = k => String(k).toLowerCase().replace(/[^a-z0-9]/g, '');
+const ALIAS = {
+  title: 'title', name: 'title', booktitle: 'title',
+  type: 'type', resourcetype: 'type', materialtype: 'type', format: 'type',
+  author: 'author', authors: 'author', creator: 'author', publisher: 'publisher',
+  year: 'year', date: 'year', publicationyear: 'year', publicationdate: 'year',
+  subject: 'subject', subjects: 'subject', location: 'location', callnumber: 'location',
+  description: 'description', summary: 'description', abstract: 'description', note: 'description',
+  permalink: 'permalink', link: 'permalink', url: 'permalink',
+  linklabel: 'linklabel', linktext: 'linklabel', buttontext: 'linklabel',
+  coverimage: 'coverimage', cover: 'coverimage', image: 'coverimage', thumbnail: 'coverimage',
+  articlesaboutthisresource: 'articlesaboutthisresource', relatedarticles: 'relatedarticles', youmayalsolike: 'youmayalsolike'
+};
+const val = v => typeof v === 'string' ? v : typeof v === 'number' ? String(v) : Array.isArray(v) ? v.filter(x => typeof x === 'string' || typeof x === 'number').join('; ') : '';
+function parseList(text) {
+  if (!text.trim()) return { error: 'Paste your list in the box first.' };
+  let v; try { v = JSON.parse(text); } catch (e) { const m = /position (\d+)/.exec(e.message); return { error: 'We could not read that list.' + (m ? ` Something looks wrong near character ${m[1]}.` : '') + ' Check for a missing comma, quote or bracket, then try again.' }; }
+  if (v && !Array.isArray(v) && typeof v === 'object') v = Object.values(v).find(Array.isArray) || [v];
+  if (!Array.isArray(v)) return { error: 'That does not look like a list of titles. It should start with [ and end with ].' };
+  const items = [], present = new Set(), ignored = new Set(); let skipped = 0;
+  v.forEach(o => {
+    if (!o || typeof o !== 'object' || Array.isArray(o)) { skipped++; return; }
+    const it = { _id: nid() };
+    Object.keys(o).forEach(key => { const m = ALIAS[norm(key)]; if (!m) { ignored.add(key); return; } const x = val(o[key]).trim(); if (x && !it[m]) it[m] = x; });
+    if (!it.title) { skipped++; return; }
+    Object.keys(it).forEach(k => { if (k !== '_id') present.add(k); });
+    items.push(it);
+  });
+  if (!items.length) return { error: 'We found no titles in that list. Each entry needs a title.' };
+  return { items, present, ignored: [...ignored], skipped };
+}
+function importText(text) {
+  const r = parseList(text), msg = $('#pasteMsg');
+  msg.className = 'msg ' + (r.error ? 'bad' : 'good');
+  if (r.error) { msg.innerHTML = `<b>Nothing was changed.</b><span>${esc(r.error)}</span>`; return; }
+  const mode = $('input[name=pm]:checked').value;
+  st.items = mode === 'replace' ? r.items : st.items.filter(i => !i._ex).concat(r.items);
+  FIELDS.forEach(f => { if (r.present.has(f.k)) st.fields[f.k] = true; else if (mode === 'replace') st.fields[f.k] = false; });
+  st.sel = st.items[0]._id;
+  const names = FIELDS.filter(f => r.present.has(f.k)).map(f => f.l.replace(/[\u201c\u201d]/g, ''));
+  msg.innerHTML = `<b>${mode === 'replace' ? 'Loaded' : 'Added'} ${r.items.length} ${r.items.length === 1 ? 'title' : 'titles'}.</b><span>Details found: ${esc(['Title'].concat(names).join(', '))}.</span>` +
+    (r.ignored.length ? `<span>Left out because this display does not use them: ${esc(r.ignored.slice(0, 12).join(', '))}${r.ignored.length > 12 ? ', and more' : ''}.</span>` : '') +
+    (r.skipped ? `<span>${r.skipped} ${r.skipped === 1 ? 'entry was' : 'entries were'} skipped because there was no title.</span>` : '') +
+    '<span>Next, choose <b>Preview and copy</b>. You can also switch details on or off above.</span>';
+  renderFieldChecks(); renderTList(); renderEditor(); updateExport(); save(); msg.focus();
+}
+$('#pasteGo').addEventListener('click', () => importText($('#pasteText').value));
+$('#pasteFile').addEventListener('change', e => {
+  const f = e.target.files[0]; if (!f) return;
+  const fr = new FileReader(); fr.onload = () => { $('#pasteText').value = String(fr.result); importText(String(fr.result)); }; fr.readAsText(f);
+});
+function updateExport() { $('#expText').value = JSON.stringify(lgsExport(st).data); }
+$('#expCopy').addEventListener('click', async () => {
+  const t = $('#expText');
+  try { await navigator.clipboard.writeText(t.value); say('#expMsg', 'Copied.'); } catch (e) { t.focus(); t.select(); say('#expMsg', 'Selected. Press Ctrl+C (Cmd+C on a Mac) to copy.'); }
+});
+
+/* ---- step 3 ---- */
+const host = $('#host'); host.attachShadow({ mode: 'open' });
+function problems() {
+  const out = [], P = (sev, msg, id, k) => out.push({ sev, msg, id, k });
+  if (!st.name.trim()) P('bad', 'Your display needs a name. Go back to step 1.');
+  const withTitle = st.items.filter(i => String(i.title || '').trim());
+  if (!withTitle.length) P('bad', 'Your list is empty. Add at least one title in step 2.');
+  if (withTitle.length > BIG_WARN) P('warn', `This is a long list (${withTitle.length} titles). It works, but it may load slowly on phones. Consider showing fewer details or splitting it into two displays.`);
+  if (st.items.some(i => i._ex)) P('warn', 'The example titles are still in your list. Remove them in step 2 if you do not want them to appear.');
+  const blank = st.items.length - withTitle.length; if (blank) P('warn', `${blank} ${blank === 1 ? 'entry has' : 'entries have'} no title and will be left out.`);
+  withTitle.forEach(it => FIELDS.forEach(f => {
+    if (f.g !== 'url' || !st.fields[f.k]) return; const v = String(it[f.k] || '').trim(); if (!v) return;
+    if (!isUrl(v)) P('bad', `\u201c${it.title}\u201d: the ${f.l.replace(/[\u201c\u201d]/g, '')} address is not a full web address. It must start with https://`, it._id, f.k);
+    else if (f.k === 'coverimage' && /^http:/i.test(v)) P('warn', `\u201c${it.title}\u201d: the cover picture address starts with http://. Use https:// so it shows on secure pages.`, it._id, f.k);
+  }));
+  if (st.moreOn) {
+    const used = st.links.filter(l => String(l.label || '').trim() || String(l.url || '').trim());
+    if (!used.length) P('bad', 'The \u201cLearn more\u201d section has no links. Add one in step 1, or turn the section off.');
+    used.forEach(l => {
+      if (!String(l.label || '').trim()) P('bad', `A \u201cLearn more\u201d link (${l.url.trim()}) needs button text. Fix it in step 1.`);
+      else if (!isUrl(String(l.url || '').trim())) P('bad', `The \u201cLearn more\u201d link \u201c${l.label.trim()}\u201d needs a full web address that starts with https:// . Fix it in step 1.`);
+    });
+  }
+  if (st.footerOn && (!st.ftLabel.trim() || !isUrl(st.ftUrl.trim()))) P('bad', 'The \u201cNeed help?\u201d box needs button text and a full web address, or turn it off in step 1.');
+  return out;
+}
+function renderPreview() {
+  const x = lgsExport(st), sr = host.shadowRoot;
+  sr.innerHTML = '<style>:host{display:block}</style>' + x.css + x.shell;
+  lgsInit(sr.querySelector('#' + x.id), x.data, { id: x.id, fields: x.fields });
+  host.style.maxWidth = $('input[name=w]:checked').value === '100%' ? '100%' : $('input[name=w]:checked').value + 'px';
+  $('#code').value = x.code;
+  const kb = Math.round(x.code.length / 1024);
+  $('#sizeNote').textContent = `${x.data.length} ${x.data.length === 1 ? 'title' : 'titles'}, about ${kb} KB of code.` + (kb > 800 ? ' That is large. If LibGuides will not save it, show fewer details or split the list into two displays.' : '');
+  const ps = problems();
+  $('#problems').innerHTML = ps.length ? ps.map((p, i) => `<li><span class="tag ${p.sev}">${p.sev === 'bad' ? 'Fix' : 'Check'}</span><span>${esc(p.msg)}</span>${p.id ? `<button type="button" class="btn sm" data-fix="${i}">Go fix it</button>` : ''}</li>`).join('') : '<li><span class="tag ok">Ready</span><span>No problems found. Your display is ready to copy.</span></li>';
+  lastProblems = ps;
+}
+$$('input[name=w]').forEach(r => r.addEventListener('change', renderPreview));
+$('#problems').addEventListener('click', e => {
+  const b = e.target.closest('[data-fix]'); if (!b) return; const p = lastProblems[Number(b.dataset.fix)];
+  st.sel = p.id; showStep(2, false);
+  const r = $('input[name=m][value=type]'); r.checked = true; r.dispatchEvent(new Event('change'));
+  renderTList(); renderEditor(); const el = $('#ed-' + p.k); if (el) el.focus();
+});
+$('#copy').addEventListener('click', async () => {
+  const t = $('#code');
+  try { await navigator.clipboard.writeText(t.value); say('#copyMsg', 'Copied. Now paste it into your LibGuide.'); }
+  catch (e) { $('#codeBox').open = true; t.focus(); t.select(); say('#copyMsg', 'The code is selected below. Press Ctrl+C (Cmd+C on a Mac) to copy it.'); }
+});
+$$('#reset, #reset1').forEach(b => b.addEventListener('click', e => armed(e.currentTarget, 'Reset/Start over', () => { st = sample(); syncStep1(); showStep(1, true); })));
+
+st = load() || sample();
+syncStep1(); showStep(st.step, false);
+
+}
+var els = document.querySelectorAll('comics-display-builder');
+for (var i = 0; i < els.length; i++) { if (!els[i].shadowRoot) mount(els[i]); }
+})();
+</script>
