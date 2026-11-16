@@ -1,0 +1,821 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Ephemera ID Generator</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<div data-ephemera-id-generator data-theme="auto" data-heading-level="2"></div>
+<noscript><p>The Ephemera ID Generator needs JavaScript. Without it, build IDs by hand as TYPE-NUMBER-WORD, for example ST-0042-THWACK.</p></noscript>
+
+<script>
+(function () {
+  "use strict";
+
+  // ---- Editable configuration ---------------------------------------------
+  // To switch a reserve type on permanently, change its `active` to true.
+  // Words must be CAPITAL letters only. Avoid editing words after IDs are issued:
+  // the word for a number is chosen by its position in the list.
+  var FAMILIES = [
+    { code: "ST", name: "Sticker",            sound: "-ack",  active: true,  words: ["WHACK","THWACK","SMACK","CRACK","CLACK","KLACK"] },
+    { code: "PC", name: "Postcard",           sound: "-oom",  active: true,  words: ["BOOM","VROOM","KABOOM","WHOOM","FOOM","ZLOOM"] },
+    { code: "PO", name: "Poster",             sound: "-am",   active: true,  words: ["BAM","WHAM","SLAM","BLAM","KABLAM","KERBLAM"] },
+    { code: "MC", name: "Minicomic",          sound: "-ap",   active: true,  words: ["ZAP","SNAP","WHAP","FLAP","KLAP","ZLAP"] },
+    { code: "BT", name: "Button / pin",       sound: "-ing",  active: true,  words: ["PING","DING","ZING","KLING","TWING","SKLING"] },
+    { code: "FL", name: "Flyer",              sound: "-oosh", active: true,  words: ["WHOOSH","FWOOSH","SHOOSH","ZOOSH","FLOOSH","KLOOSH"] },
+    { code: "OT", name: "Other",              sound: "-ump",  active: true,  words: ["THUMP","BUMP","WHUMP","KLUMP","FLUMP","GLUMP"] },
+    { code: "ZN", name: "Zine",               sound: "-onk",  active: false, words: ["BONK","KLONK","CLONK","PLONK","ZONK","WONK"] },
+    { code: "PR", name: "Print",              sound: "-ow",   active: false, words: ["POW","KAPOW","ZOW","KLOW","SKOW","WHOW"] },
+    { code: "BM", name: "Bookmark",           sound: "-eep",  active: false, words: ["ZEEP","KLEEP","SKREEP","WHEEP","BLEEP","PLEEP"] },
+    { code: "TC", name: "Trading card",       sound: "-ick",  active: false, words: ["FLICK","KLICK","SNICK","THWICK","SKRICK","TWICK"] },
+    { code: "SP", name: "Spare (unassigned)", sound: "-izz",  active: false, words: ["FIZZ","WHIZZ","SIZZ","ZIZZ","FRIZZ","SKIZZ"] }
+  ];
+  var NUM_WIDTH = 4;
+  // --------------------------------------------------------------------------
+
+  
+var CSS = [
+    /* ---- Shadow DOM isolation and base settings -------------------- */
+    ":host {",
+    "  all: initial;",
+    "  display: block;",
+    "  width: 100%;",
+    "  min-width: 0;",
+    "  container-type: inline-size;",
+    "  box-sizing: border-box;",
+    "}",
+    "[hidden] { display: none !important; }",
+    "*, *::before, *::after { box-sizing: border-box; }",
+
+    /* ---- Main widget and design tokens ----------------------------- */
+    ".w {",
+    "  --bg: #f5f6fa;",
+    "  --surface: #ffffff;",
+    "  --ink: #161a2e;",
+    "  --muted: #4a4e70;",
+    "  --line: #cfd3e6;",
+    "  --field: #62688a;",
+    "  --accent: #a8142a;",
+    "  --on-accent: #ffffff;",
+    "  --burst: #ffd23f;",
+    "  --on-burst: #161a2e;",
+    "  --ok: #0b603b;",
+    "  --warn: #704000;",
+    "  --warn-bg: #fff1d0;",
+    "  --focus: #1745c5;",
+
+    /* Typography: 1rem = 16px = 12pt at default browser settings */
+    "  --text-min: 1rem;",
+    "  --text-small: clamp(1rem, calc(1rem + 0.15cqi), 1.125rem);",
+    "  --text-base: clamp(1.125rem, calc(1.125rem + 0.2cqi), 1.25rem);",
+    "  --text-large: clamp(1.25rem, calc(1.15rem + 1cqi), 1.75rem);",
+
+    "  color-scheme: light;",
+    "  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;",
+    "  font-size: var(--text-base);",
+    "  line-height: 1.5;",
+    "  color: var(--ink);",
+    "  background: var(--bg);",
+    "  padding: clamp(12px, 3cqi, 20px);",
+    "  border-radius: 8px;",
+    "  width: 100%;",
+    "  min-width: 0;",
+    "  margin: 0;",
+    "  display: flex;",
+    "  flex-direction: column;",
+    "  gap: 16px;",
+    "  text-align: left;",
+    "  overflow-wrap: anywhere;",
+    "}",
+
+    /* ---- Dark theme ------------------------------------------------- */
+    ".w[data-mode='dark'] {",
+    "  --bg: #11131f;",
+    "  --surface: #1a1d2e;",
+    "  --ink: #eef0fb;",
+    "  --muted: #c3c8df;",
+    "  --line: #555a7d;",
+    "  --field: #aeb5d5;",
+    "  --accent: #ff9aaa;",
+    "  --on-accent: #24080e;",
+    "  --burst: #ffd23f;",
+    "  --on-burst: #161a2e;",
+    "  --ok: #7be0ad;",
+    "  --warn: #ffdc91;",
+    "  --warn-bg: #3a2e12;",
+    "  --focus: #a9c3ff;",
+    "  color-scheme: dark;",
+    "}",
+
+    /* ---- Typography ------------------------------------------------- */
+    ".mono {",
+    "  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;",
+    "}",
+    ".title {",
+    "  font-family: Impact, 'Arial Narrow Bold', 'Arial Black', sans-serif;",
+    "  font-weight: 400;",
+    "  letter-spacing: 0.04em;",
+    "  font-size: clamp(1.75rem, calc(1.5rem + 2cqi), 2.5rem);",
+    "  line-height: 1.2;",
+    "  margin: 0;",
+    "  overflow-wrap: anywhere;",
+    "}",
+    ".lede {",
+    "  margin: 4px 0 0;",
+    "  color: var(--muted);",
+    "  font-size: var(--text-base);",
+    "  line-height: 1.6;",
+    "}",
+    ".sub {",
+    "  font-size: var(--text-small);",
+    "  text-transform: uppercase;",
+    "  letter-spacing: 0.06em;",
+    "  color: var(--muted);",
+    "  margin: 0;",
+    "  font-weight: 700;",
+    "  line-height: 1.4;",
+    "}",
+    ".hint {",
+    "  color: var(--muted);",
+    "  font-size: var(--text-small);",
+    "  line-height: 1.5;",
+    "  margin: 0;",
+    "}",
+    ".meaning {",
+    "  margin: 0;",
+    "  color: var(--muted);",
+    "  font-size: var(--text-base);",
+    "  line-height: 1.5;",
+    "}",
+
+    /* ---- Cards and layout ------------------------------------------- */
+    ".card {",
+    "  background: var(--surface);",
+    "  border: 1px solid var(--line);",
+    "  border-radius: 8px;",
+    "  padding: clamp(12px, 2cqi, 20px);",
+    "  display: flex;",
+    "  flex-direction: column;",
+    "  gap: 14px;",
+    "  min-width: 0;",
+    "}",
+    ".row {",
+    "  display: flex;",
+    "  gap: 16px;",
+    "  flex-wrap: wrap;",
+    "  min-width: 0;",
+    "}",
+    ".field {",
+    "  display: flex;",
+    "  flex-direction: column;",
+    "  gap: 8px;",
+    "  flex: 1 1 14rem;",
+    "  min-width: 0;",
+    "}",
+    "label, legend {",
+    "  font-size: var(--text-base);",
+    "  font-weight: 600;",
+    "  line-height: 1.4;",
+    "}",
+
+    /* ---- Form controls ---------------------------------------------- */
+    "select, input[type='text'], textarea {",
+    "  font-family: inherit;",
+    "  font-size: max(1rem, 1em);",
+    "  line-height: 1.5;",
+    "  color: var(--ink);",
+    "  background: var(--bg);",
+    "  border: 2px solid var(--field);",
+    "  border-radius: 6px;",
+    "  padding: 8px 12px;",
+    "  min-height: 48px;",
+    "  width: 100%;",
+    "  min-width: 0;",
+    "}",
+    "select {",
+    "  cursor: pointer;",
+    "}",
+    "input[type='text'] {",
+    "  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;",
+    "  font-size: max(1.25rem, 1em);",
+    "}",
+    "textarea {",
+    "  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;",
+    "  font-size: max(1rem, 1em);",
+    "  min-height: 8rem;",
+    "  resize: vertical;",
+    "}",
+    "textarea::placeholder {",
+    "  color: var(--muted);",
+    "  opacity: 1;",
+    "}",
+    "[aria-invalid='true'] {",
+    "  border-color: var(--accent);",
+    "}",
+
+    /* ---- Radio buttons and checkboxes ------------------------------- */
+    "fieldset {",
+    "  border: 0;",
+    "  margin: 0;",
+    "  padding: 0;",
+    "  min-width: 0;",
+    "  display: flex;",
+    "  flex-direction: column;",
+    "  gap: 8px;",
+    "}",
+    "legend {",
+    "  padding: 0;",
+    "  margin-bottom: 4px;",
+    "}",
+    ".choice {",
+    "  display: flex;",
+    "  gap: 12px;",
+    "  align-items: flex-start;",
+    "  font-weight: 400;",
+    "  min-height: 44px;",
+    "  padding: 8px 0;",
+    "  cursor: pointer;",
+    "  line-height: 1.5;",
+    "}",
+    ".choice input {",
+    "  width: 24px;",
+    "  height: 24px;",
+    "  margin: 0;",
+    "  flex: none;",
+    "  accent-color: var(--accent);",
+    "  cursor: pointer;",
+    "}",
+    ".choice small {",
+    "  display: block;",
+    "  color: var(--muted);",
+    "  font-size: var(--text-small);",
+    "  line-height: 1.5;",
+    "  margin-top: 2px;",
+    "}",
+
+    /* ---- Generated ID panel ----------------------------------------- */
+    ".panel {",
+    "  border: 3px solid var(--ink);",
+    "  border-radius: 4px;",
+    "  background: var(--surface);",
+    "  box-shadow: 6px 6px 0 var(--ink);",
+    "  padding: 20px 16px 16px;",
+    "  display: flex;",
+    "  flex-direction: column;",
+    "  gap: 12px;",
+    "  align-items: flex-start;",
+    "  min-width: 0;",
+    "  margin-right: 6px;",
+    "}",
+    ".id {",
+    "  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;",
+    "  font-weight: 700;",
+    "  font-size: clamp(1.25rem, calc(1.1rem + 1.5cqi), 2rem);",
+    "  line-height: 1.4;",
+    "  margin: 0;",
+    "  max-width: 100%;",
+    "  overflow-wrap: anywhere;",
+    "}",
+    ".id .type {",
+    "  color: var(--accent);",
+    "}",
+    ".id .word {",
+    "  background: var(--burst);",
+    "  color: var(--on-burst);",
+    "  padding: 0 0.25em;",
+    "  border-radius: 3px;",
+    "}",
+
+    /* ---- Action buttons ---------------------------------------------- */
+    ".actions {",
+    "  display: flex;",
+    "  flex-wrap: wrap;",
+    "  gap: 10px;",
+    "  width: 100%;",
+    "}",
+    "button {",
+    "  font-family: inherit;",
+    "  font-size: var(--text-base);",
+    "  line-height: 1.4;",
+    "  font-weight: 600;",
+    "  cursor: pointer;",
+    "  border-radius: 6px;",
+    "  padding: 10px 16px;",
+    "  min-height: 48px;",
+    "  min-width: 48px;",
+    "  border: 2px solid var(--ink);",
+    "  background: var(--surface);",
+    "  color: var(--ink);",
+    "  overflow-wrap: anywhere;",
+    "}",
+    "button:hover:not(:disabled) {",
+    "  background: var(--bg);",
+    "}",
+    "button.primary {",
+    "  background: var(--accent);",
+    "  color: var(--on-accent);",
+    "  border-color: var(--accent);",
+    "}",
+    "button.primary:hover:not(:disabled) {",
+    "  filter: brightness(1.1);",
+    "  background: var(--accent);",
+    "}",
+    "button.small {",
+    "  min-height: 44px;",
+    "  min-width: 44px;",
+    "  padding: 8px 12px;",
+    "  font-size: var(--text-small);",
+    "}",
+    "button:disabled {",
+    "  opacity: 0.65;",
+    "  cursor: not-allowed;",
+    "}",
+
+    /* ---- Keyboard focus ---------------------------------------------- */
+    "a:focus-visible,",
+    "button:focus-visible,",
+    "select:focus-visible,",
+    "input:focus-visible,",
+    "textarea:focus-visible,",
+    "summary:focus-visible {",
+    "  outline: 3px solid var(--focus);",
+    "  outline-offset: 3px;",
+    "}",
+    "button:focus-visible, summary:focus-visible {",
+    "  position: relative;",
+    "  z-index: 1;",
+    "}",
+
+    /* ---- Status messages and notices -------------------------------- */
+    ".status {",
+    "  min-height: 1.5em;",
+    "  margin: 0;",
+    "  color: var(--ok);",
+    "  font-size: var(--text-small);",
+    "  font-weight: 700;",
+    "  line-height: 1.5;",
+    "}",
+    ".error {",
+    "  color: var(--accent);",
+    "  font-size: var(--text-small);",
+    "  font-weight: 700;",
+    "  margin: 0;",
+    "  line-height: 1.5;",
+    "}",
+    ".notice {",
+    "  background: var(--warn-bg);",
+    "  color: var(--warn);",
+    "  border-radius: 6px;",
+    "  padding: 12px;",
+    "  margin: 0;",
+    "  font-size: var(--text-small);",
+    "  font-weight: 600;",
+    "  line-height: 1.5;",
+    "}",
+
+    /* ---- Expandable details sections -------------------------------- */
+    "details {",
+    "  background: var(--surface);",
+    "  border: 1px solid var(--line);",
+    "  border-radius: 8px;",
+    "  min-width: 0;",
+    "}",
+    "summary {",
+    "  cursor: pointer;",
+    "  padding: 12px 16px;",
+    "  font-size: var(--text-base);",
+    "  font-weight: 700;",
+    "  line-height: 1.5;",
+    "  min-height: 48px;",
+    "  display: flex;",
+    "  align-items: center;",
+    "}",
+    "details > .inner {",
+    "  padding: 0 16px 16px;",
+    "  display: flex;",
+    "  flex-direction: column;",
+    "  gap: 12px;",
+    "  min-width: 0;",
+    "}",
+
+    /* ---- Reference and recent ID lists ------------------------------- */
+    ".list {",
+    "  list-style: none;",
+    "  margin: 0;",
+    "  padding: 0;",
+    "  display: flex;",
+    "  flex-direction: column;",
+    "  gap: 10px;",
+    "}",
+    ".list li {",
+    "  display: flex;",
+    "  flex-direction: column;",
+    "  gap: 4px;",
+    "  padding-bottom: 10px;",
+    "  border-bottom: 1px solid var(--line);",
+    "  min-width: 0;",
+    "}",
+    ".list li:last-child {",
+    "  border-bottom: 0;",
+    "  padding-bottom: 0;",
+    "}",
+    ".list .head {",
+    "  font-size: var(--text-base);",
+    "  font-weight: 700;",
+    "  display: flex;",
+    "  flex-wrap: wrap;",
+    "  gap: 4px 10px;",
+    "  align-items: baseline;",
+    "}",
+    ".list .meta {",
+    "  color: var(--muted);",
+    "  font-size: var(--text-small);",
+    "  overflow-wrap: anywhere;",
+    "}",
+    ".list .words {",
+    "  font-size: var(--text-small);",
+    "  line-height: 1.6;",
+    "  overflow-wrap: anywhere;",
+    "}",
+    ".pill {",
+    "  font-size: var(--text-small);",
+    "  font-weight: 700;",
+    "  line-height: 1.5;",
+    "  border-radius: 999px;",
+    "  padding: 2px 9px;",
+    "  border: 1px solid var(--muted);",
+    "  color: var(--muted);",
+    "}",
+    ".pill.on {",
+    "  color: var(--ok);",
+    "  border-color: var(--ok);",
+    "}",
+    ".recent li {",
+    "  flex-direction: row;",
+    "  align-items: center;",
+    "  justify-content: space-between;",
+    "  flex-wrap: wrap;",
+    "  gap: 8px 12px;",
+    "}",
+    ".empty {",
+    "  color: var(--muted);",
+    "  font-size: var(--text-small);",
+    "  margin: 0;",
+    "}",
+
+    /* ---- Responsive layout ------------------------------------------ */
+    "@container (min-width: 48rem) {",
+    "  .w {",
+    "    display: grid;",
+    "    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);",
+    "    gap: 16px;",
+    "    align-items: start;",
+    "  }",
+    "  .w > header, .w > details, .w > .full {",
+    "    grid-column: 1 / -1;",
+    "  }",
+    "  .w > .card {",
+    "    height: 100%;",
+    "  }",
+    "}",
+    "@container (min-width: 72rem) {",
+    "  .w {",
+    "    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);",
+    "  }",
+    "}",
+
+    /* ---- Screen-reader-only content --------------------------------- */
+    ".vh {",
+    "  position: absolute;",
+    "  width: 1px;",
+    "  height: 1px;",
+    "  margin: -1px;",
+    "  padding: 0;",
+    "  overflow: hidden;",
+    "  clip-path: inset(50%);",
+    "  white-space: nowrap;",
+    "  border: 0;",
+    "}",
+
+  
+    /* ---- Reduced motion preference ---------------------------------- */
+    "@media (prefers-reduced-motion: reduce) {",
+    "  *, *::before, *::after {",
+    "    scroll-behavior: auto !important;",
+    "    animation-duration: 0.01ms !important;",
+    "    animation-iteration-count: 1 !important;",
+    "    transition-duration: 0.01ms !important;",
+    "  }",
+    "}",
+
+    /* ---- Accessibility: minimum 16px (12pt) text sizing ------------- */
+    ":host { font-size: 16px !important; }",
+    ".w { font-size: 16px !important; line-height: 1.5; }",
+
+    ".w :is(.lede, .sub, .hint, .choice, .choice small, .meaning, .status, .empty, .notice, .error, .meta, .words, .pill, button.small) {",
+    "  font-size: 16px !important;",
+    "  line-height: 1.5;",
+    "}",
+
+    ".w :is(button, select, input, textarea) {",
+    "  font-size: 16px !important;",
+    "  line-height: 1.4;",
+    "}"
+  ].join("\n");
+
+
+
+
+  function html(level) {
+    var h = "h" + level, s = "h" + Math.min(level + 1, 6);
+    return [
+      "<div class='w' lang='en' data-mode='light'>",
+      "<header>",
+      "  <" + h + " class='title'>Ephemera ID Generator</" + h + ">",
+      "  <p class='lede'>Pick the item type, enter the next number, and copy the ID. Write it lightly in pencil on the sleeve and paste it into the inventory spreadsheet.</p>",
+      "</header>",
+      "<section class='card' aria-labelledby='h-item'>",
+      "  <" + s + " class='sub' id='h-item'>Item</" + s + ">",
+      "  <div class='row'>",
+      "    <div class='field'>",
+      "      <label for='type'>Item type</label>",
+      "      <select id='type'></select>",
+      "      <label class='choice' for='reserve'><input type='checkbox' id='reserve'><span>Show reserve types<small>Not in use yet. Turn on only after the librarian activates them.</small></span></label>",
+      "    </div>",
+      "    <div class='field'>",
+      "      <label for='num'>Item number</label>",
+      "      <input type='text' id='num' value='1' inputmode='numeric' pattern='[0-9]*' autocomplete='off' maxlength='5' aria-describedby='num-hint'>",
+      "      <p class='hint' id='num-hint'>One running number for the whole collection: the last number in the spreadsheet plus one.</p>",
+      "      <p class='error' id='error' hidden>Enter a whole number from 1 to 99999.</p>",
+      "    </div>",
+      "  </div>",
+      "  <fieldset>",
+      "    <legend>How is the word chosen?</legend>",
+      "    <label class='choice'><input type='radio' name='mode' value='number' checked><span>From the number (recommended)<small>The same type and number always give the same ID, so a lost label can be rebuilt.</small></span></label>",
+      "    <label class='choice'><input type='radio' name='mode' value='random'><span>Random<small>Picks any word from the type's family. Write it down, because it cannot be rebuilt from the number.</small></span></label>",
+      "  </fieldset>",
+      "</section>",
+      "<section class='card' aria-labelledby='h-id'>",
+      "  <" + s + " class='sub' id='h-id'>Your ID</" + s + ">",
+      "  <div class='panel'>",
+      "    <p class='id' id='idOut'></p>",
+      "    <p class='meaning' id='meaning'></p>",
+      "    <div class='actions'>",
+      "      <button type='button' class='primary' id='copy'>Copy ID</button>",
+      "      <button type='button' id='shuffle' hidden>Shuffle word</button>",
+      "      <button type='button' id='next'>Next number</button>",
+      "    </div>",
+      "  </div>",
+      "  <p class='status' id='status' role='status'></p>",
+      "  <div role='status'><p class='notice' id='dupe' hidden></p></div>",
+      "  <p class='vh' id='announce' role='status' aria-live='polite'></p>",
+      "</section>",
+      "<section class='card full' aria-labelledby='h-recent'>",
+      "  <" + s + " class='sub' id='h-recent'>IDs copied this visit</" + s + ">",
+      "  <ul class='list recent' id='recent'></ul>",
+      "  <p class='empty' id='recentEmpty'>Nothing copied yet. This list resets when you close the page.</p>",
+      "</section>",
+      "<details>",
+      "  <summary>Check against IDs already in the spreadsheet</summary>",
+      "  <div class='inner'>",
+      "    <p class='hint'>Paste the ID column from the spreadsheet. The tool finds the highest number used, warns if the current number is taken, and suggests the next free one. Nothing leaves this page.</p>",
+      "    <div class='field'>",
+      "      <label for='existing'>Existing IDs</label>",
+      "      <textarea id='existing' placeholder='ST-0001-WHACK&#10;PC-0002-BOOM&#10;PO-0003-BAM'></textarea>",
+      "    </div>",
+      "    <p class='hint' id='checkOut' role='status'></p>",
+      "    <div class='actions'><button type='button' class='small' id='useNext' disabled>Use next free number</button></div>",
+      "  </div>",
+      "</details>",
+      "<details>",
+      "  <summary>All item types and sound families</summary>",
+      "  <div class='inner'>",
+      "    <p class='hint'>Every family rhymes on one sound. Reserve types are ready to switch on when needed.</p>",
+      "    <ul class='list' id='ref'></ul>",
+      "  </div>",
+      "</details>",
+      "</div>"
+    ].join("\n");
+  }
+
+  function init(host) {
+    if (host.getAttribute("data-eph-ready")) return;
+    host.setAttribute("data-eph-ready", "1");
+
+    var level = parseInt(host.getAttribute("data-heading-level"), 10);
+    if (!(level >= 1 && level <= 5)) level = 2;
+
+    var root = host.attachShadow({ mode: "open" });
+    var style = document.createElement("style");
+    style.textContent = CSS;
+    root.appendChild(style);
+    var shell = document.createElement("div");
+    shell.innerHTML = html(level);
+    root.appendChild(shell.firstElementChild);
+
+    var w = root.querySelector(".w");
+    var $ = function (id) { return root.getElementById(id); };
+    var typeSel = $("type"), numIn = $("num"), reserveCb = $("reserve");
+    var randIndex = 0, announceTimer = null;
+    var existing = { ids: {}, numbers: {}, max: 0, count: 0 };
+
+    // Theme: light (default), dark, or auto (the viewer's device or explicit page theme)
+    var themePref = (host.getAttribute("data-theme") || "light").toLowerCase();
+    var mq = window.matchMedia ? window.matchMedia("(prefers-color-scheme: dark)") : null;
+    function applyTheme() {
+      var mode = "light";
+      if (themePref === "dark") mode = "dark";
+      else if (themePref === "auto") {
+        var explicit = document.documentElement.getAttribute("data-theme");
+        mode = explicit === "dark" || explicit === "light" ? explicit : (mq && mq.matches ? "dark" : "light");
+      }
+      w.setAttribute("data-mode", mode);
+    }
+    applyTheme();
+    if (mq && themePref === "auto") {
+      if (mq.addEventListener) mq.addEventListener("change", applyTheme);
+      else if (mq.addListener) mq.addListener(applyTheme);
+    }
+
+    function pad(n) { var s = String(n); while (s.length < NUM_WIDTH) s = "0" + s; return s; }
+    function byCode(code) { for (var i = 0; i < FAMILIES.length; i++) if (FAMILIES[i].code === code) return FAMILIES[i]; return null; }
+    function mode() { return root.querySelector("input[name='mode']:checked").value; }
+    function wordFor(f, n) { return mode() === "random" ? f.words[randIndex % f.words.length] : f.words[(n - 1) % f.words.length]; }
+    function parseNum() {
+      var raw = numIn.value.replace(/^\s+|\s+$/g, "");
+      if (!/^\d{1,5}$/.test(raw)) return null;
+      var n = parseInt(raw, 10);
+      return n >= 1 && n <= 99999 ? n : null;
+    }
+    function currentId() {
+      var f = byCode(typeSel.value), n = parseNum();
+      return f && n !== null ? f.code + "-" + pad(n) + "-" + wordFor(f, n) : "";
+    }
+
+    function announce(text) {
+      clearTimeout(announceTimer);
+      announceTimer = setTimeout(function () { $("announce").textContent = text; }, 500);
+    }
+
+    function fillTypes() {
+      var keep = typeSel.value;
+      typeSel.innerHTML = "";
+      FAMILIES.forEach(function (f) {
+        if (!f.active && !reserveCb.checked) return;
+        var o = document.createElement("option");
+        o.value = f.code;
+        o.textContent = f.name + " (" + f.code + ", " + f.sound + ")" + (f.active ? "" : " - reserve");
+        typeSel.appendChild(o);
+      });
+      for (var i = 0; i < typeSel.options.length; i++) if (typeSel.options[i].value === keep) typeSel.value = keep;
+    }
+
+    function fillReference() {
+      var ul = $("ref");
+      FAMILIES.forEach(function (f) {
+        var li = document.createElement("li");
+        var head = document.createElement("span"); head.className = "head";
+        var nm = document.createElement("span"); nm.textContent = f.name;
+        var pill = document.createElement("span"); pill.className = "pill" + (f.active ? " on" : ""); pill.textContent = f.active ? "In use" : "Reserve";
+        head.appendChild(nm); head.appendChild(pill);
+        var meta = document.createElement("span"); meta.className = "meta mono"; meta.textContent = "Code " + f.code + " · sound " + f.sound;
+        var words = document.createElement("span"); words.className = "words mono"; words.textContent = f.words.join(", ");
+        li.appendChild(head); li.appendChild(meta); li.appendChild(words);
+        ul.appendChild(li);
+      });
+    }
+
+    function render(quiet) {
+      var f = byCode(typeSel.value), n = parseNum();
+      var out = $("idOut"), err = $("error"), dupe = $("dupe");
+      $("shuffle").hidden = mode() !== "random";
+      $("status").textContent = "";
+      if (!f || n === null) {
+        out.textContent = "";
+        $("meaning").textContent = "";
+        err.hidden = false;
+        numIn.setAttribute("aria-invalid", "true");
+        numIn.setAttribute("aria-describedby", "num-hint error");
+        $("copy").disabled = true;
+        dupe.hidden = true;
+        return;
+      }
+      err.hidden = true;
+      numIn.removeAttribute("aria-invalid");
+      numIn.setAttribute("aria-describedby", "num-hint");
+      $("copy").disabled = false;
+      var word = wordFor(f, n);
+      out.innerHTML = "";
+      [["type", f.code], ["", "-"], ["", pad(n)], ["", "-"], ["word", word]].forEach(function (p) {
+        var s = document.createElement("span");
+        if (p[0]) s.className = p[0];
+        s.textContent = p[1];
+        out.appendChild(s);
+      });
+      $("meaning").textContent = f.name + " · " + f.sound + " family" + (f.active ? "" : " · reserve type");
+      var id = f.code + "-" + pad(n) + "-" + word;
+      if (existing.numbers[n]) {
+        dupe.hidden = false;
+        dupe.textContent = "Number " + pad(n) + " is already used in the spreadsheet. The next free number is " + pad(existing.max + 1) + ".";
+      } else if (existing.ids[id]) {
+        dupe.hidden = false;
+        dupe.textContent = id + " is already in the spreadsheet.";
+      } else {
+        dupe.hidden = true;
+      }
+      if (!quiet) announce("ID is " + id);
+    }
+
+    function addRecent(id) {
+      $("recentEmpty").hidden = true;
+      var ul = $("recent");
+      var li = document.createElement("li");
+      var t = document.createElement("span"); t.className = "mono"; t.textContent = id;
+      var b = document.createElement("button"); b.type = "button"; b.className = "small"; b.textContent = "Copy";
+      b.setAttribute("aria-label", "Copy " + id);
+      b.addEventListener("click", function () { copyText(id, "Copied " + id); });
+      li.appendChild(t); li.appendChild(b);
+      ul.insertBefore(li, ul.firstChild);
+      while (ul.children.length > 15) ul.removeChild(ul.lastChild);
+    }
+
+    function copyText(text, okMsg) {
+      var done = function () { $("status").textContent = okMsg; };
+      var fallback = function () {
+        var ta = document.createElement("textarea");
+        ta.value = text; ta.setAttribute("readonly", ""); ta.setAttribute("aria-hidden", "true"); ta.tabIndex = -1;
+        ta.style.cssText = "position:fixed;opacity:0;left:0;top:0;width:1px;height:1px;min-height:0;padding:0;border:0";
+        w.appendChild(ta);
+        ta.select();
+        var ok = false;
+        try { ok = document.execCommand("copy"); } catch (e) { ok = false; }
+        w.removeChild(ta);
+        if (ok) done(); else $("status").textContent = "Copy was blocked. Select the ID above and copy it by hand.";
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, fallback);
+      else fallback();
+    }
+
+    $("copy").addEventListener("click", function () {
+      var id = currentId();
+      if (!id) return;
+      copyText(id, "Copied " + id);
+      addRecent(id);
+    });
+    $("shuffle").addEventListener("click", function () {
+      var f = byCode(typeSel.value); if (!f) return;
+      var next;
+      do { next = Math.floor(Math.random() * f.words.length); } while (f.words.length > 1 && next === randIndex % f.words.length);
+      randIndex = next;
+      render();
+    });
+    $("next").addEventListener("click", function () {
+      var n = parseNum();
+      numIn.value = (n === null ? 0 : n) + 1;
+      randIndex = Math.floor(Math.random() * 6);
+      render();
+    });
+    typeSel.addEventListener("change", function () { randIndex = Math.floor(Math.random() * 6); render(); });
+    numIn.addEventListener("input", function () { render(); });
+    reserveCb.addEventListener("change", function () { fillTypes(); render(); });
+    Array.prototype.forEach.call(root.querySelectorAll("input[name='mode']"), function (r) { r.addEventListener("change", function () { render(); }); });
+
+    function parseExisting() {
+      var text = $("existing").value.toUpperCase();
+      var found = text.match(/\b[A-Z]{2}-\d{1,5}-[A-Z]+\b/g) || [];
+      existing = { ids: {}, numbers: {}, max: 0, count: 0 };
+      found.forEach(function (m) {
+        if (!existing.ids[m]) existing.count++;
+        existing.ids[m] = true;
+        var n = parseInt(m.split("-")[1], 10);
+        existing.numbers[n] = true;
+        if (n > existing.max) existing.max = n;
+      });
+      var out = $("checkOut"), btn = $("useNext");
+      if (!existing.count) {
+        out.textContent = text.replace(/\s+/g, "") ? "No IDs in the form TYPE-NUMBER-WORD were found." : "";
+        btn.disabled = true;
+      } else {
+        out.textContent = existing.count + (existing.count === 1 ? " ID" : " IDs") + " found. Highest number: " + pad(existing.max) + ". Next free number: " + pad(existing.max + 1) + ".";
+        btn.disabled = false;
+      }
+      render(true);
+    }
+    $("existing").addEventListener("input", parseExisting);
+    $("useNext").addEventListener("click", function () {
+      numIn.value = existing.max + 1;
+      render();
+      $("status").textContent = "Number set to " + pad(existing.max + 1) + ".";
+    });
+
+    fillTypes();
+    fillReference();
+    render(true);
+  }
+
+  function boot() {
+    var hosts = document.querySelectorAll("[data-ephemera-id-generator]");
+    for (var i = 0; i < hosts.length; i++) init(hosts[i]);
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
+  else boot();
+})();
+</script>
+
+</body></html>
