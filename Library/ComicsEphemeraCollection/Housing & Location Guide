@@ -1,0 +1,450 @@
+<style>
+/* ==========================================================
+   CLARK COMICS & GRAPHIC NOVELS EPHEMERA — STAFF PAGES
+   Shared styles; scoped; minimum text size 16px
+   ========================================================== */
+
+.ephemera-page {
+  --ep-ink: #20212a;
+  --ep-paper: #fffdf5;
+  --ep-yellow: #ffdc52;
+  --ep-pink: #ff8eaa;
+  --ep-blue: #8ed8ee;
+  --ep-green: #b9e6a2;
+  --ep-orange: #ffad70;
+  --ep-muted: #55545b;
+
+  color: var(--ep-ink);
+  background: var(--ep-paper);
+  font-family: inherit;
+  font-size: 16px;
+  line-height: 1.55;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.ephemera-page *,
+.ephemera-page *::before,
+.ephemera-page *::after {
+  box-sizing: border-box;
+}
+
+.ephemera-page p,
+.ephemera-page li,
+.ephemera-page td,
+.ephemera-page th {
+  font-size: 16px;
+}
+
+.ephemera-page p { margin: 0 0 1em; }
+.ephemera-page p:last-child { margin-bottom: 0; }
+
+.ephemera-page a {
+  color: #174f77;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+.ephemera-page a:hover { color: #8a214b; }
+
+.ephemera-page a:focus-visible,
+.ephemera-page button:focus-visible {
+  outline: 3px solid #174f77;
+  outline-offset: 4px;
+  border-radius: 3px;
+}
+
+.ephemera-page h2,
+.ephemera-page h3,
+.ephemera-page h4 {
+  color: var(--ep-ink);
+  line-height: 1.2;
+  font-weight: 900;
+}
+
+.ephemera-page h2 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  margin: 0 0 .65em;
+}
+
+.ephemera-page h3 {
+  font-size: 1.2rem;
+  margin: 0 0 .45em;
+}
+
+.ephemera-page h4 {
+  font-size: 1.05rem;
+  margin: 0 0 .4em;
+}
+
+.ephemera-page .ep-hero {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(24px, 5vw, 42px);
+  margin: 0 0 26px;
+  border: 3px solid var(--ep-ink);
+  border-radius: 18px;
+  background-color: var(--ep-yellow);
+  background-image: radial-gradient(
+    circle, rgba(32,33,42,.13) 1.2px, transparent 1.5px
+  );
+  background-size: 13px 13px;
+  box-shadow: 6px 6px 0 var(--ep-ink);
+}
+
+.ephemera-page .ep-hero h2 {
+  max-width: 800px;
+  font-size: clamp(2rem, 5vw, 3.1rem);
+  line-height: 1.04;
+  letter-spacing: -.035em;
+  margin-bottom: 13px;
+}
+
+.ephemera-page .ep-hero p {
+  max-width: 780px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.ephemera-page .ep-kicker,
+.ephemera-page .ep-tag {
+  display: inline-block;
+  padding: 5px 11px;
+  margin-bottom: 12px;
+  border: 2px solid var(--ep-ink);
+  border-radius: 5px;
+  background: var(--ep-paper);
+  font-size: 16px;
+  font-weight: 900;
+  letter-spacing: .04em;
+}
+
+.ephemera-page .ep-section { margin: 30px 0; }
+
+.ephemera-page .ep-panel,
+.ephemera-page .ep-card {
+  padding: 20px;
+  border: 2px solid var(--ep-ink);
+  border-radius: 13px;
+  background: #fff;
+  box-shadow: 3px 3px 0 var(--ep-ink);
+}
+
+.ephemera-page .ep-panel p:last-child,
+.ephemera-page .ep-card p:last-child { margin-bottom: 0; }
+
+.ephemera-page .ep-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.ephemera-page .ep-grid-three {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.ephemera-page .ep-card:nth-child(4n+1) { background: #fff4bd; }
+.ephemera-page .ep-card:nth-child(4n+2) { background: #e5f5fc; }
+.ephemera-page .ep-card:nth-child(4n+3) { background: #fce5ec; }
+.ephemera-page .ep-card:nth-child(4n+4) { background: #eaf5df; }
+
+.ephemera-page .ep-number {
+  display: inline-grid;
+  place-items: center;
+  min-width: 36px;
+  height: 36px;
+  padding: 0 8px;
+  margin-bottom: 10px;
+  border: 2px solid var(--ep-ink);
+  border-radius: 8px;
+  background: var(--ep-yellow);
+  font-weight: 900;
+}
+
+.ephemera-page .ep-callout {
+  padding: 20px;
+  margin: 18px 0;
+  border: 3px solid var(--ep-ink);
+  border-radius: 13px;
+  background: var(--ep-green);
+  box-shadow: 4px 4px 0 var(--ep-ink);
+}
+
+.ephemera-page .ep-warning {
+  padding: 20px;
+  margin: 18px 0;
+  border: 3px solid var(--ep-ink);
+  border-radius: 13px;
+  background: #ffe3b8;
+  box-shadow: 4px 4px 0 var(--ep-ink);
+}
+
+.ephemera-page .ep-example {
+  padding: 16px;
+  margin: 14px 0;
+  border-left: 6px solid var(--ep-blue);
+  border-radius: 5px;
+  background: #eaf7fb;
+}
+
+.ephemera-page .ep-example strong,
+.ephemera-page .ep-callout strong,
+.ephemera-page .ep-warning strong { font-weight: 900; }
+
+.ephemera-page .ep-step {
+  padding: 17px;
+  border: 2px solid var(--ep-ink);
+  border-radius: 11px;
+  background: #fff;
+}
+
+.ephemera-page .ep-step strong {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.ephemera-page .ep-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  margin: 16px 0 22px;
+  border: 2px solid var(--ep-ink);
+  border-radius: 10px;
+  background: #fff;
+}
+
+.ephemera-page table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.ephemera-page th,
+.ephemera-page td {
+  padding: 12px 14px;
+  border-bottom: 1px solid #d5d3cd;
+  vertical-align: top;
+}
+
+.ephemera-page th {
+  background: var(--ep-yellow);
+  color: var(--ep-ink);
+  font-weight: 900;
+}
+
+.ephemera-page tr:last-child td { border-bottom: 0; }
+
+.ephemera-page .ep-links {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.ephemera-page .ep-link {
+  display: block;
+  padding: 15px;
+  border: 2px solid var(--ep-ink);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--ep-ink);
+  text-decoration: none;
+  box-shadow: 2px 2px 0 var(--ep-ink);
+}
+
+.ephemera-page .ep-link:hover {
+  background: var(--ep-yellow);
+  color: var(--ep-ink);
+  text-decoration: underline;
+}
+
+.ephemera-page .ep-link strong {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 17px;
+}
+
+.ephemera-page .ep-link span {
+  display: block;
+  color: var(--ep-muted);
+  font-size: 16px;
+}
+
+.ephemera-page .ep-footer {
+  padding: 16px 0 8px;
+  margin-top: 32px;
+  border-top: 2px dashed var(--ep-ink);
+  color: var(--ep-muted);
+  font-size: 16px;
+}
+
+.ephemera-page .ep-small-note {
+  color: var(--ep-muted);
+  font-size: 16px;
+}
+
+.ephemera-page .ep-inline-code {
+  display: inline-block;
+  padding: 2px 7px;
+  border: 1px solid #777;
+  border-radius: 4px;
+  background: #f0eee8;
+  font-family: monospace;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+@media (max-width: 700px) {
+  .ephemera-page .ep-grid,
+  .ephemera-page .ep-grid-three,
+  .ephemera-page .ep-links {
+    grid-template-columns: 1fr;
+  }
+
+  .ephemera-page .ep-hero { padding: 22px; }
+
+  .ephemera-page th,
+  .ephemera-page td {
+    padding: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ephemera-page *,
+  .ephemera-page *::before,
+  .ephemera-page *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}
+</style>
+
+<div class="ephemera-page">
+
+  <section class="ep-hero">
+    <div class="ep-kicker">Physical organization · Storage reference</div>
+    <h2>A place for everything</h2>
+    <p>Protect the materials, keep them easy to browse, and make sure every item can be located using its inventory record.</p>
+  </section>
+
+  <section class="ep-section">
+    <h2>Two primary storage locations</h2>
+    <div class="ep-grid">
+      <article class="ep-card">
+        <h3>01 · Numbered binders</h3>
+        <p>Most small-format materials are housed in three-ring binders using appropriate protective pocket sleeves.</p>
+        <p>Binders provide a convenient way to browse individual pieces while keeping them organized and protected.</p>
+      </article>
+      <article class="ep-card">
+        <h3>02 · Flat file</h3>
+        <p>Oversized materials and items unsuitable for standard binder pockets are stored in the designated flat-file space.</p>
+        <p>Flat-file storage helps prevent folding, bending, and unnecessary handling.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="ep-section">
+    <h2>Binder organization</h2>
+    <p>Use the numbered binders and their pocket positions to establish a consistent physical location for each item.</p>
+
+    <div class="ep-grid">
+      <article class="ep-step">
+        <div class="ep-number">01</div>
+        <h3>Use protective sleeves</h3>
+        <p>Place items in appropriate sleeves. Avoid forcing an item into a pocket that is too small or otherwise unsuitable.</p>
+      </article>
+      <article class="ep-step">
+        <div class="ep-number">02</div>
+        <h3>Keep IDs visible</h3>
+        <p>Write the ID on the sleeve or an appropriate archival label, not directly on the original item.</p>
+      </article>
+      <article class="ep-step">
+        <div class="ep-number">03</div>
+        <h3>Record the pocket location</h3>
+        <p>Use the binder number and page or pocket position to identify where the item is stored.</p>
+      </article>
+      <article class="ep-step">
+        <div class="ep-number">04</div>
+        <h3>Update the inventory</h3>
+        <p>Make sure the spreadsheet location matches the item's actual binder and pocket position.</p>
+      </article>
+    </div>
+
+    <div class="ep-example">
+      <strong>Standard location format:</strong><br>
+      <span class="ep-inline-code">Binder 2, p. 14</span>
+    </div>
+  </section>
+
+  <section class="ep-section">
+    <h2>Flat-file organization</h2>
+    <p>Use the flat file for oversized materials that cannot be appropriately housed in standard binder sleeves.</p>
+    <ul>
+      <li>Keep materials flat and appropriately protected.</li>
+      <li>Avoid stacking items in ways that could cause bending or abrasion.</li>
+      <li>Keep IDs associated with their individual protective housing.</li>
+      <li>Record the actual drawer location in the inventory.</li>
+    </ul>
+    <div class="ep-example">
+      <strong>Standard location format:</strong><br>
+      <span class="ep-inline-code">Flat File, Drawer 1</span>
+    </div>
+    <p>If a more detailed location is needed to retrieve an item, consult the librarian before introducing a new location convention.</p>
+  </section>
+
+  <section class="ep-section">
+    <h2>Choosing appropriate housing</h2>
+    <div class="ep-table-wrap">
+      <table>
+        <thead><tr><th scope="col">Material</th><th scope="col">General approach</th></tr></thead>
+        <tbody>
+          <tr><td>Small stickers</td><td>Appropriate protective pocket or archival housing.</td></tr>
+          <tr><td>Postcards</td><td>Protective pocket sized to prevent bending or slipping.</td></tr>
+          <tr><td>Flyers</td><td>Binder pocket when size and condition permit.</td></tr>
+          <tr><td>Minicomics</td><td>Protective pocket that accommodates the publication without forcing or compressing it.</td></tr>
+          <tr><td>Buttons/pins</td><td>Appropriate protective housing that prevents damage to the item or surrounding materials.</td></tr>
+          <tr><td>Posters and oversized prints</td><td>Flat-file storage when they cannot be safely accommodated in binders.</td></tr>
+          <tr><td>Other</td><td>Determine the appropriate housing based on size, material, and condition; ask the librarian when uncertain.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="ep-section">
+    <h2>Handling and preservation</h2>
+    <div class="ep-callout">
+      <strong>Protect the original item.</strong>
+      <ul>
+        <li>Never write directly on original materials.</li>
+        <li>Do not apply adhesive labels to items.</li>
+        <li>Handle fragile materials carefully.</li>
+        <li>Do not fold or force materials into unsuitable pockets.</li>
+        <li>Keep items in their assigned housing when not being processed or consulted.</li>
+        <li>Refer damaged or questionable materials to the librarian.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="ep-section">
+    <h2>Moving an item?</h2>
+    <p>If an item is moved to another binder, pocket, or flat-file location, update its Location field in the inventory promptly.</p>
+    <p>The ID stays with the item. A change in physical location does not require a new identifier.</p>
+    <div class="ep-warning">
+      <strong>Remember:</strong> Never reuse an ID or assign a new one simply because an item has been relocated.
+    </div>
+  </section>
+
+  <section class="ep-section">
+    <h2>Related pages</h2>
+    <div class="ep-links">
+      <a class="ep-link" href="https://clark.libguides.com/c.php?g=1565192&p=11748462"><strong>Intake Procedure</strong><span>Follow the complete processing workflow.</span></a>
+      <a class="ep-link" href="https://clark.libguides.com/c.php?g=1565192&p=11748464"><strong>Inventory Spreadsheet Guide</strong><span>Record and update physical locations.</span></a>
+      <a class="ep-link" href="https://clark.libguides.com/c.php?g=1565192&p=11748467"><strong>Questions &amp; Exceptions</strong><span>Get help with unusual or fragile materials.</span></a>
+    </div>
+  </section>
+
+  <div class="ep-footer">Clark College Libraries · Comics &amp; Graphic Novels Ephemera · Housing reference</div>
+</div>
