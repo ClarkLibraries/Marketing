@@ -513,7 +513,12 @@
   </section>
 
   <!-- FUTURE DEVELOPMENT -->
-  <section class="eh-section" aria-labelledby="eh-growing" href="https://clark.libguides.com/c.php?g=1565192&p=11748470">
+  <a class="eh-link" href="https://clark.libguides.com/c.php?g=1565192&p=11748470">
+  <strong>Future Development →</strong>
+  <span>Ideas for improving discovery, digital access,
+  classroom connections, and the collection's organization.</span>
+</a>
+<br>
     <h2 id="eh-growing">A collection in progress</h2>
     <p>
       These procedures are designed to get the collection started
