@@ -1,0 +1,539 @@
+<style>
+/* ==========================================================
+   CLARK COMICS & GRAPHIC NOVELS EPHEMERA — HOME
+   Scoped styles; minimum text size 16px / 12pt
+   ========================================================== */
+
+.ephemera-home {
+  --eh-ink: #20212a;
+  --eh-paper: #fffdf5;
+  --eh-yellow: #ffdc52;
+  --eh-pink: #ff8eaa;
+  --eh-blue: #8ed8ee;
+  --eh-green: #b9e6a2;
+  --eh-orange: #ffad70;
+  --eh-muted: #55545b;
+
+  color: var(--eh-ink);
+  background: var(--eh-paper);
+  font-family: inherit;
+  font-size: 16px;
+  line-height: 1.55;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.ephemera-home *,
+.ephemera-home *::before,
+.ephemera-home *::after {
+  box-sizing: border-box;
+}
+
+.ephemera-home a {
+  color: #174f77;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+.ephemera-home a:hover {
+  color: #8a214b;
+}
+
+.ephemera-home a:focus-visible {
+  outline: 3px solid #174f77;
+  outline-offset: 4px;
+  border-radius: 3px;
+}
+
+.ephemera-home p,
+.ephemera-home li {
+  font-size: 16px;
+}
+
+.ephemera-home p {
+  margin: 0 0 1em;
+}
+
+.ephemera-home h2,
+.ephemera-home h3 {
+  color: var(--eh-ink);
+  line-height: 1.2;
+  font-weight: 900;
+}
+
+.ephemera-home h2 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  margin: 0 0 .65em;
+}
+
+.ephemera-home h3 {
+  font-size: 1.2rem;
+  margin: 0 0 .45em;
+}
+
+.ephemera-home .eh-hero {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(24px, 5vw, 48px);
+  margin: 0 0 24px;
+  border: 3px solid var(--eh-ink);
+  border-radius: 18px;
+  background-color: var(--eh-yellow);
+  background-image: radial-gradient(
+    circle, rgba(32,33,42,.13) 1.2px, transparent 1.5px
+  );
+  background-size: 13px 13px;
+  box-shadow: 6px 6px 0 var(--eh-ink);
+}
+
+.ephemera-home .eh-kicker {
+  display: inline-block;
+  padding: 5px 11px;
+  margin-bottom: 14px;
+  border: 2px solid var(--eh-ink);
+  border-radius: 5px;
+  background: var(--eh-paper);
+  font-size: 16px;
+  font-weight: 900;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+}
+
+.ephemera-home .eh-hero h2 {
+  max-width: 760px;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1.02;
+  letter-spacing: -.035em;
+  margin-bottom: 15px;
+}
+
+.ephemera-home .eh-hero p {
+  max-width: 760px;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 0;
+}
+
+.ephemera-home .eh-burst {
+  position: absolute;
+  right: 28px;
+  top: 25px;
+  width: 105px;
+  height: 105px;
+  display: grid;
+  place-items: center;
+  border: 3px solid var(--eh-ink);
+  border-radius: 50%;
+  background: var(--eh-pink);
+  font-size: 18px;
+  font-weight: 1000;
+  line-height: 1.05;
+  text-align: center;
+  transform: rotate(9deg);
+  box-shadow: 4px 4px 0 var(--eh-ink);
+}
+
+.ephemera-home .eh-section {
+  margin: 30px 0;
+}
+
+.ephemera-home .eh-intro {
+  max-width: 850px;
+}
+
+.ephemera-home .eh-panel {
+  padding: 20px;
+  border: 2px solid var(--eh-ink);
+  border-radius: 13px;
+  background: #fff;
+  box-shadow: 3px 3px 0 var(--eh-ink);
+}
+
+.ephemera-home .eh-panel p:last-child {
+  margin-bottom: 0;
+}
+
+.ephemera-home .eh-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.ephemera-home .eh-card {
+  padding: 20px;
+  border: 2px solid var(--eh-ink);
+  border-radius: 13px;
+  background: #fff;
+  box-shadow: 3px 3px 0 var(--eh-ink);
+}
+
+.ephemera-home .eh-card:nth-child(1) {
+  background: #fff4bd;
+}
+
+.ephemera-home .eh-card:nth-child(2) {
+  background: #e5f5fc;
+}
+
+.ephemera-home .eh-card:nth-child(3) {
+  background: #fce5ec;
+}
+
+.ephemera-home .eh-card:nth-child(4) {
+  background: #eaf5df;
+}
+
+.ephemera-home .eh-card p:last-child {
+  margin-bottom: 0;
+}
+
+.ephemera-home .eh-number {
+  display: inline-grid;
+  place-items: center;
+  min-width: 34px;
+  height: 34px;
+  padding: 0 8px;
+  margin-bottom: 10px;
+  border: 2px solid var(--eh-ink);
+  border-radius: 8px;
+  background: var(--eh-yellow);
+  font-weight: 900;
+}
+
+.ephemera-home .eh-steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 13px;
+  margin-top: 16px;
+}
+
+.ephemera-home .eh-step {
+  padding: 16px;
+  border: 2px solid var(--eh-ink);
+  border-radius: 10px;
+  background: #fff;
+}
+
+.ephemera-home .eh-step strong {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.ephemera-home .eh-tag {
+  display: inline-block;
+  padding: 3px 9px;
+  margin-bottom: 9px;
+  border: 1.5px solid var(--eh-ink);
+  border-radius: 20px;
+  background: var(--eh-blue);
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.ephemera-home .eh-callout {
+  padding: 20px;
+  border: 3px solid var(--eh-ink);
+  border-radius: 13px;
+  background: var(--eh-green);
+  box-shadow: 4px 4px 0 var(--eh-ink);
+}
+
+.ephemera-home .eh-callout strong {
+  font-weight: 900;
+}
+
+.ephemera-home .eh-links {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.ephemera-home .eh-link {
+  display: block;
+  min-height: 100%;
+  padding: 16px;
+  border: 2px solid var(--eh-ink);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--eh-ink);
+  text-decoration: none;
+  box-shadow: 2px 2px 0 var(--eh-ink);
+}
+
+.ephemera-home .eh-link:hover {
+  background: var(--eh-yellow);
+  color: var(--eh-ink);
+  text-decoration: underline;
+}
+
+.ephemera-home .eh-link strong {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 17px;
+}
+
+.ephemera-home .eh-link span {
+  display: block;
+  color: var(--eh-muted);
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+.ephemera-home .eh-footer {
+  padding: 16px 0 8px;
+  border-top: 2px dashed var(--eh-ink);
+  color: var(--eh-muted);
+  font-size: 16px;
+}
+
+@media (max-width: 700px) {
+  .ephemera-home .eh-burst {
+    position: static;
+    width: auto;
+    height: auto;
+    display: inline-block;
+    padding: 8px 13px;
+    margin-bottom: 16px;
+    border-radius: 8px;
+    transform: rotate(-2deg);
+  }
+
+  .ephemera-home .eh-grid,
+  .ephemera-home .eh-links {
+    grid-template-columns: 1fr;
+  }
+
+  .ephemera-home .eh-steps {
+    grid-template-columns: 1fr;
+  }
+
+  .ephemera-home .eh-hero {
+    padding: 22px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ephemera-home *,
+  .ephemera-home *::before,
+  .ephemera-home *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}
+</style>
+
+<div class="ephemera-home">
+
+  <!-- HERO -->
+  <section class="eh-hero" aria-labelledby="eh-title">
+    <div class="eh-burst" aria-hidden="true">POW!<br>PRINT<br>MATTERS</div>
+    <div class="eh-kicker">Clark College Libraries · Staff Guide</div>
+    <h2 id="eh-title">Comics &amp; Graphic Novels Ephemera</h2>
+    <p>
+      The little printed things around comics tell big stories.
+      This guide helps us collect, organize, preserve, and make
+      these materials easier to find and explore.
+    </p>
+  </section>
+
+  <!-- INTRODUCTION -->
+  <section class="eh-section eh-intro" aria-labelledby="eh-about">
+    <h2 id="eh-about">What's this collection about?</h2>
+    <p>
+      This collection brings together the small printed materials
+      that circulate around comics and graphic novels: stickers,
+      postcards, posters, flyers, buttons, minicomics, zines,
+      and other related items. Materials may come from individual
+      artists and creators, publishers, bookstores, events,
+      and organizations.
+    </p>
+    <p>
+      These pieces offer students and visitors a chance to encounter
+      the visual and material culture surrounding comics, including
+      the artists, independent publishers, bookstores, events,
+      and communities that help make the medium.
+    </p>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="eh-section" aria-labelledby="eh-how">
+    <h2 id="eh-how">How the collection works</h2>
+    <div class="eh-grid">
+      <article class="eh-card">
+        <div class="eh-number" aria-hidden="true">01</div>
+        <h3>Give every item an ID</h3>
+        <p>
+          Each distinct item receives a unique identifier using
+          the Ephemera ID Generator. The number is shared across
+          all item types and is never reused.
+        </p>
+      </article>
+
+      <article class="eh-card">
+        <div class="eh-number" aria-hidden="true">02</div>
+        <h3>Record it in one spreadsheet</h3>
+        <p>
+          One row per item records its printed text, type, creator
+          or organization, searchable keywords, physical location,
+          and donor/date received.
+        </p>
+      </article>
+
+      <article class="eh-card">
+        <div class="eh-number" aria-hidden="true">03</div>
+        <h3>House it for browsing</h3>
+        <p>
+          Most materials go into numbered three-ring binders with
+          pocket sleeves. Oversized pieces are stored in the flat file.
+        </p>
+      </article>
+
+      <article class="eh-card">
+        <div class="eh-number" aria-hidden="true">04</div>
+        <h3>Keep processing lightweight</h3>
+        <p>
+          Transcribe what's printed, add a few useful keywords,
+          record the location and provenance, and move on.
+          Routine intake is not full cataloging.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <!-- WORKFLOW -->
+  <section class="eh-section" aria-labelledby="eh-workflow">
+    <h2 id="eh-workflow">The basic workflow</h2>
+    <p>
+      Most items should take about two to three minutes to process.
+      The goal is a consistent, useful inventory—not exhaustive
+      description or research.
+    </p>
+
+    <div class="eh-steps">
+      <div class="eh-step">
+        <span class="eh-tag">First</span>
+        <strong>Sort &amp; identify</strong>
+        Group donated materials by type. Set aside anything damaged
+        or questionable for librarian review.
+      </div>
+      <div class="eh-step">
+        <span class="eh-tag">Next</span>
+        <strong>Generate &amp; label</strong>
+        Find the next number, generate the ID, and write it lightly
+        in pencil on the sleeve or an archival label—not on the item.
+      </div>
+      <div class="eh-step">
+        <span class="eh-tag">Then</span>
+        <strong>House &amp; record</strong>
+        Place the item in its binder pocket or flat-file location
+        and complete its spreadsheet row.
+      </div>
+    </div>
+  </section>
+
+  <!-- GUIDING PRINCIPLES -->
+  <section class="eh-section" aria-labelledby="eh-principles">
+    <h2 id="eh-principles">A few guiding principles</h2>
+    <div class="eh-callout">
+      <p><strong>Copy, don't interpret.</strong> Record the text as
+      it appears. Leave unknown details blank; put guesses in
+      square brackets.</p>
+      <p><strong>Make it searchable.</strong> Use the standard item
+      type names and three to six practical keywords.</p>
+      <p><strong>Keep IDs unique.</strong> Never reuse a number,
+      even if an item is withdrawn.</p>
+      <p><strong>Protect the materials.</strong> Never write directly
+      on an item. Preserve donor information and respect restrictions.</p>
+      <p><strong>Ask when unsure.</strong> Use Other for an uncertain
+      type, and refer unusual, sensitive, or questionable materials
+      to the librarian.</p>
+    </div>
+  </section>
+
+  <!-- GUIDE NAVIGATION -->
+  <section class="eh-section" aria-labelledby="eh-guide">
+    <h2 id="eh-guide">Explore the staff guide</h2>
+    <p>
+      Use these pages for the procedures, tools, and reference
+      information you'll need while working with the collection.
+    </p>
+
+    <div class="eh-links">
+      <a class="eh-link" href="https://clark.libguides.com/c.php?g=1565192&p=11748462">
+        <strong>Ephemera Intake Procedure →</strong>
+        <span>Step-by-step instructions for receiving, processing,
+        labeling, housing, and recording donations.</span>
+      </a>
+
+      <a class="eh-link" href="https://clark.libguides.com/c.php?g=1565192&p=11748151">
+        <strong>Ephemera ID Generator →</strong>
+        <span>Create a unique item ID using the type and next
+        available collection number.</span>
+      </a>
+
+      <a class="eh-link" href="https://clark.libguides.com/c.php?g=1565192&p=11748463">
+        <strong>Item Types &amp; ID Reference →</strong>
+        <span>Type names, two-letter codes, sound families,
+        and reserved categories.</span>
+      </a>
+
+      <a class="eh-link" href="https://clark.libguides.com/c.php?g=1565192&p=11748464">
+        <strong>Inventory Spreadsheet Guide →</strong>
+        <span>What belongs in each column, keyword conventions,
+        and tips for searching the inventory.</span>
+      </a>
+
+      <a class="eh-link" href="https://clark.libguides.com/c.php?g=1565192&p=11748465">
+        <strong>Housing &amp; Location Guide →</strong>
+        <span>Binder organization, pocket numbering, flat-file
+        storage, and location formats.</span>
+      </a>
+
+      <a class="eh-link" href="https://clark.libguides.com/c.php?g=1565192&p=11748467">
+        <strong>Questions &amp; Exceptions →</strong>
+        <span>Guidance for unusual items, missing information,
+        damaged materials, and processing questions.</span>
+      </a>
+
+      <a class="eh-link" href="https://clark.libguides.com/c.php?g=1565192&p=11748466">
+        <strong>Donations, Donors &amp; Restrictions →</strong>
+        <span>Donation paperwork, provenance, donor preferences,
+        and access or display restrictions.</span>
+      </a>
+
+      <a class="eh-link" href="https://clark.libguides.com/c.php?g=1565192&p=11748469">
+        <strong>Staff Discovery &amp; Reference Guide →</strong>
+        <span>How to help students and visitors explore and
+        locate materials in the collection.</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- FUTURE DEVELOPMENT -->
+  <section class="eh-section" aria-labelledby="eh-growing" href="https://clark.libguides.com/c.php?g=1565192&p=11748470">
+    <h2 id="eh-growing">A collection in progress</h2>
+    <p>
+      These procedures are designed to get the collection started
+      without creating unnecessary work. As materials arrive and
+      staff gain experience, we may refine item types, add inventory
+      fields, develop additional discovery tools, and create ways
+      for students and visitors to browse selected materials online.
+    </p>
+    <p>
+      The staff inventory remains an internal working tool.
+      Any public-facing discovery resource will use appropriately
+      selected information and respect donor permissions and
+      restrictions.
+    </p>
+  </section>
+
+  <div class="eh-footer">
+    Clark College Libraries · Comics &amp; Graphic Novels Ephemera
+    <br>
+    Staff working guide · Procedures may be updated as the collection develops
+  </div>
+
+</div>
