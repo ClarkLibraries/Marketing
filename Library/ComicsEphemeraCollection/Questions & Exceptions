@@ -1,0 +1,453 @@
+<style>
+/* ==========================================================
+   CLARK COMICS & GRAPHIC NOVELS EPHEMERA — STAFF PAGES
+   Shared styles; scoped; minimum text size 16px
+   ========================================================== */
+
+.ephemera-page {
+  --ep-ink: #20212a;
+  --ep-paper: #fffdf5;
+  --ep-yellow: #ffdc52;
+  --ep-pink: #ff8eaa;
+  --ep-blue: #8ed8ee;
+  --ep-green: #b9e6a2;
+  --ep-orange: #ffad70;
+  --ep-muted: #55545b;
+
+  color: var(--ep-ink);
+  background: var(--ep-paper);
+  font-family: inherit;
+  font-size: 16px;
+  line-height: 1.55;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.ephemera-page *,
+.ephemera-page *::before,
+.ephemera-page *::after {
+  box-sizing: border-box;
+}
+
+.ephemera-page p,
+.ephemera-page li,
+.ephemera-page td,
+.ephemera-page th {
+  font-size: 16px;
+}
+
+.ephemera-page p { margin: 0 0 1em; }
+.ephemera-page p:last-child { margin-bottom: 0; }
+
+.ephemera-page a {
+  color: #174f77;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+.ephemera-page a:hover { color: #8a214b; }
+
+.ephemera-page a:focus-visible,
+.ephemera-page button:focus-visible {
+  outline: 3px solid #174f77;
+  outline-offset: 4px;
+  border-radius: 3px;
+}
+
+.ephemera-page h2,
+.ephemera-page h3,
+.ephemera-page h4 {
+  color: var(--ep-ink);
+  line-height: 1.2;
+  font-weight: 900;
+}
+
+.ephemera-page h2 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  margin: 0 0 .65em;
+}
+
+.ephemera-page h3 {
+  font-size: 1.2rem;
+  margin: 0 0 .45em;
+}
+
+.ephemera-page h4 {
+  font-size: 1.05rem;
+  margin: 0 0 .4em;
+}
+
+.ephemera-page .ep-hero {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(24px, 5vw, 42px);
+  margin: 0 0 26px;
+  border: 3px solid var(--ep-ink);
+  border-radius: 18px;
+  background-color: var(--ep-yellow);
+  background-image: radial-gradient(
+    circle, rgba(32,33,42,.13) 1.2px, transparent 1.5px
+  );
+  background-size: 13px 13px;
+  box-shadow: 6px 6px 0 var(--ep-ink);
+}
+
+.ephemera-page .ep-hero h2 {
+  max-width: 800px;
+  font-size: clamp(2rem, 5vw, 3.1rem);
+  line-height: 1.04;
+  letter-spacing: -.035em;
+  margin-bottom: 13px;
+}
+
+.ephemera-page .ep-hero p {
+  max-width: 780px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.ephemera-page .ep-kicker,
+.ephemera-page .ep-tag {
+  display: inline-block;
+  padding: 5px 11px;
+  margin-bottom: 12px;
+  border: 2px solid var(--ep-ink);
+  border-radius: 5px;
+  background: var(--ep-paper);
+  font-size: 16px;
+  font-weight: 900;
+  letter-spacing: .04em;
+}
+
+.ephemera-page .ep-section { margin: 30px 0; }
+
+.ephemera-page .ep-panel,
+.ephemera-page .ep-card {
+  padding: 20px;
+  border: 2px solid var(--ep-ink);
+  border-radius: 13px;
+  background: #fff;
+  box-shadow: 3px 3px 0 var(--ep-ink);
+}
+
+.ephemera-page .ep-panel p:last-child,
+.ephemera-page .ep-card p:last-child { margin-bottom: 0; }
+
+.ephemera-page .ep-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.ephemera-page .ep-grid-three {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.ephemera-page .ep-card:nth-child(4n+1) { background: #fff4bd; }
+.ephemera-page .ep-card:nth-child(4n+2) { background: #e5f5fc; }
+.ephemera-page .ep-card:nth-child(4n+3) { background: #fce5ec; }
+.ephemera-page .ep-card:nth-child(4n+4) { background: #eaf5df; }
+
+.ephemera-page .ep-number {
+  display: inline-grid;
+  place-items: center;
+  min-width: 36px;
+  height: 36px;
+  padding: 0 8px;
+  margin-bottom: 10px;
+  border: 2px solid var(--ep-ink);
+  border-radius: 8px;
+  background: var(--ep-yellow);
+  font-weight: 900;
+}
+
+.ephemera-page .ep-callout {
+  padding: 20px;
+  margin: 18px 0;
+  border: 3px solid var(--ep-ink);
+  border-radius: 13px;
+  background: var(--ep-green);
+  box-shadow: 4px 4px 0 var(--ep-ink);
+}
+
+.ephemera-page .ep-warning {
+  padding: 20px;
+  margin: 18px 0;
+  border: 3px solid var(--ep-ink);
+  border-radius: 13px;
+  background: #ffe3b8;
+  box-shadow: 4px 4px 0 var(--ep-ink);
+}
+
+.ephemera-page .ep-example {
+  padding: 16px;
+  margin: 14px 0;
+  border-left: 6px solid var(--ep-blue);
+  border-radius: 5px;
+  background: #eaf7fb;
+}
+
+.ephemera-page .ep-example strong,
+.ephemera-page .ep-callout strong,
+.ephemera-page .ep-warning strong { font-weight: 900; }
+
+.ephemera-page .ep-step {
+  padding: 17px;
+  border: 2px solid var(--ep-ink);
+  border-radius: 11px;
+  background: #fff;
+}
+
+.ephemera-page .ep-step strong {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.ephemera-page .ep-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  margin: 16px 0 22px;
+  border: 2px solid var(--ep-ink);
+  border-radius: 10px;
+  background: #fff;
+}
+
+.ephemera-page table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.ephemera-page th,
+.ephemera-page td {
+  padding: 12px 14px;
+  border-bottom: 1px solid #d5d3cd;
+  vertical-align: top;
+}
+
+.ephemera-page th {
+  background: var(--ep-yellow);
+  color: var(--ep-ink);
+  font-weight: 900;
+}
+
+.ephemera-page tr:last-child td { border-bottom: 0; }
+
+.ephemera-page .ep-links {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.ephemera-page .ep-link {
+  display: block;
+  padding: 15px;
+  border: 2px solid var(--ep-ink);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--ep-ink);
+  text-decoration: none;
+  box-shadow: 2px 2px 0 var(--ep-ink);
+}
+
+.ephemera-page .ep-link:hover {
+  background: var(--ep-yellow);
+  color: var(--ep-ink);
+  text-decoration: underline;
+}
+
+.ephemera-page .ep-link strong {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 17px;
+}
+
+.ephemera-page .ep-link span {
+  display: block;
+  color: var(--ep-muted);
+  font-size: 16px;
+}
+
+.ephemera-page .ep-footer {
+  padding: 16px 0 8px;
+  margin-top: 32px;
+  border-top: 2px dashed var(--ep-ink);
+  color: var(--ep-muted);
+  font-size: 16px;
+}
+
+.ephemera-page .ep-small-note {
+  color: var(--ep-muted);
+  font-size: 16px;
+}
+
+.ephemera-page .ep-inline-code {
+  display: inline-block;
+  padding: 2px 7px;
+  border: 1px solid #777;
+  border-radius: 4px;
+  background: #f0eee8;
+  font-family: monospace;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+@media (max-width: 700px) {
+  .ephemera-page .ep-grid,
+  .ephemera-page .ep-grid-three,
+  .ephemera-page .ep-links {
+    grid-template-columns: 1fr;
+  }
+
+  .ephemera-page .ep-hero { padding: 22px; }
+
+  .ephemera-page th,
+  .ephemera-page td {
+    padding: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ephemera-page *,
+  .ephemera-page *::before,
+  .ephemera-page *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}
+</style>
+
+<div class="ephemera-page">
+
+  <section class="ep-hero">
+    <div class="ep-kicker">Troubleshooting · Staff reference</div>
+    <h2>Not sure what to do?</h2>
+    <p>Most items are straightforward. This page covers common questions, unusual materials, and situations that should be referred to the librarian.</p>
+  </section>
+
+  <section class="ep-section">
+    <h2>Quick answers</h2>
+    <div class="ep-grid">
+      <article class="ep-card">
+        <h3>I can't determine the item type.</h3>
+        <p>Use Other (OT) if the item does not clearly fit an active category. Ask the librarian if the same uncertainty comes up repeatedly.</p>
+      </article>
+      <article class="ep-card">
+        <h3>I can't identify the creator.</h3>
+        <p>Leave the Creator/org field blank. Do not infer an artist or publisher based solely on an illustration or visual style.</p>
+      </article>
+      <article class="ep-card">
+        <h3>The item has no printed title.</h3>
+        <p>Use a brief, factual identifying phrase based on visible content. Do not invent a formal title.</p>
+      </article>
+      <article class="ep-card">
+        <h3>I don't know the date received.</h3>
+        <p>Check accompanying documentation or ask the person who received the contribution. Do not substitute an estimated publication date.</p>
+      </article>
+      <article class="ep-card">
+        <h3>The item is too large for a binder.</h3>
+        <p>Set it aside for appropriate flat-file housing and record its actual location once housed.</p>
+      </article>
+      <article class="ep-card">
+        <h3>I made a spreadsheet mistake.</h3>
+        <p>Correct the existing record if the item is still the same item. Do not create a new ID simply to correct a data-entry error.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="ep-section">
+    <h2>When should I stop processing?</h2>
+    <div class="ep-warning">
+      <strong>Pause and refer the item to the librarian when you encounter:</strong>
+      <ul>
+        <li>Significant physical damage, mold, pests, or other preservation concerns.</li>
+        <li>Potentially sensitive personal information.</li>
+        <li>Expressed donor restrictions or unclear permissions.</li>
+        <li>Materials that appear inappropriate for the collection.</li>
+        <li>Unusual objects that cannot be safely housed.</li>
+        <li>Items that raise questions about ownership, provenance, or appropriate access.</li>
+        <li>Recurring classification or ID-system problems.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="ep-section">
+    <h2>Special situations</h2>
+
+    <article class="ep-step">
+      <h3>Duplicate items</h3>
+      <p>Do not assume that identical-looking items should automatically be discarded or combined. Each distinct physical copy should be accounted for according to the collection's inventory approach. Ask the librarian if the number of duplicates or their intended use raises questions.</p>
+    </article>
+
+    <article class="ep-step">
+      <h3>Items that arrive as a group or set</h3>
+      <p>Consider whether the materials are individual pieces or parts of a deliberately assembled set. Do not invent a group-recording method or assign one ID to several unrelated pieces without direction.</p>
+    </article>
+
+    <article class="ep-step">
+      <h3>Items with multiple creators or organizations</h3>
+      <p>Record the most useful names visible on the item or in the accompanying documentation. Keep the entry concise. Leave uncertain attribution unresolved.</p>
+    </article>
+
+    <article class="ep-step">
+      <h3>Items with little or no printed text</h3>
+      <p>Use a short factual identifying phrase in Text/title and a few useful keywords. Avoid interpreting the artwork or guessing who created it.</p>
+    </article>
+
+    <article class="ep-step">
+      <h3>Damaged or fragile items</h3>
+      <p>Do not attempt repairs, cleaning, flattening, or other treatment. Keep the item separate from routine processing and ask the librarian for guidance.</p>
+    </article>
+
+    <article class="ep-step">
+      <h3>Items that may not belong in the collection</h3>
+      <p>Set them aside for review. Do not discard, redistribute, or independently expand the collection's scope.</p>
+    </article>
+  </section>
+
+  <section class="ep-section">
+    <h2>What if an ID has already been assigned?</h2>
+    <p>The ID system is designed to maintain a permanent, collection-wide sequence.</p>
+    <ul>
+      <li>If an item is moved, keep its existing ID and update its location.</li>
+      <li>If an item is withdrawn, do not reuse its ID.</li>
+      <li>If a record contains an error, correct the record rather than assigning a replacement ID.</li>
+      <li>If a duplicate number or generator problem is discovered, stop and consult the librarian.</li>
+    </ul>
+  </section>
+
+  <section class="ep-section">
+    <h2>What information should I provide when asking for help?</h2>
+    <p>When referring an item, include enough information for the librarian to understand the question without unnecessary investigation.</p>
+    <div class="ep-callout">
+      <ul>
+        <li>The item's ID, if one has already been assigned.</li>
+        <li>A brief description of the item.</li>
+        <li>What seems unusual or uncertain.</li>
+        <li>Any related donor documentation or restrictions.</li>
+        <li>Where the item is currently being held.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="ep-section">
+    <h2>The guiding principle</h2>
+    <p>Routine work should remain routine. Staff are not expected to resolve every question independently. When something falls outside the established procedure, preserve the item and its context and refer the question rather than improvising a new policy.</p>
+  </section>
+
+  <section class="ep-section">
+    <h2>Related pages</h2>
+    <div class="ep-links">
+      <a class="ep-link" href="https://clark.libguides.com/c.php?g=1565192&p=11748462"><strong>Intake Procedure</strong><span>Review the standard workflow.</span></a>
+      <a class="ep-link" href="https://clark.libguides.com/c.php?g=1565192&p=11748463"><strong>Item Types &amp; ID Reference</strong><span>Check active classifications.</span></a>
+      <a class="ep-link" href="https://clark.libguides.com/c.php?g=1565192&p=11748466"><strong>Donations &amp; Restrictions</strong><span>Review provenance and donor concerns.</span></a>
+    </div>
+  </section>
+
+  <div class="ep-footer">Clark College Libraries · Comics &amp; Graphic Novels Ephemera · Troubleshooting reference</div>
+</div>
