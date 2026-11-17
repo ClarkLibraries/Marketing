@@ -9,22 +9,27 @@
   "use strict";
 
   // ---- Editable configuration ---------------------------------------------
-  // To switch a reserve type on permanently, change its `active` to true.
+  // Only families with `active: true` are shown to users (in the type menu and
+  // in the reference list). Families with `active: false` are held in reserve:
+  // they stay in this code, but nobody can see or select them.
+  // To switch a reserve type on, change its `active` to true.
   // Words must be CAPITAL letters only. Avoid editing words after IDs are issued:
   // the word for a number is chosen by its position in the list.
   var FAMILIES = [
-    { code: "ST", name: "Sticker",            sound: "-ack",  active: true,  words: ["WHACK","THWACK","SMACK","CRACK","CLACK","KLACK"] },
-    { code: "PC", name: "Postcard",           sound: "-oom",  active: true,  words: ["BOOM","VROOM","KABOOM","WHOOM","FOOM","ZLOOM"] },
-    { code: "PO", name: "Poster",             sound: "-am",   active: true,  words: ["BAM","WHAM","SLAM","BLAM","KABLAM","KERBLAM"] },
-    { code: "MC", name: "Minicomic",          sound: "-ap",   active: true,  words: ["ZAP","SNAP","WHAP","FLAP","KLAP","ZLAP"] },
-    { code: "BT", name: "Button / pin",       sound: "-ing",  active: true,  words: ["PING","DING","ZING","KLING","TWING","SKLING"] },
-    { code: "FL", name: "Flyer",              sound: "-oosh", active: true,  words: ["WHOOSH","FWOOSH","SHOOSH","ZOOSH","FLOOSH","KLOOSH"] },
-    { code: "OT", name: "Other",              sound: "-ump",  active: true,  words: ["THUMP","BUMP","WHUMP","KLUMP","FLUMP","GLUMP"] },
-    { code: "ZN", name: "Zine",               sound: "-onk",  active: false, words: ["BONK","KLONK","CLONK","PLONK","ZONK","WONK"] },
-    { code: "PR", name: "Print",              sound: "-ow",   active: false, words: ["POW","KAPOW","ZOW","KLOW","SKOW","WHOW"] },
-    { code: "BM", name: "Bookmark",           sound: "-eep",  active: false, words: ["ZEEP","KLEEP","SKREEP","WHEEP","BLEEP","PLEEP"] },
-    { code: "TC", name: "Trading card",       sound: "-ick",  active: false, words: ["FLICK","KLICK","SNICK","THWICK","SKRICK","TWICK"] },
-    { code: "SP", name: "Spare (unassigned)", sound: "-izz",  active: false, words: ["FIZZ","WHIZZ","SIZZ","ZIZZ","FRIZZ","SKIZZ"] }
+    // Order here = order in the menu and the reference list:
+    // smallest object to largest, with Other last. Types with active: false stay hidden.
+    { code: "BT", name: "Button / pin",         sound: "-ing",  active: true,  words: ["PING","DING","ZING","KLING","TWING","SKLING"] },
+    { code: "ST", name: "Sticker",              sound: "-ack",  active: true,  words: ["WHACK","THWACK","SMACK","CRACK","CLACK","KLACK"] },
+    { code: "TC", name: "Trading card",         sound: "-ick",  active: true,  words: ["FLICK","KLICK","SNICK","THWICK","SKRICK","TWICK"] },
+    { code: "BM", name: "Bookmark",             sound: "-eep",  active: true,  words: ["ZEEP","KLEEP","SKREEP","WHEEP","BLEEP","PLEEP"] },
+    { code: "PC", name: "Postcard",             sound: "-oom",  active: true,  words: ["BOOM","VROOM","KABOOM","WHOOM","FOOM","ZLOOM"] },
+    { code: "MC", name: "Mini-comics / Zines",  sound: "-ap",   active: true,  words: ["ZAP","SNAP","WHAP","FLAP","KLAP","ZLAP"] },
+    { code: "BK", name: "Book",                 sound: "-izz",  active: true,  words: ["FIZZ","WHIZZ","SIZZ","ZIZZ","FRIZZ","SKIZZ"] },
+    { code: "FL", name: "Flyer",                sound: "-oosh", active: true,  words: ["WHOOSH","FWOOSH","SHOOSH","ZOOSH","FLOOSH","KLOOSH"] },
+    { code: "CS", name: "Comic strip",          sound: "-ow",   active: true,  words: ["POW","KAPOW","ZOW","KLOW","SKOW","WHOW"] },
+    { code: "PR", name: "Prints / Drawings",    sound: "-onk",  active: true,  words: ["BONK","KLONK","CLONK","PLONK","ZONK","WONK"] },
+    { code: "PO", name: "Poster",               sound: "-am",   active: true,  words: ["BAM","WHAM","SLAM","BLAM","KABLAM","KERBLAM"] },
+    { code: "OT", name: "Other",                sound: "-ump",  active: true,  words: ["THUMP","BUMP","WHUMP","KLUMP","FLUMP","GLUMP"] }
   ];
   var NUM_WIDTH = 4;
   // --------------------------------------------------------------------------
@@ -327,6 +332,13 @@ var CSS = [
     "  cursor: not-allowed;",
     "}",
 
+    /* ---- Links -------------------------------------------------------- */
+    "a {",
+    "  color: var(--focus);",
+    "  text-decoration: underline;",
+    "  font-weight: 600;",
+    "}",
+
     /* ---- Keyboard focus ---------------------------------------------- */
     "a:focus-visible,",
     "button:focus-visible,",
@@ -536,7 +548,6 @@ var CSS = [
       "    <div class='field'>",
       "      <label for='type'>Item type</label>",
       "      <select id='type'></select>",
-      "      <label class='choice' for='reserve'><input type='checkbox' id='reserve'><span>Show reserve types<small>Not in use yet. Turn on only after the librarian activates them.</small></span></label>",
       "    </div>",
       "    <div class='field'>",
       "      <label for='num'>Item number</label>",
@@ -574,6 +585,7 @@ var CSS = [
       "<details>",
       "  <summary>Check against IDs already in the spreadsheet</summary>",
       "  <div class='inner'>",
+      "    <p class='hint'><a href='https://docs.google.com/spreadsheets/d/1OcFUUUsRJyiTWgWRJSkXi1y6AaUPViZ5H06j-w7r71Y/edit?usp=sharing' target='_blank' rel='noopener noreferrer'>Open the inventory spreadsheet (Google Form results, opens in a new tab)</a></p>",
       "    <p class='hint'>Paste the ID column from the spreadsheet. The tool finds the highest number used, warns if the current number is taken, and suggests the next free one. Nothing leaves this page.</p>",
       "    <div class='field'>",
       "      <label for='existing'>Existing IDs</label>",
@@ -586,7 +598,7 @@ var CSS = [
       "<details>",
       "  <summary>All item types and sound families</summary>",
       "  <div class='inner'>",
-      "    <p class='hint'>Every family rhymes on one sound. Reserve types are ready to switch on when needed.</p>",
+      "    <p class='hint'>Every family rhymes on one sound.</p>",
       "    <ul class='list' id='ref'></ul>",
       "  </div>",
       "</details>",
@@ -611,7 +623,7 @@ var CSS = [
 
     var w = root.querySelector(".w");
     var $ = function (id) { return root.getElementById(id); };
-    var typeSel = $("type"), numIn = $("num"), reserveCb = $("reserve");
+    var typeSel = $("type"), numIn = $("num");
     var randIndex = 0, announceTimer = null;
     var existing = { ids: {}, numbers: {}, max: 0, count: 0 };
 
@@ -634,7 +646,8 @@ var CSS = [
     }
 
     function pad(n) { var s = String(n); while (s.length < NUM_WIDTH) s = "0" + s; return s; }
-    function byCode(code) { for (var i = 0; i < FAMILIES.length; i++) if (FAMILIES[i].code === code) return FAMILIES[i]; return null; }
+    // Only active families are visible to users; reserve families stay in FAMILIES but are never looked up here.
+    function byCode(code) { for (var i = 0; i < FAMILIES.length; i++) if (FAMILIES[i].active && FAMILIES[i].code === code) return FAMILIES[i]; return null; }
     function mode() { return root.querySelector("input[name='mode']:checked").value; }
     function wordFor(f, n) { return mode() === "random" ? f.words[randIndex % f.words.length] : f.words[(n - 1) % f.words.length]; }
     function parseNum() {
@@ -657,10 +670,10 @@ var CSS = [
       var keep = typeSel.value;
       typeSel.innerHTML = "";
       FAMILIES.forEach(function (f) {
-        if (!f.active && !reserveCb.checked) return;
+        if (!f.active) return;
         var o = document.createElement("option");
         o.value = f.code;
-        o.textContent = f.name + " (" + f.code + ", " + f.sound + ")" + (f.active ? "" : " - reserve");
+        o.textContent = f.name + " (" + f.code + ", " + f.sound + ")";
         typeSel.appendChild(o);
       });
       for (var i = 0; i < typeSel.options.length; i++) if (typeSel.options[i].value === keep) typeSel.value = keep;
@@ -669,11 +682,11 @@ var CSS = [
     function fillReference() {
       var ul = $("ref");
       FAMILIES.forEach(function (f) {
+        if (!f.active) return;
         var li = document.createElement("li");
         var head = document.createElement("span"); head.className = "head";
         var nm = document.createElement("span"); nm.textContent = f.name;
-        var pill = document.createElement("span"); pill.className = "pill" + (f.active ? " on" : ""); pill.textContent = f.active ? "In use" : "Reserve";
-        head.appendChild(nm); head.appendChild(pill);
+        head.appendChild(nm);
         var meta = document.createElement("span"); meta.className = "meta mono"; meta.textContent = "Code " + f.code + " · sound " + f.sound;
         var words = document.createElement("span"); words.className = "words mono"; words.textContent = f.words.join(", ");
         li.appendChild(head); li.appendChild(meta); li.appendChild(words);
@@ -708,7 +721,7 @@ var CSS = [
         s.textContent = p[1];
         out.appendChild(s);
       });
-      $("meaning").textContent = f.name + " · " + f.sound + " family" + (f.active ? "" : " · reserve type");
+      $("meaning").textContent = f.name + " · " + f.sound + " family";
       var id = f.code + "-" + pad(n) + "-" + word;
       if (existing.numbers[n]) {
         dupe.hidden = false;
@@ -773,7 +786,6 @@ var CSS = [
     });
     typeSel.addEventListener("change", function () { randIndex = Math.floor(Math.random() * 6); render(); });
     numIn.addEventListener("input", function () { render(); });
-    reserveCb.addEventListener("change", function () { fillTypes(); render(); });
     Array.prototype.forEach.call(root.querySelectorAll("input[name='mode']"), function (r) { r.addEventListener("change", function () { render(); }); });
 
     function parseExisting() {
