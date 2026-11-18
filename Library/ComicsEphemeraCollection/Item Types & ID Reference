@@ -332,7 +332,7 @@
 
   <section class="ep-section">
     <h2>Active item types</h2>
-    <p>Use one of these seven active types when generating an ID and completing an inventory record.</p>
+    <p>Use one of these twelve active types when generating an ID and completing an inventory record.</p>
 
     <div class="ep-table-wrap">
       <table>
@@ -340,31 +340,18 @@
           <tr><th scope="col">Type</th><th scope="col">Code</th><th scope="col">What it includes</th></tr>
         </thead>
         <tbody>
+          <tr><td><strong>Button / pin</strong></td><td><span class="ep-inline-code">BT</span></td><td>Buttons, pin-back badges, and similar wearable promotional objects.</td></tr>
           <tr><td><strong>Sticker</strong></td><td><span class="ep-inline-code">ST</span></td><td>Adhesive stickers, decals, and similar small-format promotional graphics.</td></tr>
+          <tr><td><strong>Trading card</strong></td><td><span class="ep-inline-code">TC</span></td><td>Collectible or promotional trading cards, including business and promo cards.</td></tr>
+          <tr><td><strong>Bookmark</strong></td><td><span class="ep-inline-code">BM</span></td><td>Bookmarks and reading-related promotional pieces.</td></tr>
           <tr><td><strong>Postcard</strong></td><td><span class="ep-inline-code">PC</span></td><td>Postcards, illustrated mailers, and similar postcard-format pieces.</td></tr>
-          <tr><td><strong>Poster</strong></td><td><span class="ep-inline-code">PO</span></td><td>Posters and larger-format promotional or illustrated display pieces.</td></tr>
-          <tr><td><strong>Minicomic</strong></td><td><span class="ep-inline-code">MC</span></td><td>Small-format comics, independently produced comics, and short comic publications.</td></tr>
-          <tr><td><strong>Button/pin</strong></td><td><span class="ep-inline-code">BT</span></td><td>Buttons, pin-back badges, and similar wearable promotional objects.</td></tr>
+          <tr><td><strong>Mini-comics / Zines</strong></td><td><span class="ep-inline-code">MC</span></td><td>Small-format comics, zines, independently produced comics, and short comic or zine publications.</td></tr>
+          <tr><td><strong>Book</strong></td><td><span class="ep-inline-code">BK</span></td><td>Bound books and longer publications, including graphic novels and similar book-format works.</td></tr>
           <tr><td><strong>Flyer</strong></td><td><span class="ep-inline-code">FL</span></td><td>Event announcements, handouts, promotional sheets, and informational flyers.</td></tr>
+          <tr><td><strong>Comic strip</strong></td><td><span class="ep-inline-code">CS</span></td><td>Comic strips and short single-page or multi-panel comics, whether original pages or printed copies.</td></tr>
+          <tr><td><strong>Prints / Drawings</strong></td><td><span class="ep-inline-code">PR</span></td><td>Art prints, sketches, drawings, and related printed or hand-made artwork.</td></tr>
+          <tr><td><strong>Poster</strong></td><td><span class="ep-inline-code">PO</span></td><td>Posters and larger-format promotional or illustrated display pieces.</td></tr>
           <tr><td><strong>Other</strong></td><td><span class="ep-inline-code">OT</span></td><td>Related ephemera that does not clearly fit another active category.</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <section class="ep-section">
-    <h2>Reserved types</h2>
-    <p>These codes are reserved for potential future use. Do not independently activate them or use them in the generator unless the librarian has approved a change to the system.</p>
-
-    <div class="ep-table-wrap">
-      <table>
-        <thead><tr><th scope="col">Potential type</th><th scope="col">Reserved code</th><th scope="col">Possible application</th></tr></thead>
-        <tbody>
-          <tr><td>Zine</td><td><span class="ep-inline-code">ZN</span></td><td>Standalone zines and small independent publications.</td></tr>
-          <tr><td>Print</td><td><span class="ep-inline-code">PR</span></td><td>Art prints and related printed artwork.</td></tr>
-          <tr><td>Bookmark</td><td><span class="ep-inline-code">BM</span></td><td>Bookmarks and reading-related promotional pieces.</td></tr>
-          <tr><td>Trading card</td><td><span class="ep-inline-code">TC</span></td><td>Collectible or promotional trading cards.</td></tr>
-          <tr><td>Spare</td><td><span class="ep-inline-code">SP</span></td><td>Reserved system category; not a general-purpose alternative to Other.</td></tr>
         </tbody>
       </table>
     </div>
